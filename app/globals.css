@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * KodeSparc design tokens — docs/spec.md Section 4.
+ * Values are RGB channel triplets consumed by tailwind.config.ts via
+ * rgb(var(--token) / <alpha-value>).
+ */
+:root {
+  /* Backgrounds: warm off-white range #FAF9F6–#F5F3EF */
+  --color-canvas: 250 249 246;
+  --color-canvas-subtle: 245 243 239;
+  --color-surface: 255 255 255;
+
+  /* Primary text / headings: deep navy–charcoal #1B2430 / #111827 */
+  --color-ink: 27 36 48;
+  --color-ink-strong: 17 24 39;
+
+  /* Warm grays: secondary text, muted labels */
+  --color-soft: 87 83 78; /* #57534E */
+  --color-faint: 121 113 107; /* #79716B */
+
+  /* Borders, dividers, card outlines */
+  --color-line: 231 229 228; /* #E7E5E4 */
+
+  /* Single accent: teal #0F766E (spec offers teal/emerald/deep blue — teal chosen,
+     passes WCAG AA on the off-white canvas at ~5.9:1). Confirm before launch. */
+  --color-accent: 15 118 110;
+  --color-accent-strong: 17 94 89; /* hover/active #115E59 */
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-canvas text-ink antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-display text-ink-strong;
+  }
+
+  ::selection {
+    @apply bg-accent/15;
+  }
+}
