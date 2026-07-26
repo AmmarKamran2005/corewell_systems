@@ -9,10 +9,11 @@ export function Hero() {
           <h1 className="text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
             Engineering software that powers modern businesses.
           </h1>
+          {/* Regional claim pending owner confirmation before launch — spec Section 7. */}
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-soft">
-            [PLACEHOLDER: one-sentence subline — plain-language statement of
-            who KodeSparc builds for and the operational outcome, per spec
-            Section 5.]
+            We design and build custom software — from healthcare platforms to
+            hospitality and retail systems — for businesses across Canada, the
+            United States, Australia, and Pakistan.
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <Button href="/book-consultation" size="lg">

@@ -1,7 +1,7 @@
 import type { Config } from "tailwindcss";
 
 /**
- * KodeSparc design tokens — see docs/spec.md Section 4.
+ * Corewell Systems design tokens — see docs/spec.md Section 4.
  * Color values live as CSS variables in app/globals.css (RGB channel triplets
  * so Tailwind opacity modifiers like `bg-accent/10` keep working).
  */

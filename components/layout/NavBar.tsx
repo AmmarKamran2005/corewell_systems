@@ -6,10 +6,10 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
 
+// No Products item — capability lives inside Industries (spec Section 3).
 const navLinks = [
   { href: "/industries", label: "Industries" },
   { href: "/solutions", label: "Solutions" },
-  { href: "/products", label: "Products" },
   { href: "/case-studies", label: "Case Studies" },
   { href: "/insights", label: "Insights" },
   { href: "/pricing", label: "Pricing" },
@@ -51,7 +51,7 @@ export function NavBar() {
             href="/"
             className="font-display text-lg font-semibold tracking-display text-ink-strong"
           >
-            KodeSparc
+            Corewell Systems
           </Link>
 
           <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">

@@ -19,12 +19,15 @@ Phases are listed in Section 12.
 
 ## 1. Project Identity
 
-- **Company name:** KodeSparc Technologies *(placeholder — confirm trademark/domain clearance before committing; see naming note from Ammar's conversation)*
-- **What this is NOT:** a freelancer portfolio, a template agency site, a "hire me" page.
-- **What this IS:** an interactive product-experience site that makes visitors feel like they've opened a live software company's HQ — closer to how Stripe, Linear, or Vercel present themselves than a typical dev-for-hire site.
+- **Company name:** Corewell Systems *(placeholder — trademark clearance flagged as a real risk against "Corewell Health," a large US hospital system; confirm before final domain purchase)*
+- **What this is NOT:** a freelancer portfolio, a template agency site, a "hire me" page, or a page built around any one named product.
+- **What this IS:** an interactive product-experience site that makes visitors feel like they've opened a real, established software company's HQ — closer to how Stripe, Linear, or Vercel present themselves than a typical dev-for-hire site.
+- **Brand identity, not personal identity:** the entire site speaks in company voice. No founder name, no personal bio, no "About the developer" section anywhere. This is a deliberate positioning choice — Corewell Systems should read as an established engineering company, not a solo operator's showcase.
+- **No named, linked, or attributable real products:** none of the company's actual live systems are named or linked anywhere on the public site (no "the clinical platform," no "the therapy platform," no "the hospitality platform," no live URLs). Instead, capability is demonstrated through generic, industry-labeled interactive demos (see Section 6) and anonymized case studies (see Section 5). This protects existing client/product branding and lets the company present broader, more flexible capability than any single named product would imply.
 - **Positioning statement:** "We design and build business software that solves real operational problems." Every page, CTA, and piece of copy should trace back to this line.
-- **Primary audience:** Non-technical decision-makers — clinic owners, hospital admins, school administrators, hotel owners, SME operators — plus international clients sourced via Upwork/LinkedIn who need to be convinced quickly that they're dealing with a real company, not a solo freelancer.
-- **Core buyer psychology to design for:** the visitor is not evaluating code quality. They're evaluating *risk*. Every section should reduce perceived risk: proof of real systems, clear process, no hype, no fake numbers.
+- **International framing:** the company should read as having delivered systems for organizations across multiple regions — Canada, the United States, Australia, and Pakistan — stated generally, never tied to a specific named client. Confirm exact regions before publishing; state only what's true.
+- **Primary audience:** Non-technical decision-makers — clinic owners, hospital admins, school administrators, hotel owners, shop/retail owners, SME operators — plus international clients sourced via Upwork/LinkedIn who need to be convinced quickly that they're dealing with a real, capable company.
+- **Core buyer psychology to design for:** the visitor is not evaluating code quality. They're evaluating *risk*. Every section should reduce perceived risk: interactive proof of working systems, clear process, no hype, no fake numbers, no fabricated names.
 
 ---
 
@@ -51,32 +54,28 @@ Use this stack unless there's a specific reason to deviate — it's the standard
 
 ```
 Home
-├── Industries
+├── Industries (hub) — each page has an embedded generic interactive demo
 │   ├── Healthcare
 │   ├── Hospitality
 │   ├── Education
-│   ├── Retail
-│   └── Enterprise / Custom
+│   ├── Retail & Shop Management
+│   ├── Construction & Real Estate
+│   ├── Legal & Professional Services
+│   └── Enterprise / Custom (catch-all, styled as an invitation, not a numbered card)
 ├── Solutions
 │   ├── Custom Software Development
 │   ├── SaaS Platforms
 │   ├── Mobile Apps
 │   ├── Cloud & Deployment
 │   └── AI Automation
-├── Products
-│   ├── the clinical platform (EHR) — live
-│   ├── the therapy platform — live
-│   ├── the hospitality platform — live
-│   ├── POS System — live/custom
-│   └── School ERP — concept/custom
-├── Case Studies (one per real product, expandable over time)
+├── Case Studies (anonymized — no client names, no live links; see Section 5)
 ├── Insights (blog — SEO/GEO/AEO engine)
-├── Pricing (ranges/tiers, not a fixed price list — see Section 6)
-├── About (founder + company story)
+├── Pricing (ranges/tiers, not a fixed price list)
+├── About (company story only — no founder identity, see Section 5)
 └── Book Consultation (single global CTA target)
 ```
 
-No "Portfolio" nav item, anywhere. If a visitor wants to see past work, that lives inside Products and Case Studies, framed as evidence, not a gallery.
+No "Portfolio" nav item, anywhere. No standalone "Products" nav item either — capability is shown *inside* each Industry page as an interactive demo, not as a catalog of named, linkable products. If a visitor wants to see past work, that lives inside Industries and Case Studies, framed as evidence, never as a gallery of real branded systems.
 
 ---
 
@@ -122,18 +121,19 @@ No "Portfolio" nav item, anywhere. If a visitor wants to see past work, that liv
 7. Closing CTA band
 
 ### Industries (hub + one page per industry)
-- Hub: grid of industry cards, each linking to a dedicated page
-- Each industry page: the operational problem in that industry → how software solves it → relevant product(s) from your catalog → relevant case study (or "coming soon" if none yet) → CTA
+- Hub: grid of industry cards (Healthcare, Hospitality, Education, Retail & Shop Management, Construction & Real Estate, Legal & Professional Services, Enterprise/Custom), each linking to a dedicated page
+- Each industry page: the operational problem in that industry → how software solves it → an embedded **generic interactive demo** for that industry (see Section 6 — labeled by function, e.g. "Healthcare Management System — Interactive Demo," never by a real product name) → an anonymized case study or proof block → CTA
+- Industries with no real underlying system yet (currently: Construction & Real Estate, Legal & Professional Services) get an honest **"Concept — Available as Custom Build"** treatment instead of a demo, per Section 7. Do not fabricate a demo for these.
 
 ### Solutions
 - Framed as capabilities, not tech stack. Each solution page: problem it solves, what's included, example industries it applies to, CTA. Mention technologies only in a small "Under the hood" collapsible section for technical buyers — never in headlines.
 
-### Products (hub + one page per product)
-- Hub: card grid, clearly separating **Live Products** from **Concepts / Available as Custom Build** (see Section 7 — this distinction must be visually unmistakable, not just a small label)
-- Each live product page: problem → feature walkthrough → **Try Live Demo** button → screenshots/screen recording → tech notes (optional, collapsed) → related case study → CTA
+### Products
+- **No standalone Products page.** Capability is demonstrated inside each Industry page via the embedded generic demo (Section 6). This avoids naming, linking, or exposing any real production system while still proving the company can build real, working software.
 
 ### Case Studies
-- Template per case study: Business problem → Solution → Key features → Architecture (optional, technical readers only) → Outcome (only if you have real, permissioned data — otherwise omit outcome metrics entirely rather than invent them)
+- Anonymized by design: no client name, no company name, no live link. Reference general descriptors instead — e.g. "a multi-location hospital network in North America," "a boutique hotel group in Canada," "a regional retail chain in Pakistan."
+- Template per case study: Business problem → Solution → Key features → Architecture (optional, technical readers only) → Outcome (only if genuinely true and non-identifying — otherwise omit outcome metrics rather than invent them)
 
 ### Insights (blog)
 - This is the GEO/AEO engine. See Section 9 for the content strategy this page structure needs to support: one-question-one-answer article template, FAQ schema per article, clear H1/H2 structure.
@@ -142,32 +142,37 @@ No "Portfolio" nav item, anywhere. If a visitor wants to see past work, that liv
 - Present as ranges/tiers tied to project complexity (e.g., "Starter System," "Growth Platform," "Enterprise Build") rather than a fixed price list. Always end with "Get a tailored quote" CTA, not a checkout.
 
 ### About
-- Company story (why KodeSparc exists) + Founder section (Ammar Kamran, real background, real experience — this is the "people buy from people" trust layer)
+- Company story only — why Corewell Systems exists, how it works, what it believes about software. No founder name, no personal bio, no "meet the team" section. The trust layer here comes from clarity of process and specificity of industry knowledge, not from a personal face.
 
 ### Book Consultation
 - Cal.com/Calendly embed + short qualifying form (company/industry/rough budget band) so you triage leads before the call.
 
 ---
 
-## 6. Product Showcase & Live Demo Environments
+## 6. Industry Demo Environments (no named or linked real products)
 
-This is the single highest-leverage feature on the site — it's what makes it "infinitely more convincing than screenshots."
+This is still the single highest-leverage feature on the site — it's what makes it "infinitely more convincing than screenshots." The approach has changed: demos are presented as generic, industry-labeled capability, never as a specific named or linkable product.
 
 **Approach:**
-- For each live product (the clinical platform, the therapy platform, the hospitality platform, POS), build or reuse a **sandboxed demo environment** with seeded fake data — never real client/patient data.
-- Simplest implementation: a `/demo/[product]` route with a pre-filled "Login as Admin / Login as Doctor / Login as Front Desk" quick-access button (no real credential entry needed) that drops the visitor into a read-mostly dashboard view of that product.
-- If the actual product isn't safe to expose live (compliance concerns for healthcare data), build a **lightweight demo replica** — same UI, same flows, fabricated dummy data, clearly labeled "Interactive Demo Environment." This is honest as long as it's labeled and doesn't claim to be the live client-facing system.
-- Priority order for build effort: the clinical platform and the hospitality platform first (most visually rich, most relatable to non-technical buyers), then the therapy platform, then POS.
+- For each industry with a real underlying system already built, reskin/whitelabel it into a generic sandboxed demo — seeded with fake data, never real client/patient data, never linked to its actual production domain or branded with its real product name.
+- Labeling convention: **"[Industry] Management System — Interactive Demo"** — e.g. "Healthcare Management System — Interactive Demo," "Hospitality Management System — Interactive Demo." Never "Try the clinical platform" or similar.
+- Route structure: `/industries/[industry]` with the demo embedded inline (iframe or embedded route), not a separate `/demo/[product]` page tied to a product identity.
+- Quick-access pattern stays the same internally: "Login as Admin / Login as Doctor / Login as Front Desk" with no real credential entry, dropping the visitor into a read-mostly dashboard.
+- **Which industries currently have a real system to reskin:** Healthcare, Hospitality, Education, Retail & Shop Management. Build these first, in that priority order (most visually rich and relatable to non-technical buyers first).
+- **Which industries don't yet:** Construction & Real Estate, Legal & Professional Services. These get the "Concept — Available as Custom Build" treatment (Section 7) instead of a demo — do not build a fake demo to fill the gap.
+- Technical note: this can literally be the same codebase/data model as the real product underneath, just re-themed and re-labeled for the public site and hosted separately from the real production instance — no need to rebuild from scratch.
 
 ---
 
 ## 7. Ethical Content Rules (non-negotiable)
 
-- Never claim a product is live/deployed/in-production if it isn't.
+- Never claim a capability is real/deployed/in-production if it isn't.
 - Never publish fabricated client counts, revenue numbers, or testimonials.
-- Unbuilt products/ideas get one of these labels, always visible, never buried: **"Concept — Available as Custom Build"** or **"In Development."**
+- Unbuilt industries/systems get one of these labels, always visible, never buried: **"Concept — Available as Custom Build"** or **"In Development."** Anonymizing a real product's name is fine; presenting a genuinely unbuilt system as a working demo is not — that line still holds even though branding is now generic.
+- No real company/client names, no personal founder name, no live production links anywhere on the public site — this is an intentional brand-anonymization decision, not a shortcut around honesty. The systems and capability shown must still be real; only the identifying names/links are withheld.
 - If a case study has no permissioned outcome data, omit the outcome section rather than inventing numbers.
-- The AI Consultant (Section 8) must follow the same rule — it should never promise timelines, prices, or capabilities that haven't been confirmed.
+- Regional claims (Canada/US/Australia/Pakistan) must reflect where work has genuinely been delivered — confirm before publishing, don't round up.
+- The AI Consultant (Section 8) must follow the same rule — it should never promise timelines, prices, or capabilities that haven't been confirmed, and should never name specific past clients even if asked.
 
 ---
 
@@ -251,9 +256,157 @@ Outcome language over technology language, always:
 
 Apple-style principle: lead with the outcome, not the stack. Technical detail is available for buyers who want it, but never in a headline.
 
+---
 
+## 14. Ready-to-Paste Kickoff Prompt (Phase 1)
+
+Copy this into Claude Code to start:
+
+```
+Read docs/spec.md in full before starting. We are building Phase 1 only
+(Foundation), as defined in Section 12.
+
+Scope for this session:
+- Scaffold a Next.js 14 App Router project with TypeScript and Tailwind CSS
+- Implement the design tokens from Section 4 (colors, typography, spacing)
+  as a Tailwind config + CSS variables layer
+- Build reusable base components: Button (primary/secondary), Card,
+  NavBar (scroll-aware, sticky), Footer
+- Build the Home page static layout per Section 5, using placeholder
+  copy marked clearly as [PLACEHOLDER] where real copy isn't in the spec yet
+- No animation yet — that's Phase 3
+- No CMS/demo/AI widget yet — those are later phases
+
+Do not invent client names, testimonials, or metrics. Where real content
+is needed but not provided, insert a clearly marked placeholder and list
+everything you need from me at the end of your response.
 ```
 
 ---
+
+---
+
+## 15. Ready-to-Paste Kickoff Prompt (Phase 2)
+
+Copy this into Claude Code to start Phase 2. It supersedes the Phase 1 decisions on naming, founder identity, and product branding — read it carefully before implementing.
+
+```
+Read docs/spec.md in full — it has been updated since Phase 1. Key changes
+before you start:
+
+1. GIT IDENTITY: Do not use contact@clinical-platform.ai for any commits. Configure
+   this repo's local git identity instead:
+     git config user.name "Corewell Systems"
+     git config user.email "dev@corewellsystems.placeholder"
+   Flag clearly in your response that this is a placeholder email and
+   should be replaced once a real domain/inbox exists.
+
+2. RENAME: Replace all instances of "KodeSparc" / "KodeSparc Technologies"
+   with "Corewell Systems" across the codebase, copy, and metadata.
+
+3. REMOVE FOUNDER IDENTITY: Remove any founder name, bio, or "About the
+   developer" content from the About page or anywhere else. The site
+   speaks entirely in company voice — no personal name anywhere.
+
+4. REMOVE NAMED/LINKED PRODUCTS: There is no more standalone Products
+   page and no named real products (no "the clinical platform," "the therapy platform," "the hospitality platform,"
+   no live URLs to real systems) anywhere on the public site. Capability
+   is shown via generic per-industry demos instead (Section 6 of the spec).
+
+5. UPDATED INDUSTRIES: Industries hub now has 7 tiles: Healthcare,
+   Hospitality, Education, Retail & Shop Management, Construction & Real
+   Estate, Legal & Professional Services, and Enterprise/Custom (styled
+   as a closing "don't see your industry?" invitation, not a numbered card).
+
+Scope for this session (Phase 2, per spec Section 12):
+- Build the Industries hub page (7 cards, per above)
+- Build one full Industry page template, applied first to Healthcare
+- Build the Solutions hub + one Solutions page template
+- Use the real content below — do not use [PLACEHOLDER] for these, they
+  are final unless I say otherwise:
+
+HERO HEADLINE:
+"Engineering software that powers modern businesses."
+
+HERO SUBLINE:
+"We design and build custom software — from healthcare platforms to
+hospitality and retail systems — for businesses across Canada, the
+United States, Australia, and Pakistan."
+
+INDUSTRIES GRID INTRO:
+"Every industry runs on different workflows. We build software around
+yours — not the other way around."
+
+INDUSTRY ONE-LINERS:
+- Healthcare: "Patient records, appointments, billing, and care
+  coordination — systems built for how clinics and hospitals actually run."
+- Hospitality: "Front desk, reservations, housekeeping, and reporting in
+  one connected platform for hotels and resorts."
+- Education: "Admissions, attendance, gradebooks, and parent
+  communication — a school management system built around real
+  academic workflows."
+- Retail & Shop Management: "Point-of-sale, inventory, and
+  multi-location reporting that keeps a retail business running
+  without the spreadsheet chaos."
+- Construction & Real Estate: "Project timelines, budgets, subcontractor
+  coordination, and property records — built for how construction and
+  real estate teams actually work." [CONCEPT — no demo, custom build only]
+- Legal & Professional Services: "Case management, document workflows,
+  billing, and client communication for law firms and professional
+  practices." [CONCEPT — no demo, custom build only]
+- Enterprise/Custom (closing tile): "Have a workflow no off-the-shelf
+  tool handles? We design custom systems around how your business
+  actually operates."
+
+DEMO LABELS (for industries with a real underlying system):
+- Healthcare Management System — Interactive Demo: "Explore a full
+  clinical workflow — patient intake, scheduling, records, and
+  billing — in a live interactive environment."
+- Hospitality Management System — Interactive Demo: "Walk through a
+  hotel's daily operations — bookings, check-in/out, housekeeping,
+  and reporting."
+- Education Management System — Interactive Demo: "See how admissions,
+  attendance, and gradebooks work together in one system."
+- Retail & POS — Interactive Demo: "Try a point-of-sale and inventory
+  system the way your staff would use it on the floor."
+(Build the demo embeds themselves in a later phase — for Phase 2, wire
+the CTA button/route and label it correctly, backed by a "demo coming
+soon" state if the actual embed isn't ready yet.)
+
+PROOF SECTION (Home + About):
+"Production systems designed for healthcare, hospitality, education,
+and retail operations — for businesses across Canada, the United
+States, Australia, and Pakistan."
+[FLAG: confirm with me which regions are accurate before this ships —
+do not treat this as final without my confirmation.]
+
+ABOUT PAGE BODY (company voice, no founder):
+"Corewell Systems is a software design and engineering company building
+operational systems for healthcare, hospitality, education, and retail
+businesses. We work with organizations across Canada, the United
+States, Australia, and Pakistan, designing software around how teams
+actually work — not the other way around."
+
+Still placeholder — leave marked [PLACEHOLDER] and list at the end of
+your response:
+- Insights article content (Phase 4 — 3 draft titles below for later use
+  only, don't build yet): "How Much Does Custom Healthcare Software
+  Cost?", "Hotel Management Software: What Features Actually Matter",
+  "Custom Software vs. Off-the-Shelf: How to Decide for Your Business"
+- Footer contact email + social links (I'll provide these separately)
+- Final confirmation on "Corewell Systems" as the legal/brand name
+  (trademark clearance still pending against "Corewell Health")
+
+Follow the design system in Section 4 and the copy voice guidelines in
+Section 13. Do not invent any content not listed above or marked as
+mine to provide.
+```
+
+---
+
+## Change Log
+
+- **v2 (this revision):** Renamed brand from KodeSparc to Corewell Systems (pending trademark clearance). Removed founder identity from site entirely. Removed named/linked real products (the clinical platform, the therapy platform, the hospitality platform) — replaced with generic, unbranded per-industry demos. Added Construction & Real Estate and Legal & Professional Services as new industries (concept-stage, no demo). Added international/regional positioning language. Updated ethical content rules to cover anonymization without compromising honesty.
+- **v1:** Initial spec (KodeSparc Technologies, named products, founder-led About page).
 
 *End of specification. Update this file as decisions firm up — treat it as the project's living source of truth, not a one-off prompt.*

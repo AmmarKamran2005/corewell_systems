@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /*
- * KodeSparc design tokens — docs/spec.md Section 4.
+ * Corewell Systems design tokens — docs/spec.md Section 4.
  * Values are RGB channel triplets consumed by tailwind.config.ts via
  * rgb(var(--token) / <alpha-value>).
  */

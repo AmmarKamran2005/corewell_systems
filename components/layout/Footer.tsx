@@ -4,13 +4,12 @@ import { Container } from "@/components/ui/Container";
 const siteLinks = [
   { href: "/industries", label: "Industries" },
   { href: "/solutions", label: "Solutions" },
-  { href: "/products", label: "Products" },
   { href: "/case-studies", label: "Case Studies" },
+  { href: "/insights", label: "Insights" },
 ];
 
 const companyLinks = [
   { href: "/about", label: "About" },
-  { href: "/insights", label: "Insights" },
   { href: "/pricing", label: "Pricing" },
   { href: "/book-consultation", label: "Book a Consultation" },
 ];
@@ -22,7 +21,7 @@ export function Footer() {
         <div className="grid gap-10 md:grid-cols-[2fr_1fr_1fr]">
           <div className="max-w-sm">
             <p className="font-display text-lg font-semibold tracking-display text-ink-strong">
-              KodeSparc
+              Corewell Systems
             </p>
             <p className="mt-3 text-sm leading-relaxed text-soft">
               We design and build business software that solves real
@@ -72,8 +71,8 @@ export function Footer() {
 
         <div className="mt-12 border-t border-line pt-6">
           <p className="text-xs text-faint">
-            © {new Date().getFullYear()} KodeSparc Technologies. All rights
-            reserved. {/* Company name pending trademark/domain clearance — spec Section 1 */}
+            © {new Date().getFullYear()} Corewell Systems. All rights
+            reserved. {/* Brand name pending trademark clearance vs "Corewell Health" — spec Section 1 */}
           </p>
         </div>
       </Container>

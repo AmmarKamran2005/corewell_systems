@@ -19,8 +19,9 @@ const interTight = Inter_Tight({
 
 export const metadata: Metadata = {
   title: {
-    default: "KodeSparc — Business Software That Solves Real Operational Problems",
-    template: "%s — KodeSparc",
+    default:
+      "Corewell Systems — Business Software That Solves Real Operational Problems",
+    template: "%s — Corewell Systems",
   },
   description:
     "We design and build business software that solves real operational problems — healthcare, hospitality, education, retail, and custom enterprise systems.",
