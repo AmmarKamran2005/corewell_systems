@@ -105,7 +105,7 @@ export const industries: Industry[] = [
       label: "Education Management System — Interactive Demo",
       blurb:
         "See how admissions, attendance, and gradebooks work together in one system.",
-      available: false,
+      available: true,
     },
     modules: [
       "Admissions",
@@ -129,7 +129,7 @@ export const industries: Industry[] = [
       label: "Retail & POS — Interactive Demo",
       blurb:
         "Try a point-of-sale and inventory system the way your staff would use it on the floor.",
-      available: false,
+      available: true,
     },
     modules: ["Point-of-sale", "Inventory", "Multi-location reporting"],
   },

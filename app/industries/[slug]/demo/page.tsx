@@ -3,8 +3,10 @@ import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { EducationDemo } from "@/components/demo/EducationDemo";
 import { HealthcareDemo } from "@/components/demo/HealthcareDemo";
 import { HospitalityDemo } from "@/components/demo/HospitalityDemo";
+import { RetailDemo } from "@/components/demo/RetailDemo";
 import {
   demoIndustries,
   getIndustry,
@@ -27,25 +29,33 @@ export function generateMetadata({ params }: Props): Metadata {
   return { title: industry.demo.label, description: industry.demo.blurb };
 }
 
+const demoComponents: Record<
+  string,
+  React.ComponentType<{ exitHref: string }>
+> = {
+  healthcare: HealthcareDemo,
+  hospitality: HospitalityDemo,
+  education: EducationDemo,
+  retail: RetailDemo,
+};
+
 /**
  * Sandboxed demo environments (spec Section 6): generic industry labeling,
- * seeded fake data, quick-access roles instead of credentials. Healthcare
- * and Hospitality are live (Phase 5 priority order); Education and Retail
- * keep the honest coming-soon state until their environments are built.
+ * seeded fake data, quick-access roles instead of credentials. All four
+ * demo-backed industries are live; any future industry added with
+ * available: false falls back to the honest coming-soon state below.
  */
 export default function IndustryDemoPage({ params }: Props) {
   const industry = getIndustry(params.slug);
   if (!industry?.demo) notFound();
 
-  if (industry.demo.available) {
+  const Demo = demoComponents[industry.slug];
+
+  if (industry.demo.available && Demo) {
     return (
       <section className="py-8 sm:py-12" style={industryAccentStyle(industry)}>
         <Container>
-          {industry.slug === "healthcare" ? (
-            <HealthcareDemo exitHref={`/industries/${industry.slug}`} />
-          ) : (
-            <HospitalityDemo exitHref={`/industries/${industry.slug}`} />
-          )}
+          <Demo exitHref={`/industries/${industry.slug}`} />
         </Container>
       </section>
     );
