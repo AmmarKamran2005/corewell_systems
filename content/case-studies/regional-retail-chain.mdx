@@ -1,0 +1,36 @@
+---
+title: "Counting Every Item Across Twelve Shops"
+descriptor: "A regional retail chain"
+region: "Pakistan"
+industry: "retail"
+date: "2026-07-08"
+summary: "A twelve-branch retail chain reconciling sales from paper at midnight moved to a connected POS and inventory system — and started trusting its own stock counts."
+illustrative: true
+---
+
+## The business problem
+
+Twelve branches, each closing the day with a paper summary and a cash count, phoned in or photographed to head office. Stock arrived at a warehouse and dispersed to branches on handwritten notes; nobody could say with confidence how many units of anything existed, anywhere, at any moment. Prices changed at head office and reached some branches days later. Reordering ran on shopkeeper instinct — sometimes brilliant, sometimes a stockroom full of what didn't sell.
+
+## The solution
+
+A point-of-sale and inventory system connecting every branch to one live picture. Each sale updates stock the moment the receipt prints. Prices are set centrally and apply everywhere at once. Low-stock thresholds raise alerts before shelves empty, transfers between branches are recorded in the system instead of on slips, and head office reads daily sales by branch, product, and hour — without a single phone call at midnight.
+
+## Key features
+
+- Fast counter POS with barcode scanning and receipt printing
+- Live inventory, updated by every sale and transfer
+- Centralized pricing pushed to all branches instantly
+- Low-stock alerts and reorder reporting
+- Head-office dashboard: sales by branch, product, and time of day
+
+<details>
+<summary>Architecture notes — for technical readers</summary>
+
+Branch POS clients designed to tolerate unreliable connectivity, syncing to a central PostgreSQL inventory core with conflict-safe reconciliation. Role-based permissions separate counter staff, branch managers, and head office. Encrypted backups and cloud hosting with monitoring.
+
+</details>
+
+## Outcome
+
+*Sample figures from the illustrative scenario:* the midnight reconciliation ritual disappeared — daily totals were simply *there*; stockouts of fast-moving items fell once alerts replaced instinct; and pricing drift between branches ended the day central pricing went live. Head office's phrase for the change: "we stopped managing by rumor."

@@ -1,0 +1,38 @@
+---
+title: "One Dashboard for a Boutique Hotel Group"
+descriptor: "A boutique hotel group"
+region: "Canada"
+industry: "hospitality"
+date: "2026-07-14"
+summary: "Three properties coordinating rooms by phone and paper moved to a shared platform for reservations, housekeeping, and reporting — and gave management its mornings back."
+illustrative: true
+---
+
+## The business problem
+
+Three properties, each with its own paper reservation diary, its own housekeeping routine, and its own way of reporting the day. The front desks called housekeeping to ask if rooms were ready; housekeeping called back when they weren't. Group management assembled occupancy and revenue numbers at month-end, by which point whatever the numbers had to say was four weeks old.
+
+Every property was individually well-run. The *group* was invisible.
+
+## The solution
+
+A single platform carrying all three properties: a live room board per site, one reservation calendar that makes double bookings impossible, and housekeeping status updated from a phone in the room doorway. Charges accumulate on the guest folio through the stay, so checkout is a review rather than a reconstruction. Management opens one dashboard showing occupancy, arrivals, and revenue across all three properties — every morning, not every month.
+
+## Key features
+
+- Live room boards with real-time status per property
+- Shared reservation calendar with conflict prevention
+- Mobile housekeeping updates — no phone calls, no radios
+- Guest folios with charge capture through the stay
+- Group-level occupancy and revenue dashboard
+
+<details>
+<summary>Architecture notes — for technical readers</summary>
+
+Web application with per-property scoping over a shared group account, real-time status updates via server push, and a mobile-first housekeeping view. PostgreSQL data core, role-based permissions, encrypted backups, and cloud deployment with uptime monitoring.
+
+</details>
+
+## Outcome
+
+*Sample figures from the illustrative scenario:* rooms returned to sellable status faster once housekeeping updates arrived instantly instead of by phone; end-of-day reporting stopped consuming a manager's evening; and group management began comparing properties on live numbers for the first time. The owners' summary: the properties didn't change — but for the first time, they could *see* them.
