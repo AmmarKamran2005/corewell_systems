@@ -41,7 +41,7 @@ const organizationJsonLd = {
   "@type": "Organization",
   name: "Corewell Systems",
   url: siteUrl,
-  logo: `${siteUrl}/icon.svg`,
+  logo: `${siteUrl}/icon.png`,
   description:
     "Software design and engineering company building operational systems for healthcare, hospitality, education, and retail businesses across Canada, the United States, Australia, and Pakistan.",
 };

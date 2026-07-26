@@ -1,5 +1,7 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import logoMark from "@/app/c_logo.png";
 
 const siteLinks = [
   { href: "/industries", label: "Industries" },
@@ -20,7 +22,14 @@ export function Footer() {
       <Container className="py-14">
         <div className="grid gap-10 md:grid-cols-[2fr_1fr_1fr]">
           <div className="max-w-sm">
-            <p className="font-display text-lg font-semibold tracking-display text-ink-strong">
+            <p className="flex items-center gap-2.5 font-display text-lg font-semibold tracking-display text-ink-strong">
+              <Image
+                src={logoMark}
+                alt=""
+                width={26}
+                height={26}
+                className="rounded-md"
+              />
               Corewell Systems
             </p>
             <p className="mt-3 text-sm leading-relaxed text-soft">

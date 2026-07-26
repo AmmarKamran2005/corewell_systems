@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import logoMark from "@/app/c_logo.png";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { cn } from "@/lib/utils";
@@ -49,8 +51,16 @@ export function NavBar() {
         >
           <Link
             href="/"
-            className="font-display text-lg font-semibold tracking-display text-ink-strong"
+            className="flex items-center gap-2.5 font-display text-lg font-semibold tracking-display text-ink-strong"
           >
+            <Image
+              src={logoMark}
+              alt=""
+              width={30}
+              height={30}
+              priority
+              className="rounded-md"
+            />
             Corewell Systems
           </Link>
 

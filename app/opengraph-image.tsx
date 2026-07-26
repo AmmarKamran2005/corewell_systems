@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { siteUrl } from "@/lib/site";
 
 export const runtime = "edge";
 export const alt =
@@ -6,9 +7,22 @@ export const alt =
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// Brand OG card: warm off-white canvas, ink wordmark, single teal accent —
-// the Section 4 tokens, no gradients or clutter.
-export default function OpenGraphImage() {
+// Brand OG card: warm off-white canvas, the node-C logo mark, ink wordmark,
+// single teal accent — the Section 4 tokens, no gradients or clutter.
+// The mark is fetched from the site's own /icon.png at request time; if that
+// ever fails, the card renders without it rather than erroring.
+export default async function OpenGraphImage() {
+  let logoSrc: string | null = null;
+  try {
+    const res = await fetch(`${siteUrl}/icon.png`);
+    if (res.ok) {
+      const buffer = await res.arrayBuffer();
+      logoSrc = buffer as unknown as string; // satori accepts ArrayBuffer src
+    }
+  } catch {
+    logoSrc = null;
+  }
+
   return new ImageResponse(
     (
       <div
@@ -23,14 +37,19 @@ export default function OpenGraphImage() {
           fontFamily: "sans-serif",
         }}
       >
-        <div
-          style={{
-            width: "72px",
-            height: "10px",
-            borderRadius: "5px",
-            backgroundColor: "#0F766E",
-          }}
-        />
+        {logoSrc ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={logoSrc} alt="" width={120} height={120} />
+        ) : (
+          <div
+            style={{
+              width: "72px",
+              height: "10px",
+              borderRadius: "5px",
+              backgroundColor: "#0F766E",
+            }}
+          />
+        )}
         <div
           style={{
             marginTop: "36px",
@@ -44,7 +63,7 @@ export default function OpenGraphImage() {
         </div>
         <div
           style={{
-            marginTop: "24px",
+            marginTop: "20px",
             fontSize: "34px",
             color: "#57534E",
             maxWidth: "900px",
