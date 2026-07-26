@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/motion/Reveal";
 
 /**
  * Static preview until Phase 4 wires the MDX content pipeline. Titles follow
@@ -28,7 +29,7 @@ export function InsightsPreview() {
   return (
     <section className="py-16 sm:py-24">
       <Container>
-        <div className="flex flex-wrap items-end justify-between gap-4">
+        <Reveal className="flex flex-wrap items-end justify-between gap-4">
           <h2 className="text-3xl font-semibold sm:text-4xl">
             Answers before the sales call
           </h2>
@@ -38,20 +39,22 @@ export function InsightsPreview() {
           >
             All insights →
           </Link>
-        </div>
+        </Reveal>
         <div className="mt-10 grid gap-5 lg:grid-cols-3">
           {articles.map((article, index) => (
-            <Card key={index} interactive>
-              <h3 className="text-base font-semibold leading-snug">
-                {article.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-soft">
-                {article.excerpt}
-              </p>
-              <span className="mt-5 inline-block text-sm font-medium text-accent">
-                Read article →
-              </span>
-            </Card>
+            <Reveal key={index} delay={index * 0.06}>
+              <Card interactive className="h-full">
+                <h3 className="text-base font-semibold leading-snug">
+                  {article.title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-soft">
+                  {article.excerpt}
+                </p>
+                <span className="mt-5 inline-block text-sm font-medium text-accent">
+                  Read article →
+                </span>
+              </Card>
+            </Reveal>
           ))}
         </div>
       </Container>

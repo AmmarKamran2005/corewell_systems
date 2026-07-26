@@ -72,7 +72,7 @@ export function Footer() {
         <div className="mt-12 border-t border-line pt-6">
           <p className="text-xs text-faint">
             © {new Date().getFullYear()} Corewell Systems. All rights
-            reserved. {/* Brand name pending trademark clearance vs "Corewell Health" — spec Section 1 */}
+            reserved. {/* Brand name confirmed final by owner 2026-07 */}
           </p>
         </div>
       </Container>

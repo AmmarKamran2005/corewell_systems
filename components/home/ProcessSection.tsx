@@ -1,4 +1,5 @@
 import { Container } from "@/components/ui/Container";
+import { Reveal } from "@/components/motion/Reveal";
 
 const steps = [
   {
@@ -27,22 +28,24 @@ export function ProcessSection() {
   return (
     <section className="bg-canvas-subtle py-16 sm:py-24">
       <Container>
-        <div className="max-w-2xl">
+        <Reveal className="max-w-2xl">
           <h2 className="text-3xl font-semibold sm:text-4xl">How we work</h2>
-        </div>
+        </Reveal>
         <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {steps.map((step, index) => (
-            <li
-              key={step.title}
-              className="rounded-2xl border border-line bg-surface p-6"
-            >
-              <span className="text-sm font-medium text-accent">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <h3 className="mt-3 text-lg font-semibold">{step.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-soft">
-                {step.description}
-              </p>
+            <li key={step.title}>
+              <Reveal
+                delay={index * 0.08}
+                className="h-full rounded-2xl border border-line bg-surface p-6"
+              >
+                <span className="text-sm font-medium text-accent">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                <h3 className="mt-3 text-lg font-semibold">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-soft">
+                  {step.description}
+                </p>
+              </Reveal>
             </li>
           ))}
         </ol>

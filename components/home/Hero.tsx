@@ -9,7 +9,7 @@ export function Hero() {
           <h1 className="text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
             Engineering software that powers modern businesses.
           </h1>
-          {/* Regional claim pending owner confirmation before launch — spec Section 7. */}
+          {/* Regions confirmed by owner 2026-07 — spec Section 7 satisfied. */}
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-soft">
             We design and build custom software — from healthcare platforms to
             hospitality and retail systems — for businesses across Canada, the

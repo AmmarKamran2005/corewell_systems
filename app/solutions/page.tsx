@@ -21,8 +21,9 @@ export default function SolutionsPage() {
               Capabilities that turn problems into systems
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-soft">
-              [PLACEHOLDER: one-sentence hub intro — capability-framed, no
-              tech-stack language, per spec Section 13.]
+              Five ways we take an operational problem and turn it into a
+              working system — from ground-up custom builds to automation
+              inside the tools you already run.
             </p>
           </div>
         </Container>

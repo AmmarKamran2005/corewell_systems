@@ -1,5 +1,5 @@
 import { Hero } from "@/components/home/Hero";
-import { IndustryGrid } from "@/components/home/IndustryGrid";
+import { IndustryMorph } from "@/components/home/IndustryMorph";
 import { ProcessSection } from "@/components/home/ProcessSection";
 import { DemoStrip } from "@/components/home/DemoStrip";
 import { ProofSection } from "@/components/home/ProofSection";
@@ -12,7 +12,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <IndustryGrid />
+      <IndustryMorph />
       <ProcessSection />
       <DemoStrip />
       <ProofSection />

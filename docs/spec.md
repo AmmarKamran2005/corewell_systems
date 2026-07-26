@@ -19,13 +19,13 @@ Phases are listed in Section 12.
 
 ## 1. Project Identity
 
-- **Company name:** Corewell Systems *(placeholder — trademark clearance flagged as a real risk against "Corewell Health," a large US hospital system; confirm before final domain purchase)*
+- **Company name:** Corewell Systems *(confirmed final by owner 2026-07)*
 - **What this is NOT:** a freelancer portfolio, a template agency site, a "hire me" page, or a page built around any one named product.
 - **What this IS:** an interactive product-experience site that makes visitors feel like they've opened a real, established software company's HQ — closer to how Stripe, Linear, or Vercel present themselves than a typical dev-for-hire site.
 - **Brand identity, not personal identity:** the entire site speaks in company voice. No founder name, no personal bio, no "About the developer" section anywhere. This is a deliberate positioning choice — Corewell Systems should read as an established engineering company, not a solo operator's showcase.
 - **No named, linked, or attributable real products:** none of the company's actual live systems are named or linked anywhere on the public site (no "the clinical platform," no "the therapy platform," no "the hospitality platform," no live URLs). Instead, capability is demonstrated through generic, industry-labeled interactive demos (see Section 6) and anonymized case studies (see Section 5). This protects existing client/product branding and lets the company present broader, more flexible capability than any single named product would imply.
 - **Positioning statement:** "We design and build business software that solves real operational problems." Every page, CTA, and piece of copy should trace back to this line.
-- **International framing:** the company should read as having delivered systems for organizations across multiple regions — Canada, the United States, Australia, and Pakistan — stated generally, never tied to a specific named client. Confirm exact regions before publishing; state only what's true.
+- **International framing:** the company should read as having delivered systems for organizations across multiple regions — Canada, the United States, Australia, and Pakistan — stated generally, never tied to a specific named client. *(Regions confirmed accurate by owner 2026-07.)*
 - **Primary audience:** Non-technical decision-makers — clinic owners, hospital admins, school administrators, hotel owners, shop/retail owners, SME operators — plus international clients sourced via Upwork/LinkedIn who need to be convinced quickly that they're dealing with a real, capable company.
 - **Core buyer psychology to design for:** the visitor is not evaluating code quality. They're evaluating *risk*. Every section should reduce perceived risk: interactive proof of working systems, clear process, no hype, no fake numbers, no fabricated names.
 
@@ -406,7 +406,8 @@ mine to provide.
 
 ## Change Log
 
-- **v2 (this revision):** Renamed brand from KodeSparc to Corewell Systems (pending trademark clearance). Removed founder identity from site entirely. Removed named/linked real products (the clinical platform, the therapy platform, the hospitality platform) — replaced with generic, unbranded per-industry demos. Added Construction & Real Estate and Legal & Professional Services as new industries (concept-stage, no demo). Added international/regional positioning language. Updated ethical content rules to cover anonymization without compromising honesty.
+- **v3 (2026-07-26):** Owner confirmed "Corewell Systems" as the final brand name and confirmed the regional claims (Canada/US/Australia/Pakistan) as accurate. Solutions copy, industry problem narratives, and the closing-CTA subline drafted in-house with owner approval. Phase 3 (motion layer) implemented: industry-morph selector on Home, per-industry accent theming, node-chain reveals, scroll reveals, page transitions.
+- **v2:** Renamed brand from KodeSparc to Corewell Systems (pending trademark clearance). Removed founder identity from site entirely. Removed named/linked real products (the clinical platform, the therapy platform, the hospitality platform) — replaced with generic, unbranded per-industry demos. Added Construction & Real Estate and Legal & Professional Services as new industries (concept-stage, no demo). Added international/regional positioning language. Updated ethical content rules to cover anonymization without compromising honesty.
 - **v1:** Initial spec (KodeSparc Technologies, named products, founder-led About page).
 
 *End of specification. Update this file as decisions firm up — treat it as the project's living source of truth, not a one-off prompt.*

@@ -4,7 +4,12 @@ import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
-import { cardIndustries, enterpriseIndustry } from "@/lib/industries";
+import { Reveal } from "@/components/motion/Reveal";
+import {
+  cardIndustries,
+  enterpriseIndustry,
+  industryAccentStyle,
+} from "@/lib/industries";
 
 export const metadata: Metadata = {
   title: "Industries We Build Software For",
@@ -34,11 +39,12 @@ export default function IndustriesPage() {
       <section className="pb-20 sm:pb-28">
         <Container>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {cardIndustries.map((industry) => (
+            {cardIndustries.map((industry, index) => (
+              <Reveal key={industry.slug} delay={index * 0.06}>
               <Link
-                key={industry.slug}
                 href={`/industries/${industry.slug}`}
-                className="group rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                className="group block h-full rounded-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
+                style={industryAccentStyle(industry)}
               >
                 <Card interactive className="flex h-full flex-col">
                   <div className="flex flex-wrap items-center gap-2">
@@ -67,6 +73,7 @@ export default function IndustriesPage() {
                   </span>
                 </Card>
               </Link>
+              </Reveal>
             ))}
           </div>
 

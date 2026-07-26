@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 /**
  * Company voice only — no founder name, no personal bio, no "meet the team"
  * (spec Sections 1 + 5). Body copy is owner-provided (Phase 2 kickoff).
- * The regional claim is flagged pending owner confirmation — spec Section 7.
+ * Regions confirmed by owner 2026-07 — spec Section 7 satisfied.
  */
 export default function AboutPage() {
   return (
