@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Inter_Tight } from "next/font/google";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
+import { ConsultantWidget } from "@/components/consultant/ConsultantWidget";
 import "./globals.css";
 
 // Two typefaces max (spec Section 4): Inter Tight for headings, Inter for body.
@@ -36,6 +37,7 @@ export default function RootLayout({
         <NavBar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <ConsultantWidget />
       </body>
     </html>
   );
