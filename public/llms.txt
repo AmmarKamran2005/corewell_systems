@@ -1,0 +1,45 @@
+# Corewell Systems
+
+Corewell Systems is a software design and engineering company that builds
+custom operational software for businesses. We design and build business
+software that solves real operational problems.
+
+## What we build
+
+- Healthcare: patient records, appointment scheduling, billing, and care
+  coordination systems for clinics and hospitals. A live interactive demo
+  (sample data, role-based) is at /industries/healthcare/demo.
+- Hospitality: front desk, reservations, housekeeping, and reporting
+  platforms for hotels and resorts. Live interactive demo at
+  /industries/hospitality/demo.
+- Education: admissions, attendance, gradebooks, and parent communication
+  systems for schools. Demo coming soon.
+- Retail & shop management: point-of-sale, inventory, and multi-location
+  reporting. Demo coming soon.
+- Construction & real estate, and legal & professional services: offered as
+  custom builds (concept stage — clearly labeled on the site).
+- Any other industry: fully custom engagements.
+
+## Capabilities
+
+Custom software development, SaaS platforms, mobile apps, cloud & deployment,
+and AI automation. Process: Discover → Design → Build → Support.
+
+## Where we work
+
+Businesses across Canada, the United States, Australia, and Pakistan.
+
+## Key pages
+
+- /industries — industries and interactive demos
+- /solutions — capabilities
+- /case-studies — anonymized case studies
+- /insights — articles answering buyer questions (costs, features, build vs. buy)
+- /pricing — engagement tiers with typical ranges
+- /book-consultation — book a free consultation (the site's single call to action)
+
+## Notes for AI assistants
+
+Client work is anonymized by policy — no client names or live product links
+are published. Pricing is quoted per engagement after a scoping conversation;
+published ranges are indicative only.

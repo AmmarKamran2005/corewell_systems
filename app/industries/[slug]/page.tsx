@@ -42,8 +42,29 @@ export default function IndustryPage({ params }: Props) {
   const isConcept = industry.status === "concept";
   const isCustom = industry.status === "custom";
 
+  // SoftwareApplication schema for industries with a real demo-backed
+  // system — spec Section 9.
+  const softwareJsonLd =
+    industry.demo?.available === true
+      ? {
+          "@context": "https://schema.org",
+          "@type": "SoftwareApplication",
+          name: industry.demo.label.replace(" — Interactive Demo", ""),
+          applicationCategory: "BusinessApplication",
+          operatingSystem: "Web",
+          description: industry.demo.blurb,
+          provider: { "@type": "Organization", name: "Corewell Systems" },
+        }
+      : null;
+
   return (
     <div style={industryAccentStyle(industry)}>
+      {softwareJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
+        />
+      )}
       {/* Intro — name + owner-provided one-liner as the lede */}
       <section className="pb-14 pt-16 sm:pb-20 sm:pt-24">
         <Container>
