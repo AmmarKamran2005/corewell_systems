@@ -39,6 +39,8 @@ export type Industry = {
   demo?: {
     label: string;
     blurb: string;
+    /** True once the sandboxed demo environment is built (Phase 5). */
+    available: boolean;
   };
   /** Capability modules surfaced as pills on the industry page. */
   modules?: string[];
@@ -60,6 +62,7 @@ export const industries: Industry[] = [
       label: "Healthcare Management System — Interactive Demo",
       blurb:
         "Explore a full clinical workflow — patient intake, scheduling, records, and billing — in a live interactive environment.",
+      available: true,
     },
     modules: [
       "Patient intake & records",
@@ -83,6 +86,7 @@ export const industries: Industry[] = [
       label: "Hospitality Management System — Interactive Demo",
       blurb:
         "Walk through a hotel's daily operations — bookings, check-in/out, housekeeping, and reporting.",
+      available: true,
     },
     modules: ["Front desk", "Reservations", "Housekeeping", "Reporting"],
   },
@@ -101,6 +105,7 @@ export const industries: Industry[] = [
       label: "Education Management System — Interactive Demo",
       blurb:
         "See how admissions, attendance, and gradebooks work together in one system.",
+      available: false,
     },
     modules: [
       "Admissions",
@@ -124,6 +129,7 @@ export const industries: Industry[] = [
       label: "Retail & POS — Interactive Demo",
       blurb:
         "Try a point-of-sale and inventory system the way your staff would use it on the floor.",
+      available: false,
     },
     modules: ["Point-of-sale", "Inventory", "Multi-location reporting"],
   },

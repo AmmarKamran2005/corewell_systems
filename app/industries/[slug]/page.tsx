@@ -127,24 +127,43 @@ export default function IndustryPage({ params }: Props) {
                 <p className="mt-3 max-w-2xl text-base leading-relaxed text-soft">
                   {industry.demo.blurb}
                 </p>
-                {/* Phase 5 replaces this panel with the embedded demo environment. */}
-                <div className="mt-8 rounded-xl border border-dashed border-faint/40 bg-canvas p-8 text-center">
-                  <p className="text-sm font-medium text-ink">
-                    The public demo environment is being prepared.
-                  </p>
-                  <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-soft">
-                    Book a consultation and we&apos;ll walk you through the
-                    full system live.
-                  </p>
-                  <div className="mt-6 flex flex-wrap justify-center gap-4">
-                    <Button href={`/industries/${industry.slug}/demo`}>
-                      Open the interactive demo
-                    </Button>
-                    <Button href="/book-consultation" variant="secondary">
-                      Book a live walkthrough
-                    </Button>
+                {industry.demo.available ? (
+                  <div className="mt-8 rounded-xl border border-line bg-canvas p-8 text-center">
+                    <p className="text-sm font-medium text-ink">
+                      The demo is live — no signup, no credentials.
+                    </p>
+                    <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-soft">
+                      Choose a role and explore the system on sample data —
+                      the way your team would actually use it.
+                    </p>
+                    <div className="mt-6 flex flex-wrap justify-center gap-4">
+                      <Button href={`/industries/${industry.slug}/demo`}>
+                        Launch the interactive demo
+                      </Button>
+                      <Button href="/book-consultation" variant="secondary">
+                        Book a live walkthrough
+                      </Button>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="mt-8 rounded-xl border border-dashed border-faint/40 bg-canvas p-8 text-center">
+                    <p className="text-sm font-medium text-ink">
+                      The public demo environment is being prepared.
+                    </p>
+                    <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-soft">
+                      Book a consultation and we&apos;ll walk you through the
+                      full system live.
+                    </p>
+                    <div className="mt-6 flex flex-wrap justify-center gap-4">
+                      <Button href={`/industries/${industry.slug}/demo`}>
+                        Open the interactive demo
+                      </Button>
+                      <Button href="/book-consultation" variant="secondary">
+                        Book a live walkthrough
+                      </Button>
+                    </div>
+                  </div>
+                )}
               </div>
             </Reveal>
           </Container>

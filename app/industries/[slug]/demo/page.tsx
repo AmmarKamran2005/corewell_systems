@@ -3,7 +3,13 @@ import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { demoIndustries, getIndustry } from "@/lib/industries";
+import { HealthcareDemo } from "@/components/demo/HealthcareDemo";
+import { HospitalityDemo } from "@/components/demo/HospitalityDemo";
+import {
+  demoIndustries,
+  getIndustry,
+  industryAccentStyle,
+} from "@/lib/industries";
 
 type Props = { params: { slug: string } };
 
@@ -22,16 +28,31 @@ export function generateMetadata({ params }: Props): Metadata {
 }
 
 /**
- * "Demo coming soon" state (Phase 2). Phase 5 replaces the panel below with
- * the embedded sandboxed demo environment — seeded fake data only, generic
- * labeling, quick-access role logins, never the real production instance.
+ * Sandboxed demo environments (spec Section 6): generic industry labeling,
+ * seeded fake data, quick-access roles instead of credentials. Healthcare
+ * and Hospitality are live (Phase 5 priority order); Education and Retail
+ * keep the honest coming-soon state until their environments are built.
  */
 export default function IndustryDemoPage({ params }: Props) {
   const industry = getIndustry(params.slug);
   if (!industry?.demo) notFound();
 
+  if (industry.demo.available) {
+    return (
+      <section className="py-8 sm:py-12" style={industryAccentStyle(industry)}>
+        <Container>
+          {industry.slug === "healthcare" ? (
+            <HealthcareDemo exitHref={`/industries/${industry.slug}`} />
+          ) : (
+            <HospitalityDemo exitHref={`/industries/${industry.slug}`} />
+          )}
+        </Container>
+      </section>
+    );
+  }
+
   return (
-    <section className="py-16 sm:py-24">
+    <section className="py-16 sm:py-24" style={industryAccentStyle(industry)}>
       <Container>
         <div className="mx-auto max-w-2xl text-center">
           <Badge variant="live">Interactive Demo</Badge>

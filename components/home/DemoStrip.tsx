@@ -32,13 +32,19 @@ export function DemoStrip() {
                     <h3 className="text-base font-semibold leading-snug">
                       {industry.demo!.label}
                     </h3>
-                    <Badge variant="live">Interactive Demo</Badge>
+                    {industry.demo!.available ? (
+                      <Badge variant="live">Live now</Badge>
+                    ) : (
+                      <Badge variant="neutral">Coming soon</Badge>
+                    )}
                   </div>
                   <p className="mt-3 text-sm leading-relaxed text-soft">
                     {industry.demo!.blurb}
                   </p>
                   <span className="mt-5 inline-block text-sm font-medium text-accent">
-                    Open the demo →
+                    {industry.demo!.available
+                      ? "Open the demo →"
+                      : "Learn more →"}
                   </span>
                 </Card>
               </Link>
