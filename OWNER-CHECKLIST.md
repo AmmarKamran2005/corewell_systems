@@ -13,8 +13,8 @@ Copy `.env.example` to `.env.local` (never commit `.env.local`), then fill in:
 | ~~`GEMINI_API_KEY`~~ | ✅ **Received & tested locally** (2026-07-27) — add it in Vercel env vars + redeploy to go live. | — |
 | `GEMINI_MODEL` *(optional)* | Model override. Defaults to `gemini-flash-latest` (auto-updating alias — pinned 2.5-era models are closed to this account). | — |
 | ~~`RESEND_API_KEY`~~ | ✅ **Received & tested locally** (2026-07-27) — add it in Vercel env vars + redeploy. | — |
-| `CONSULT_TO_EMAIL` | ⚠️ **Interim: kamran.ammar2005@gmail.com** — Resend only delivers to the account owner until the domain is verified. After verifying, switch to info@corewellsystems.com (Vercel + .env.local). | — |
-| `CONSULT_FROM_EMAIL` *(optional)* | After domain verification: e.g. `Corewell Systems <forms@corewellsystems.com>`. Defaults to Resend's onboarding sender. | Resend → Domains |
+| ~~`CONSULT_TO_EMAIL`~~ | ✅ **Done** — info@corewellsystems.com, live-tested in production 2026-07-27. | — |
+| ~~`CONSULT_FROM_EMAIL`~~ | ✅ **Done** — branded sender on the verified domain. | — |
 | ~~`NEXT_PUBLIC_SITE_URL`~~ | ✅ **Done** — https://corewellsystems.com is the hardcoded fallback in `lib/site.ts`; only local dev overrides it. | — |
 | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` *(optional)* | Enables Plausible analytics (script only renders when set). | plausible.io → add site |
 
@@ -23,10 +23,9 @@ Settings → Environment Variables, then redeploy.
 
 ## 2. Accounts / links to provide
 
-- [ ] **Verify corewellsystems.com in Resend** — resend.com/domains → Add
-      Domain → add the DKIM/SPF records it shows at your registrar's DNS
-      panel (same place as the Vercel records; touch nothing else). Unlocks
-      delivery to info@ and a branded from-address.
+- [x] **Verify corewellsystems.com in Resend** ✅ (2026-07-27) — form
+      delivers to info@ with a branded sender; confirmed live in production.
+      Aliases support@ and contact@ also active on the mailbox.
 - [ ] **Cal.com or Calendly booking link** — replaces the placeholder panel
       on `/book-consultation` so visitors can pick a time directly.
 - [x] **Production domain purchased** — corewellsystems.com ✅ (2026-07-27).
