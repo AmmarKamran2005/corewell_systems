@@ -133,9 +133,14 @@ export function ConsultForm() {
 
       {state === "unconfigured" && (
         <p className="rounded-lg border border-line bg-canvas-subtle p-3 text-xs leading-relaxed text-soft">
-          Form delivery is still being configured. [PLACEHOLDER: direct
-          contact email] — or try the &quot;Ask Our Software Architect&quot;
-          assistant in the corner.
+          Form delivery is still being configured — email us directly at{" "}
+          <a
+            href="mailto:info@corewellsystems.com"
+            className="font-medium text-accent"
+          >
+            info@corewellsystems.com
+          </a>{" "}
+          and we&apos;ll reply within one business day.
         </p>
       )}
       {state === "error" && (

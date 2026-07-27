@@ -12,10 +12,10 @@ Copy `.env.example` to `.env.local` (never commit `.env.local`), then fill in:
 |---|---|---|
 | `GEMINI_API_KEY` | Turns on the "Ask Our Software Architect" chat widget. Until set, the widget shows a polite unavailable message with the booking button. | Google AI Studio → API keys |
 | `GEMINI_MODEL` *(optional)* | Model override. Defaults to `gemini-2.5-flash` if left empty. | — |
-| `RESEND_API_KEY` | Turns on consultation-form email delivery. Until set, the form shows a "delivery being configured" fallback. | resend.com → API keys |
-| `CONSULT_TO_EMAIL` | The inbox that receives consultation requests. | Your choice |
-| `CONSULT_FROM_EMAIL` *(optional)* | Verified sender once you verify a domain in Resend. Defaults to Resend's onboarding sender. | Resend → Domains |
-| `NEXT_PUBLIC_SITE_URL` | Canonical URL for SEO metadata, sitemap, and social-share cards. Falls back to localhost until set. | Your production domain, e.g. `https://corewellsystems.com` |
+| `RESEND_API_KEY` | Turns on consultation-form email delivery. Until set, the form shows a fallback pointing at info@corewellsystems.com. | resend.com → API keys |
+| ~~`CONSULT_TO_EMAIL`~~ | ✅ **Done** — info@corewellsystems.com (set it in Vercel too). | — |
+| `CONSULT_FROM_EMAIL` *(optional)* | Verified sender once you verify corewellsystems.com in Resend. Defaults to Resend's onboarding sender. | Resend → Domains |
+| ~~`NEXT_PUBLIC_SITE_URL`~~ | ✅ **Done** — https://corewellsystems.com is the hardcoded fallback in `lib/site.ts`; only local dev overrides it. | — |
 | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` *(optional)* | Enables Plausible analytics (script only renders when set). | plausible.io → add site |
 
 After adding keys locally: restart `npm run dev`. On Vercel: Project →
@@ -25,10 +25,12 @@ Settings → Environment Variables, then redeploy.
 
 - [ ] **Cal.com or Calendly booking link** — replaces the placeholder panel
       on `/book-consultation` so visitors can pick a time directly.
-- [ ] **Production domain purchased + pointed at Vercel** (SSL is automatic).
-- [ ] **Footer contact email + social links** — currently a
-      `[PLACEHOLDER]` in the footer; social URLs also feed the
-      Organization JSON-LD `sameAs` for SEO.
+- [x] **Production domain purchased** — corewellsystems.com ✅ (2026-07-27).
+      Still to do: add it to the Vercel project and point DNS (A/CNAME
+      records at the registrar — keep registrar nameservers so the mailbox
+      keeps working).
+- [x] **Footer contact email** — info@corewellsystems.com wired ✅.
+- [ ] **Social links** — for the footer and Organization JSON-LD `sameAs`.
 
 ## 3. Content still owed
 
@@ -47,11 +49,9 @@ Settings → Environment Variables, then redeploy.
 
 ## 4. Housekeeping
 
-- [ ] **Git identity email** — commits use the placeholder
-      `dev@corewellsystems.placeholder`. Once a real inbox exists:
-      `git config user.email "dev@<real-domain>"`. The Phase 1 commit still
-      bears the old pre-rename identity; say the word if you want history
-      rewritten.
+- [x] **Git identity email** — now `info@corewellsystems.com` ✅
+      (2026-07-27). Commits before this date carry earlier placeholder
+      identities; say the word if you want history rewritten.
 - [ ] **Post-launch audit** — run Lighthouse + accessibility checks against
       the production domain (ask for this once the site is deployed).
 

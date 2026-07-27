@@ -36,8 +36,14 @@ export function Footer() {
               We design and build business software that solves real
               operational problems.
             </p>
-            <p className="mt-4 text-sm text-faint">
-              [PLACEHOLDER: contact email + social links]
+            <p className="mt-4 text-sm">
+              <a
+                href="mailto:info@corewellsystems.com"
+                className="text-soft transition-colors hover:text-accent"
+              >
+                info@corewellsystems.com
+              </a>
+              {/* Social links pending — add here + JSON-LD sameAs when owner provides */}
             </p>
           </div>
 
