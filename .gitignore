@@ -27,3 +27,7 @@ next-env.d.ts
 
 # vercel
 .vercel
+
+# Real product codebases — internal analysis only, NEVER committed
+# (contain real product names and production secrets)
+/myprojects
