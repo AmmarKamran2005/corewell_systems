@@ -55,6 +55,13 @@ Settings → Environment Variables, then redeploy.
 - [x] **Git identity email** — now `info@corewellsystems.com` ✅
       (2026-07-27). Commits before this date carry earlier placeholder
       identities; say the word if you want history rewritten.
+- [x] **Google Search Console** ✅ (2026-07-27) — domain property verified
+      via DNS TXT; sitemap submitted, Success, 31 pages discovered.
+- [x] **Business email operational** ✅ (2026-07-27) — Google Business
+      Profile created; Gmail (corewellsystems@gmail.com) fronts the
+      info@ mailbox: Hostinger forwarder in (instant), send-as
+      info@ via smtp.hostinger.com out (default sender). Full lead
+      pipeline verified: form → Resend → info@ → Gmail.
 - [ ] **Post-launch audit** — run Lighthouse + accessibility checks against
       the production domain (ask for this once the site is deployed).
 
