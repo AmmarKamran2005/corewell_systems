@@ -10,11 +10,11 @@ Copy `.env.example` to `.env.local` (never commit `.env.local`), then fill in:
 
 | Key | What it unlocks | Where to get it |
 |---|---|---|
-| `GEMINI_API_KEY` | Turns on the "Ask Our Software Architect" chat widget. Until set, the widget shows a polite unavailable message with the booking button. | Google AI Studio → API keys |
-| `GEMINI_MODEL` *(optional)* | Model override. Defaults to `gemini-2.5-flash` if left empty. | — |
-| `RESEND_API_KEY` | Turns on consultation-form email delivery. Until set, the form shows a fallback pointing at info@corewellsystems.com. | resend.com → API keys |
-| ~~`CONSULT_TO_EMAIL`~~ | ✅ **Done** — info@corewellsystems.com (set it in Vercel too). | — |
-| `CONSULT_FROM_EMAIL` *(optional)* | Verified sender once you verify corewellsystems.com in Resend. Defaults to Resend's onboarding sender. | Resend → Domains |
+| ~~`GEMINI_API_KEY`~~ | ✅ **Received & tested locally** (2026-07-27) — add it in Vercel env vars + redeploy to go live. | — |
+| `GEMINI_MODEL` *(optional)* | Model override. Defaults to `gemini-flash-latest` (auto-updating alias — pinned 2.5-era models are closed to this account). | — |
+| ~~`RESEND_API_KEY`~~ | ✅ **Received & tested locally** (2026-07-27) — add it in Vercel env vars + redeploy. | — |
+| `CONSULT_TO_EMAIL` | ⚠️ **Interim: kamran.ammar2005@gmail.com** — Resend only delivers to the account owner until the domain is verified. After verifying, switch to info@corewellsystems.com (Vercel + .env.local). | — |
+| `CONSULT_FROM_EMAIL` *(optional)* | After domain verification: e.g. `Corewell Systems <forms@corewellsystems.com>`. Defaults to Resend's onboarding sender. | Resend → Domains |
 | ~~`NEXT_PUBLIC_SITE_URL`~~ | ✅ **Done** — https://corewellsystems.com is the hardcoded fallback in `lib/site.ts`; only local dev overrides it. | — |
 | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` *(optional)* | Enables Plausible analytics (script only renders when set). | plausible.io → add site |
 
@@ -23,6 +23,10 @@ Settings → Environment Variables, then redeploy.
 
 ## 2. Accounts / links to provide
 
+- [ ] **Verify corewellsystems.com in Resend** — resend.com/domains → Add
+      Domain → add the DKIM/SPF records it shows at your registrar's DNS
+      panel (same place as the Vercel records; touch nothing else). Unlocks
+      delivery to info@ and a branded from-address.
 - [ ] **Cal.com or Calendly booking link** — replaces the placeholder panel
       on `/book-consultation` so visitors can pick a time directly.
 - [x] **Production domain purchased** — corewellsystems.com ✅ (2026-07-27).

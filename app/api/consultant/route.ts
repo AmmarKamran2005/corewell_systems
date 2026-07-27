@@ -11,7 +11,10 @@ import { checkRateLimit, clientIp } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
-const MODEL = process.env.GEMINI_MODEL ?? "gemini-2.5-flash";
+// gemini-flash-latest is Google's auto-updating stable-flash alias — pinned
+// versions (e.g. gemini-2.5-flash) get closed to new accounts over time,
+// which broke the owner's key. Override with GEMINI_MODEL to pin.
+const MODEL = process.env.GEMINI_MODEL ?? "gemini-flash-latest";
 const MAX_MESSAGES = 24;
 const MAX_MESSAGE_LENGTH = 2000;
 
@@ -65,7 +68,14 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify({
         systemInstruction: { parts: [{ text: consultantSystemPrompt }] },
         contents,
-        generationConfig: { temperature: 0.6, maxOutputTokens: 1024 },
+        // Gemini 3.x flash thinks by default and thoughts consume the output
+        // budget — keep thinking low and the cap high enough that replies
+        // never truncate mid-sentence.
+        generationConfig: {
+          temperature: 0.6,
+          maxOutputTokens: 2048,
+          thinkingConfig: { thinkingLevel: "low" },
+        },
       }),
     }
   ).catch(() => null);
