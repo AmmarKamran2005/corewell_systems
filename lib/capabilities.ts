@@ -32,12 +32,23 @@ export type Vertical = {
 };
 
 export type IndustryCapabilities = {
-  /** Sub-markets served inside the industry. */
+  /** Sub-markets served inside the industry. Empty hides the section. */
   verticals: Vertical[];
   /** Capability areas that span the whole industry. */
   groups: CapabilityGroup[];
   /** Trust/compliance facts — only what is genuinely implemented. */
   assurances: { title: string; detail: string }[];
+  /**
+   * Section headings and intros. Overridden where the default framing would
+   * overstate the position — a sector we have built adjacent work in reads
+   * differently from one where the core system is ours and in production.
+   */
+  framing?: {
+    groupsTitle?: string;
+    groupsIntro?: string;
+    assurancesTitle?: string;
+    assurancesIntro?: string;
+  };
 };
 
 /**
@@ -45,6 +56,11 @@ export type IndustryCapabilities = {
  * medical-equipment system. This is our deepest domain.
  */
 const healthcare: IndustryCapabilities = {
+  framing: {
+    assurancesIntro:
+      "Handling patient data is a legal responsibility before it is a technical one. These are engineering decisions in the systems we have shipped, not promises.",
+  },
+
   verticals: [
     {
       slug: "clinics",
@@ -221,6 +237,12 @@ const healthcare: IndustryCapabilities = {
  * and the property's own daily operations system.
  */
 const hospitality: IndustryCapabilities = {
+  framing: {
+    assurancesTitle: "How the money and the inventory are protected",
+    assurancesIntro:
+      "A booking platform handles other people's money and other people's rooms. These are engineering decisions in what we have built, not promises.",
+  },
+
   verticals: [
     {
       slug: "booking-platform",
@@ -376,9 +398,121 @@ const hospitality: IndustryCapabilities = {
   ],
 };
 
+/**
+ * LEGAL & PROFESSIONAL SERVICES — the practice-management system named in
+ * this industry's one-liner is a custom build, and the page says so plainly.
+ * What follows is adjacent work we have designed and built for the legal
+ * profession: a sector platform combining directories, publishing, a
+ * self-service organisation portal, and behavioural analytics.
+ *
+ * It is deliberately described as built, never as launched or in use.
+ */
+const legal: IndustryCapabilities = {
+  verticals: [],
+
+  framing: {
+    groupsTitle: "What we have already built for this sector",
+    groupsIntro:
+      "A case-management system for your practice would be a custom build — we say so above rather than dressing up a demo. But the legal profession is not new to us: we have designed and built a platform serving law firms and the students they recruit, and the engineering behind it is what a practice system would be built on.",
+    assurancesTitle: "How that platform was engineered",
+    assurancesIntro:
+      "The decisions below are in the code, and they are the same ones that matter for a practice system holding client information.",
+  },
+
+  groups: [
+    {
+      title: "Sector directories & structured records",
+      summary:
+        "Turning a profession's scattered public information into a database people can actually search.",
+      items: [
+        "Organisation profiles combining hard figures with qualitative detail, each on its own permanent address",
+        "Filtering, sorting, and pagination across several dimensions at once, with the current filters kept in the URL so a search can be shared",
+        "Side-by-side comparison of selected records — the question buyers actually arrive with",
+        "Curated relationships between records: practice areas, categories, and peer groupings that drive both browsing and analysis",
+      ],
+    },
+    {
+      title: "Deadlines & calendar tooling",
+      summary:
+        "A profession that runs on dates, with the dates kept somewhere they cannot be missed.",
+      items: [
+        "Deadlines tracked per organisation with status computed continuously — open, closing soon, closed",
+        "Countdowns and filtered views by deadline type and status",
+        "A subscribable calendar feed, so deadlines appear in the reader's own calendar and update themselves",
+        "Direct links from a deadline to the action it requires",
+      ],
+    },
+    {
+      title: "Self-service organisation portals",
+      summary:
+        "Letting each organisation maintain its own presence without a support ticket.",
+      items: [
+        "Verified organisation accounts that edit their own public profile directly",
+        "Inline management of the records hanging off that profile — categories, benefits, deadlines, and published commentary — edited in place and saved together",
+        "Access scoped to the signed-in user's own organisation and enforced on the server, so one account cannot read another's data by changing a URL",
+        "An administrator can provision an organisation's account, assign its role, and link it in a single action",
+      ],
+    },
+    {
+      title: "Behavioural analytics with a privacy posture",
+      summary:
+        "Understanding what readers actually do, without collecting who they are.",
+      items: [
+        "Events recorded as an append-only stream and aggregated on demand, rather than as counters that lose their history",
+        "Anonymous session identifiers and hashed network addresses — the analysis works without storing identifying data",
+        "Section-level engagement measured with browser-native visibility tracking, so the report shows which part of a page held attention",
+        "Peer benchmarking that compares an organisation against the live average of its own cohort",
+        "Ingestion rate-limited and tolerant of malformed input, so analytics can never take the site down",
+      ],
+    },
+    {
+      title: "Editorial publishing",
+      summary:
+        "Commentary and reference content managed by the same team that runs the platform.",
+      items: [
+        "Categorised articles with featured placement, reading time, and readership tracking",
+        "Search across every content type at once from a single field",
+        "Search-engine essentials generated from the content itself: sitemap, canonical addresses, and social preview cards",
+        "Subscriber capture with an exportable list",
+      ],
+    },
+    {
+      title: "Bulk data operations",
+      summary:
+        "Getting hundreds of records in — and back out — without a developer.",
+      items: [
+        "Spreadsheet import that matches on a stable key, so re-importing updates rather than duplicates",
+        "Partial rows tolerated: each failure is reported with its row and reason instead of aborting the batch",
+        "Downloadable templates for each record type",
+        "Exports that round-trip cleanly back through the importer",
+      ],
+    },
+  ],
+
+  assurances: [
+    {
+      title: "Analysis without identification",
+      detail:
+        "Engagement is measured through anonymous session identifiers and hashed network addresses, with any self-identification voluntary — a defensible posture for a platform whose readers are individuals.",
+    },
+    {
+      title: "One organisation cannot reach another's data",
+      detail:
+        "Portal access resolves from the signed-in account rather than from anything in the address bar, so changing a URL cannot expose another organisation's records.",
+    },
+    {
+      title: "Portable by construction",
+      detail:
+        "The same release runs against different database engines and hosting providers, with connection details resolved at startup — a hosting decision, not a rewrite.",
+    },
+  ],
+};
+
 export const industryCapabilities: Record<string, IndustryCapabilities> = {
   healthcare,
   hospitality,
+  // Key must match the industry slug in lib/industries.ts.
+  "legal-professional-services": legal,
 };
 
 export function getCapabilities(

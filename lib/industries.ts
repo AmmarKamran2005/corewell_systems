@@ -194,7 +194,7 @@ export const industries: Industry[] = [
     accentStrong: "30 64 175",
     nodes: ["Client", "Case", "Documents", "Billing", "Resolution"],
     problem:
-      "A law practice bills its time — yet loses hours every week to finding documents, chasing case status, and reconstructing what was said to whom. Files multiply; deadlines don't move. A case management system keeps every matter, document, and billable hour in one place, with nothing slipping through.",
+      "A law practice bills its time — yet loses hours every week to finding documents, chasing case status, and reconstructing what was said to whom. Files multiply; deadlines don't move. A case management system keeps every matter, document, and billable hour in one place, with nothing slipping through. We have not built one yet, so we label this a custom build rather than pointing you at a demo — but the legal profession is already familiar ground, as the work below shows.",
     modules: [
       "Case management",
       "Document workflows",

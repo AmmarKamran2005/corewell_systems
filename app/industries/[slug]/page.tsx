@@ -140,7 +140,7 @@ export default function IndustryPage({ params }: Props) {
       )}
 
       {/* Sub-markets served — only where we have built for more than one */}
-      {capabilities && (
+      {capabilities && capabilities.verticals.length > 0 && (
         <section className="py-16 sm:py-20">
           <Container>
             <Reveal className="max-w-2xl">
@@ -165,11 +165,11 @@ export default function IndustryPage({ params }: Props) {
           <Container>
             <Reveal className="max-w-2xl">
               <h2 className="text-3xl font-semibold">
-                What the software does
+                {capabilities.framing?.groupsTitle ?? "What the software does"}
               </h2>
               <p className="mt-4 text-base leading-relaxed text-soft">
-                Every capability below exists in a system we have designed and
-                built. Open a section to see the detail.
+                {capabilities.framing?.groupsIntro ??
+                  "Every capability below exists in a system we have designed and built. Open a section to see the detail."}
               </p>
             </Reveal>
             <div className="mt-10">
@@ -185,12 +185,12 @@ export default function IndustryPage({ params }: Props) {
           <Container>
             <Reveal className="max-w-2xl">
               <h2 className="text-3xl font-semibold">
-                Built for the rules you operate under
+                {capabilities.framing?.assurancesTitle ??
+                  "Built for the rules you operate under"}
               </h2>
               <p className="mt-4 text-base leading-relaxed text-soft">
-                Handling patient data is a legal responsibility before it is a
-                technical one. These are engineering decisions in the systems
-                we have shipped, not promises.
+                {capabilities.framing?.assurancesIntro ??
+                  "Handling sensitive data is a legal responsibility before it is a technical one. These are engineering decisions in the systems we have shipped, not promises."}
               </p>
             </Reveal>
             <div className="mt-10 grid gap-5 sm:grid-cols-2">
