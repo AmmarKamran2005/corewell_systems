@@ -8,8 +8,12 @@ import {
   Pill,
   StatCard,
 } from "@/components/demo/primitives";
+import { HospitalityBooking } from "@/components/demo/HospitalityBooking";
 import {
   demoFolios,
+  demoListings,
+  demoOwners,
+  demoPlatformStats,
   demoReservations,
   demoRooms,
   demoWeeklyReport,
@@ -34,12 +38,21 @@ const statusTone: Record<
 };
 
 const roleLabels: Record<HospitalityRole, string> = {
-  manager: "Manager",
+  guest: "Guest",
+  manager: "Property Manager",
   frontdesk: "Front Desk",
   housekeeping: "Housekeeping",
+  platform: "Platform Operator",
 };
 
-type View = "rooms" | "reservations" | "folios" | "reports";
+type View =
+  | "book"
+  | "rooms"
+  | "reservations"
+  | "folios"
+  | "reports"
+  | "owners"
+  | "listings";
 
 /**
  * Sandboxed Hospitality Management System demo — spec Section 6. Read-mostly:
@@ -56,11 +69,14 @@ export function HospitalityDemo({ exitHref }: { exitHref: string }) {
     return (
       <DemoEntry
         label="Hospitality Management System — Interactive Demo"
-        blurb="Walk through a hotel's daily operations — bookings, check-in/out, housekeeping, and reporting."
+        blurb="Two sides of the same platform: book a stay as a guest, then run the property — or the marketplace above it."
         roles={hospitalityRoles}
         onSelect={(id) => {
-          setRole(id as HospitalityRole);
-          setView("rooms");
+          const next = id as HospitalityRole;
+          setRole(next);
+          setView(
+            next === "guest" ? "book" : next === "platform" ? "owners" : "rooms"
+          );
         }}
         exitHref={exitHref}
       />
@@ -68,16 +84,24 @@ export function HospitalityDemo({ exitHref }: { exitHref: string }) {
   }
 
   const nav: { id: View; label: string }[] =
-    role === "housekeeping"
-      ? [{ id: "rooms", label: "Room board" }]
-      : [
-          { id: "rooms", label: "Room board" },
-          { id: "reservations", label: "Reservations" },
-          { id: "folios", label: "Guest folios" },
-          ...(role === "manager"
-            ? [{ id: "reports" as View, label: "Reports" }]
-            : []),
-        ];
+    role === "guest"
+      ? [{ id: "book", label: "Book a stay" }]
+      : role === "platform"
+        ? [
+            { id: "owners", label: "Property owners" },
+            { id: "listings", label: "Listings" },
+            { id: "reports", label: "Platform revenue" },
+          ]
+        : role === "housekeeping"
+          ? [{ id: "rooms", label: "Room board" }]
+          : [
+              { id: "rooms", label: "Room board" },
+              { id: "reservations", label: "Reservations" },
+              { id: "folios", label: "Guest folios" },
+              ...(role === "manager"
+                ? [{ id: "reports" as View, label: "Reports" }]
+                : []),
+            ];
 
   const markClean = (number: string) => {
     setRooms((current) =>
@@ -112,7 +136,189 @@ export function HospitalityDemo({ exitHref }: { exitHref: string }) {
       activeView={view}
       onNavigate={(id) => setView(id as View)}
     >
-      {view === "rooms" && (
+      {view === "book" && role === "guest" && <HospitalityBooking />}
+
+      {view === "owners" && role === "platform" && (
+        <div>
+          <PanelHeading>Property owners</PanelHeading>
+          <p className="mt-1 text-xs text-soft">
+            A listing goes public only when every condition is met — documents
+            verified, subscription active, payouts connected.
+          </p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-4">
+            <StatCard
+              label="Owners"
+              value={String(demoPlatformStats.ownersOnboarded)}
+              hint="Onboarded"
+            />
+            <StatCard
+              label="Live listings"
+              value={String(demoPlatformStats.activeListings)}
+              hint="Publicly visible"
+            />
+            <StatCard
+              label="Bookings"
+              value={String(demoPlatformStats.bookingsThisMonth)}
+              hint="This month"
+            />
+            <StatCard
+              label="Platform fees"
+              value={`$${demoPlatformStats.platformFees.toLocaleString("en-US")}`}
+              hint="Collected this month"
+            />
+          </div>
+          <div className="mt-5 overflow-x-auto rounded-xl border border-line">
+            <table className="w-full min-w-[42rem] text-left text-sm">
+              <thead className="bg-canvas-subtle text-xs uppercase tracking-wider text-faint">
+                <tr>
+                  <th scope="col" className="px-4 py-2.5 font-medium">Owner</th>
+                  <th scope="col" className="px-4 py-2.5 font-medium">Properties</th>
+                  <th scope="col" className="px-4 py-2.5 font-medium">Documents</th>
+                  <th scope="col" className="px-4 py-2.5 font-medium">Subscription</th>
+                  <th scope="col" className="px-4 py-2.5 font-medium">Payouts</th>
+                  <th scope="col" className="px-4 py-2.5 font-medium">Revenue</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-line">
+                {demoOwners.map((owner) => (
+                  <tr key={owner.id}>
+                    <td className="px-4 py-3">
+                      <span className="font-medium text-ink">{owner.name}</span>
+                      <span className="block text-xs text-faint">
+                        {owner.id}
+                      </span>
+                    </td>
+                    <td className="px-4 py-3 text-soft">{owner.properties}</td>
+                    <td className="px-4 py-3">
+                      <Pill tone={owner.documents === "verified" ? "green" : "amber"}>
+                        {owner.documents === "verified" ? "Verified" : "Pending"}
+                      </Pill>
+                    </td>
+                    <td className="px-4 py-3">
+                      <Pill tone={owner.subscription === "active" ? "green" : "rose"}>
+                        {owner.subscription === "active" ? "Active" : "Past due"}
+                      </Pill>
+                    </td>
+                    <td className="px-4 py-3">
+                      <Pill tone={owner.payouts === "connected" ? "green" : "gray"}>
+                        {owner.payouts === "connected" ? "Connected" : "Not set up"}
+                      </Pill>
+                    </td>
+                    <td className="px-4 py-3 text-ink">
+                      ${owner.monthRevenue.toLocaleString("en-US")}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 rounded-xl border border-line bg-canvas p-4 text-xs leading-relaxed text-soft">
+            When a subscription lapses, the platform withdraws that
+            owner&apos;s listings automatically and restores them when payment
+            succeeds — driven by the payment provider&apos;s own events.
+          </p>
+        </div>
+      )}
+
+      {view === "listings" && role === "platform" && (
+        <div>
+          <PanelHeading>Listings</PanelHeading>
+          <p className="mt-1 text-xs text-soft">
+            Every property across the marketplace, with the rating guests
+            actually left after staying.
+          </p>
+          <div className="mt-4 grid gap-4 lg:grid-cols-3">
+            {demoListings.map((listing) => (
+              <div
+                key={listing.id}
+                className="rounded-xl border border-line bg-canvas p-4"
+              >
+                <div className="flex items-start justify-between gap-2">
+                  <div>
+                    <p className="text-sm font-semibold text-ink">
+                      {listing.name}
+                    </p>
+                    <p className="text-xs text-soft">
+                      {listing.kind} · {listing.city}
+                    </p>
+                  </div>
+                  <Pill tone="green">Live</Pill>
+                </div>
+                <div className="mt-3 flex items-center justify-between border-t border-line pt-3 text-xs">
+                  <span className="text-soft">
+                    ★ {listing.rating} · {listing.reviews} reviews
+                  </span>
+                  <span className="font-medium text-ink">
+                    from ${listing.fromRate}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {view === "reports" && role === "platform" && (
+        <div>
+          <PanelHeading>Platform revenue</PanelHeading>
+          <p className="mt-1 text-xs text-soft">
+            Owner subscriptions and per-booking fees — read from the payment
+            provider rather than local records, so the ledger and the bank
+            agree.
+          </p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-3">
+            <StatCard
+              label="Platform fees"
+              value={`$${demoPlatformStats.platformFees.toLocaleString("en-US")}`}
+              hint="This month"
+            />
+            <StatCard
+              label="Bookings"
+              value={String(demoPlatformStats.bookingsThisMonth)}
+              hint="Across all properties"
+            />
+            <StatCard
+              label="Subscriptions"
+              value={`${demoOwners.filter((o) => o.subscription === "active").length} / ${demoOwners.length}`}
+              hint="Owners in good standing"
+            />
+          </div>
+          <div className="mt-5 rounded-xl border border-line bg-canvas p-4">
+            <p className="text-xs font-medium uppercase tracking-wider text-faint">
+              Revenue by owner
+            </p>
+            <ul className="mt-3 space-y-3">
+              {demoOwners
+                .filter((o) => o.monthRevenue > 0)
+                .map((owner) => {
+                  const max = Math.max(
+                    ...demoOwners.map((o) => o.monthRevenue)
+                  );
+                  return (
+                    <li key={owner.id}>
+                      <div className="flex items-center justify-between text-xs">
+                        <span className="text-ink">{owner.name}</span>
+                        <span className="font-medium text-ink">
+                          ${owner.monthRevenue.toLocaleString("en-US")}
+                        </span>
+                      </div>
+                      <div className="mt-1 h-2 overflow-hidden rounded-full bg-canvas-subtle">
+                        <div
+                          className="h-full rounded-full bg-accent/70"
+                          style={{
+                            width: `${(owner.monthRevenue / max) * 100}%`,
+                          }}
+                        />
+                      </div>
+                    </li>
+                  );
+                })}
+            </ul>
+          </div>
+        </div>
+      )}
+
+      {view === "rooms" && role !== "guest" && role !== "platform" && (
         <div>
           <PanelHeading>Room board</PanelHeading>
           <p className="mt-1 text-xs text-soft">

@@ -86,14 +86,24 @@ export const industries: Industry[] = [
     accentStrong: "146 64 14",
     nodes: ["Guest", "Reservation", "Check-in", "Housekeeping", "Invoice"],
     problem:
-      "A hotel runs on timing: rooms turn over, guests arrive early, housekeeping works around check-outs, and the front desk holds it all together — often across a paper log, a booking site, and a radio. When those systems don't talk, guests feel it. One connected platform gives the front desk, housekeeping, and management the same live picture of the property.",
+      "A hotel runs on timing: rooms turn over, guests arrive early, housekeeping works around check-outs, and the front desk holds it all together — often across a paper log, a booking site, and a radio. When those systems don't talk, guests feel it. We build both halves of this: the booking platform guests and property owners meet on, and the operating system that runs the property once they arrive.",
     demo: {
       label: "Hospitality Management System — Interactive Demo",
       blurb:
-        "Walk through a hotel's daily operations — bookings, check-in/out, housekeeping, and reporting.",
+        "Walk through both sides — book a room as a guest, then run the property as front desk, housekeeping, management, or the platform operator.",
       available: true,
     },
-    modules: ["Front desk", "Reservations", "Housekeeping", "Reporting"],
+    modules: [
+      "Guest booking & payment",
+      "Reservations & availability",
+      "Front desk",
+      "Housekeeping",
+      "Guest folios & billing",
+      "Owner onboarding",
+      "Payouts & subscriptions",
+      "Reviews",
+      "Reporting",
+    ],
   },
   {
     slug: "education",

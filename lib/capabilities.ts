@@ -215,8 +215,170 @@ const healthcare: IndustryCapabilities = {
   ],
 };
 
+/**
+ * HOSPITALITY — two complementary shapes of software, both built:
+ * the three-sided booking platform (guest, property owner, platform admin)
+ * and the property's own daily operations system.
+ */
+const hospitality: IndustryCapabilities = {
+  verticals: [
+    {
+      slug: "booking-platform",
+      name: "Booking Platforms",
+      audience: "Operators running a booking site across many properties",
+      summary:
+        "A three-sided platform: guests search and pay, property owners list and get paid, and you oversee the whole marketplace from one back office.",
+      flow: [
+        "Guest searches",
+        "Selects rooms",
+        "Pays securely",
+        "Owner confirms",
+        "Stay",
+        "Verified review",
+      ],
+      highlights: [
+        "Guests book and pay online, with the confirmation and invoice generated instantly",
+        "Property owners onboard themselves — documents verified, listings published only when everything checks out",
+        "Payments split automatically: funds land in the owner's own account, your platform fee is collected on the way through",
+        "A platform back office over every owner, listing, booking, and payment",
+      ],
+    },
+    {
+      slug: "property-operations",
+      name: "Property Operations",
+      audience: "A single hotel, guest house, or resort",
+      summary:
+        "The daily operating system of one property — the room board, the arrivals, the housekeeping round, the folio, and the bill.",
+      flow: [
+        "Reservation",
+        "Arrival",
+        "Room assigned",
+        "Housekeeping",
+        "Charges",
+        "Checkout",
+      ],
+      highlights: [
+        "One live room board the front desk can trust — who is in, who is due out, what is sellable right now",
+        "Housekeeping marks a room ready from the doorway and the desk can sell it the same second",
+        "Charges accumulate on the guest folio through the stay, so checkout is a review rather than a reconstruction",
+        "The morning report writes itself — occupancy, arrivals, departures, revenue",
+      ],
+    },
+    {
+      slug: "multi-property",
+      name: "Groups & Portfolios",
+      audience: "Owners and managers running several properties",
+      summary:
+        "Every property individually well-run, and the group finally visible in one place.",
+      flow: ["Portfolio", "Property", "Performance", "Payouts"],
+      highlights: [
+        "One dashboard across every property instead of a phone call to each",
+        "Per-property settings, rates, and availability under a single account",
+        "Revenue broken down by property, by room type, and by period",
+        "Payout schedules and balances visible to the owner without asking",
+      ],
+    },
+  ],
+
+  groups: [
+    {
+      title: "Reservations & availability",
+      summary:
+        "Inventory tracked to the night, so the same room is never sold twice.",
+      items: [
+        "Availability held per room per night, rather than as approximate date ranges — the foundation for a calendar you can trust",
+        "Guests choose rooms and quantities with capacity validated against the party size before payment is taken",
+        "Cancellation releases the nights back to inventory in the same transaction that voids the booking",
+        "Bookings that expire after checkout close themselves and free the rooms automatically",
+        "Reservation calendar covering arrivals, departures, and stays in progress",
+      ],
+    },
+    {
+      title: "Front desk & housekeeping",
+      summary:
+        "The three moving parts of a property — desk, rooms, and cleaning — agreeing with each other in real time.",
+      items: [
+        "Live room board with occupied, due-out, clean, dirty, and out-of-service states",
+        "Check-in and check-out without re-typing details the guest already gave",
+        "Housekeeping status updated from a phone in the doorway, visible instantly at reception",
+        "Guest folios that accumulate room, food, laundry, and late-checkout charges as they happen",
+        "Daily operational reporting produced without anyone compiling it",
+      ],
+    },
+    {
+      title: "Guest booking experience",
+      summary: "A booking journey that finishes, on a phone, without help.",
+      items: [
+        "Search and filtering by destination, property type, price, rating, and amenities — with shareable filtered links",
+        "Property pages with photo galleries, per-room detail, amenities, house rules, and location",
+        "Room selection with live pricing, taxes, and a clear total before any card details are entered",
+        "Card payment, then an instant confirmation with a downloadable invoice",
+        "Guests manage and cancel their own bookings without contacting anyone",
+      ],
+    },
+    {
+      title: "Payments, payouts & subscriptions",
+      summary:
+        "Money that moves correctly on its own, and can be reconciled later.",
+      items: [
+        "Card payments verified against the payment provider before a booking is ever written — amount, status, and destination all checked",
+        "Marketplace payouts that route guest funds directly to the property owner's own account, with the platform fee taken in transit",
+        "Owner subscriptions that gate listing visibility, driven by the payment provider's events rather than a nightly job",
+        "Refunds issued against the original payment, with inventory released at the same time",
+        "Financial reporting read from the payment provider itself, so the ledger and the bank agree",
+      ],
+    },
+    {
+      title: "Owner onboarding & platform control",
+      summary:
+        "Bringing property owners on without letting anything unverified go live.",
+      items: [
+        "Self-service owner onboarding with identity and ownership documents captured and stored separately from public content",
+        "Listing creation as a resumable step-by-step process, so a half-finished property is never lost",
+        "Publication gated on several conditions at once — documents verified, subscription active, payouts connected, owner ready",
+        "Platform back office over owners, guests, listings, bookings, payments, and reviews",
+        "Suspension and reinstatement controls that apply across an owner's entire portfolio",
+      ],
+    },
+    {
+      title: "Reviews & trust",
+      summary: "Reputation that cannot be manufactured.",
+      items: [
+        "Reviews tied one-to-one to a completed stay — no stay, no review",
+        "Review invitations sent automatically after checkout, through a single-use link that needs no account",
+        "Guests choose whether their review is public or private to the property",
+        "Ratings computed and shown across search, property pages, and the owner's own dashboard",
+      ],
+    },
+  ],
+
+  assurances: [
+    {
+      title: "The platform never holds guest money",
+      detail:
+        "Payments route directly into each property owner's own merchant account, with the platform fee collected on the way through — so settlement, statements, and tax responsibility sit where they belong.",
+    },
+    {
+      title: "A booking exists only if the payment did",
+      detail:
+        "Before any reservation is written, the payment is re-checked with the provider — status, exact amount, and destination — and the booking, its charges, and its nightly inventory are written together or not at all.",
+    },
+    {
+      title: "Listings go live only when everything checks out",
+      detail:
+        "A property becomes publicly visible only when its owner's documents are verified, their subscription is active, payouts are connected, and the owner has switched it on — any one lapsing takes it back down automatically.",
+    },
+    {
+      title: "Built for local rules, not a generic template",
+      detail:
+        "Short-stay accommodation is regulated differently in every market. We have built onboarding around a specific jurisdiction's licensing, tenancy, and accommodation-tax requirements rather than a checkbox.",
+    },
+  ],
+};
+
 export const industryCapabilities: Record<string, IndustryCapabilities> = {
   healthcare,
+  hospitality,
 };
 
 export function getCapabilities(
