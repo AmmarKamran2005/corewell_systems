@@ -8,9 +8,11 @@ import {
   Pill,
   StatCard,
 } from "@/components/demo/primitives";
+import { HealthcareEncounter } from "@/components/demo/HealthcareEncounter";
 import {
   DEMO_DOCTOR,
   demoAppointments,
+  demoClaims,
   demoInvoices,
   demoPatients,
   getPatient,
@@ -35,7 +37,12 @@ const roleLabels: Record<HealthcareRole, string> = {
   frontdesk: "Front Desk",
 };
 
-type View = "overview" | "appointments" | "patients" | "billing";
+type View =
+  | "overview"
+  | "encounter"
+  | "appointments"
+  | "patients"
+  | "billing";
 
 /**
  * Sandboxed Healthcare Management System demo — spec Section 6. Read-mostly:
@@ -68,6 +75,10 @@ export function HealthcareDemo({ exitHref }: { exitHref: string }) {
 
   const nav: { id: View; label: string }[] = [
     { id: "overview", label: "Overview" },
+    // Clinical documentation is for clinicians and admins, not the front desk.
+    ...(role === "frontdesk"
+      ? []
+      : [{ id: "encounter" as View, label: "Encounter" }]),
     { id: "appointments", label: role === "doctor" ? "My schedule" : "Appointments" },
     { id: "patients", label: "Patients" },
     ...(role === "doctor" ? [] : [{ id: "billing" as View, label: "Billing" }]),
@@ -196,6 +207,8 @@ export function HealthcareDemo({ exitHref }: { exitHref: string }) {
           </ul>
         </div>
       )}
+
+      {view === "encounter" && role !== "frontdesk" && <HealthcareEncounter />}
 
       {view === "appointments" && (
         <div>
@@ -352,9 +365,68 @@ export function HealthcareDemo({ exitHref }: { exitHref: string }) {
 
       {view === "billing" && role !== "doctor" && (
         <div>
-          <PanelHeading>Billing</PanelHeading>
+          <PanelHeading>Insurance claims</PanelHeading>
           <p className="mt-1 text-xs text-soft">
-            Invoices are generated from visits — mark the pending ones paid.
+            Claims are built from the signed note and its codes — no
+            re-keying. In production they are transmitted electronically and
+            payer responses post back automatically.
+          </p>
+          <div className="mt-4 overflow-x-auto rounded-xl border border-line">
+            <table className="w-full min-w-[32rem] text-left text-sm">
+              <thead className="bg-canvas-subtle text-xs uppercase tracking-wider text-faint">
+                <tr>
+                  <th scope="col" className="px-4 py-2.5 font-medium">Claim</th>
+                  <th scope="col" className="px-4 py-2.5 font-medium">Patient</th>
+                  <th scope="col" className="px-4 py-2.5 font-medium">Service date</th>
+                  <th scope="col" className="px-4 py-2.5 font-medium">Codes</th>
+                  <th scope="col" className="px-4 py-2.5 font-medium">Charged</th>
+                  <th scope="col" className="px-4 py-2.5 font-medium">Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-line">
+                {demoClaims.map((claim) => (
+                  <tr key={claim.id}>
+                    <td className="px-4 py-3 font-medium text-ink">
+                      {claim.id}
+                    </td>
+                    <td className="px-4 py-3 text-ink">
+                      {getPatient(claim.patientId)?.name}
+                    </td>
+                    <td className="px-4 py-3 text-soft">{claim.serviceDate}</td>
+                    <td className="px-4 py-3 font-mono text-xs text-soft">
+                      {claim.codes}
+                    </td>
+                    <td className="px-4 py-3 text-ink">${claim.charged}</td>
+                    <td className="px-4 py-3">
+                      <Pill
+                        tone={
+                          claim.status === "paid"
+                            ? "green"
+                            : claim.status === "submitted"
+                              ? "accent"
+                              : claim.status === "ready"
+                                ? "amber"
+                                : "gray"
+                        }
+                      >
+                        {claim.status === "ready"
+                          ? "Ready to bill"
+                          : claim.status.charAt(0).toUpperCase() +
+                            claim.status.slice(1)}
+                      </Pill>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          <PanelHeading>
+            <span className="mt-8 block">Patient invoices</span>
+          </PanelHeading>
+          <p className="mt-1 text-xs text-soft">
+            Patient responsibility after insurance — mark the pending ones
+            paid.
           </p>
           <div className="mt-4 overflow-x-auto rounded-xl border border-line">
             <table className="w-full min-w-[30rem] text-left text-sm">

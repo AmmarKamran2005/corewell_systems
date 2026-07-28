@@ -163,3 +163,176 @@ export const demoInvoices: DemoInvoice[] = [
 export function getPatient(id: string): DemoPatient | undefined {
   return demoPatients.find((p) => p.id === id);
 }
+
+/* ------------------------------------------------------------------ *
+ * Encounter workspace — mirrors the guided visit flow of the real
+ * clinical platform: vitals → history → note → orders → codes → checkout.
+ * ------------------------------------------------------------------ */
+
+export type EncounterStepId =
+  | "vitals"
+  | "history"
+  | "note"
+  | "orders"
+  | "codes"
+  | "checkout";
+
+export const encounterSteps: { id: EncounterStepId; label: string }[] = [
+  { id: "vitals", label: "Vitals" },
+  { id: "history", label: "History review" },
+  { id: "note", label: "Clinical note" },
+  { id: "orders", label: "Orders" },
+  { id: "codes", label: "Diagnosis & codes" },
+  { id: "checkout", label: "Checkout" },
+];
+
+/** The patient in the demo encounter (checked in on today's schedule). */
+export const ENCOUNTER_PATIENT_ID = "P-1041";
+
+export const demoVitals = [
+  { label: "Blood pressure", value: "138/86", unit: "mmHg", flag: "high" },
+  { label: "Heart rate", value: "74", unit: "bpm", flag: "normal" },
+  { label: "Temperature", value: "98.4", unit: "°F", flag: "normal" },
+  { label: "Weight", value: "168", unit: "lb", flag: "normal" },
+  { label: "O₂ saturation", value: "98", unit: "%", flag: "normal" },
+] as const;
+
+export const demoHistory = {
+  problems: [
+    { name: "Essential hypertension", status: "Active", since: "6 weeks ago" },
+    { name: "Seasonal allergic rhinitis", status: "Active", since: "2 years" },
+  ],
+  medications: [
+    { name: "Lisinopril 10mg", detail: "Once daily", status: "Active" },
+    { name: "Cetirizine 10mg", detail: "As needed", status: "Active" },
+  ],
+  allergies: [{ name: "Penicillin", detail: "Rash", severity: "Moderate" }],
+};
+
+/**
+ * Ambient-scribe simulation. In the real platform the visit audio is
+ * transcribed and a draft note is generated into the clinic's own template,
+ * with patient identifiers stripped before anything reaches the model.
+ */
+export const demoTranscriptLines = [
+  "Good to see you again. How have you been since we started the medication?",
+  "Better overall. The headaches have mostly stopped, maybe one last week.",
+  "Any dizziness, especially standing up quickly?",
+  "A little the first few days, but that settled down.",
+  "Have you been able to check your pressure at home?",
+  "Yes, mostly around 135 over 85 in the mornings.",
+  "That's moving the right direction. Let's keep the current dose and recheck in six weeks.",
+];
+
+export const demoGeneratedNote = {
+  subjective:
+    "Patient returns for follow-up of recently diagnosed hypertension. Reports improvement in headaches since starting therapy, with a single episode in the past week. Mild orthostatic dizziness in the first days of treatment, since resolved. Home readings averaging approximately 135/85 in the mornings. Reports good medication adherence.",
+  objective:
+    "Blood pressure 138/86, heart rate 74, temperature 98.4°F, oxygen saturation 98% on room air. Patient appears well, in no acute distress.",
+  assessment:
+    "Essential hypertension, improving on current therapy. Home readings trending toward goal. No adverse effects limiting treatment.",
+  plan: "Continue lisinopril 10mg daily. Continue home blood pressure monitoring with morning readings. Reduce dietary sodium. Return in six weeks for reassessment; sooner if readings exceed 160/100 or symptoms recur.",
+};
+
+export type DemoOrder = {
+  id: string;
+  type: "Lab" | "Imaging" | "Referral";
+  name: string;
+  priority: "Routine" | "Urgent" | "STAT";
+};
+
+export const demoOrders: DemoOrder[] = [
+  { id: "O-501", type: "Lab", name: "Basic metabolic panel", priority: "Routine" },
+  { id: "O-502", type: "Lab", name: "Lipid panel", priority: "Routine" },
+];
+
+export const demoOrderCatalog: DemoOrder[] = [
+  { id: "O-601", type: "Lab", name: "HbA1c", priority: "Routine" },
+  { id: "O-602", type: "Lab", name: "Thyroid panel (TSH)", priority: "Routine" },
+  { id: "O-603", type: "Imaging", name: "Chest X-ray, 2 views", priority: "Routine" },
+  { id: "O-604", type: "Referral", name: "Cardiology consultation", priority: "Routine" },
+];
+
+export type DemoCode = {
+  code: string;
+  description: string;
+  kind: "ICD-10" | "CPT";
+  /** True when the code was proposed by the documentation assistant. */
+  suggested?: boolean;
+  rationale?: string;
+};
+
+export const demoSuggestedCodes: DemoCode[] = [
+  {
+    code: "I10",
+    description: "Essential (primary) hypertension",
+    kind: "ICD-10",
+    suggested: true,
+    rationale: "Assessment documents hypertension under active management.",
+  },
+  {
+    code: "99214",
+    description: "Office visit, established patient, moderate complexity",
+    kind: "CPT",
+    suggested: true,
+    rationale:
+      "Follow-up with medication management and reassessment documented.",
+  },
+  {
+    code: "J30.2",
+    description: "Other seasonal allergic rhinitis",
+    kind: "ICD-10",
+    suggested: true,
+    rationale: "Active problem on the chart; not addressed at this visit.",
+  },
+];
+
+/** Eligibility response shape mirrors a real-time payer verification. */
+export const demoEligibility = {
+  payer: "Northwind Health (demo payer)",
+  plan: "PPO Select",
+  status: "Active",
+  network: "In network",
+  copay: 30,
+  coinsurance: "20%",
+  deductibleTotal: 1500,
+  deductibleMet: 1500,
+  outOfPocketMax: 4000,
+  outOfPocketMet: 820,
+};
+
+export type DemoClaim = {
+  id: string;
+  patientId: string;
+  serviceDate: string;
+  codes: string;
+  charged: number;
+  status: "draft" | "ready" | "submitted" | "paid";
+};
+
+export const demoClaims: DemoClaim[] = [
+  {
+    id: "CLM-4412",
+    patientId: "P-1019",
+    serviceDate: "Today",
+    codes: "99214, E11.9",
+    charged: 145,
+    status: "ready",
+  },
+  {
+    id: "CLM-4409",
+    patientId: "P-1038",
+    serviceDate: "1 week ago",
+    codes: "99395, Z00.00",
+    charged: 220,
+    status: "paid",
+  },
+  {
+    id: "CLM-4405",
+    patientId: "P-1027",
+    serviceDate: "2 weeks ago",
+    codes: "99213, G43.909",
+    charged: 95,
+    status: "submitted",
+  },
+];

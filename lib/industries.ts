@@ -57,7 +57,7 @@ export const industries: Industry[] = [
     accentStrong: "17 94 89",
     nodes: ["Hospital", "Doctor", "Patient", "Appointment", "Invoice"],
     problem:
-      "A clinic's day is a chain of handoffs — front desk to doctor to billing — and every handoff leaks time when records live in filing cabinets, spreadsheets, and memory. Double-booked appointments, missing histories, unbilled visits: none of it is a people problem. It's a systems problem. A purpose-built platform keeps every patient, appointment, and invoice connected, so the chain doesn't break.",
+      "A clinic's day is a chain of handoffs — front desk to doctor to billing — and every handoff leaks time when records live in filing cabinets, spreadsheets, and memory. Double-booked appointments, missing histories, unbilled visits: none of it is a people problem. It's a systems problem. A purpose-built platform keeps every patient, appointment, and invoice connected, so the chain doesn't break. This is the industry we have built in most deeply — clinical platforms running in daily practice, not concepts.",
     demo: {
       label: "Healthcare Management System — Interactive Demo",
       blurb:
@@ -65,10 +65,15 @@ export const industries: Industry[] = [
       available: true,
     },
     modules: [
-      "Patient intake & records",
+      "Patient records & charting",
       "Appointments & scheduling",
-      "Billing",
-      "Care coordination",
+      "AI clinical documentation",
+      "Insurance & eligibility",
+      "Claims & revenue cycle",
+      "Patient portal & intake",
+      "Kiosk check-in & consents",
+      "Telehealth",
+      "Payments & plans",
     ],
   },
   {

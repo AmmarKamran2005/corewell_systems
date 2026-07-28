@@ -5,6 +5,9 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { NodeChain } from "@/components/motion/NodeChain";
 import { Reveal } from "@/components/motion/Reveal";
+import { CapabilityGroups } from "@/components/industry/CapabilityGroups";
+import { VerticalTabs } from "@/components/industry/VerticalTabs";
+import { getCapabilities } from "@/lib/capabilities";
 import {
   getIndustry,
   industries,
@@ -41,6 +44,7 @@ export default function IndustryPage({ params }: Props) {
 
   const isConcept = industry.status === "concept";
   const isCustom = industry.status === "custom";
+  const capabilities = getCapabilities(industry.slug);
 
   // SoftwareApplication schema for industries with a real demo-backed
   // system — spec Section 9.
@@ -128,6 +132,78 @@ export default function IndustryPage({ params }: Props) {
                 How the system connects
               </p>
               <NodeChain nodes={industry.nodes} className="mt-4" />
+            </div>
+          </Container>
+        </section>
+      )}
+
+      {/* Sub-markets served — only where we have built for more than one */}
+      {capabilities && (
+        <section className="py-16 sm:py-20">
+          <Container>
+            <Reveal className="max-w-2xl">
+              <h2 className="text-3xl font-semibold">
+                Who we build this for
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-soft">
+                {industry.name} is not one workflow. We have built systems for
+                each of these, and they differ in ways that matter.
+              </p>
+            </Reveal>
+            <div className="mt-8">
+              <VerticalTabs verticals={capabilities.verticals} />
+            </div>
+          </Container>
+        </section>
+      )}
+
+      {/* Capability inventory — evidenced by systems we have built */}
+      {capabilities && (
+        <section className="border-t border-line bg-canvas-subtle py-16 sm:py-20">
+          <Container>
+            <Reveal className="max-w-2xl">
+              <h2 className="text-3xl font-semibold">
+                What the software does
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-soft">
+                Every capability below exists in a system we have designed and
+                built. Open a section to see the detail.
+              </p>
+            </Reveal>
+            <div className="mt-10">
+              <CapabilityGroups groups={capabilities.groups} />
+            </div>
+          </Container>
+        </section>
+      )}
+
+      {/* Trust layer — implemented safeguards, stated plainly */}
+      {capabilities && capabilities.assurances.length > 0 && (
+        <section className="py-16 sm:py-20">
+          <Container>
+            <Reveal className="max-w-2xl">
+              <h2 className="text-3xl font-semibold">
+                Built for the rules you operate under
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-soft">
+                Handling patient data is a legal responsibility before it is a
+                technical one. These are engineering decisions in the systems
+                we have shipped, not promises.
+              </p>
+            </Reveal>
+            <div className="mt-10 grid gap-5 sm:grid-cols-2">
+              {capabilities.assurances.map((assurance, index) => (
+                <Reveal key={assurance.title} delay={index * 0.05}>
+                  <div className="h-full rounded-2xl border border-line bg-surface p-6">
+                    <h3 className="text-base font-semibold">
+                      {assurance.title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-soft">
+                      {assurance.detail}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
             </div>
           </Container>
         </section>
