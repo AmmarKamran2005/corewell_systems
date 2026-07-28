@@ -3,7 +3,11 @@ import { Badge } from "@/components/ui/Badge";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
-import { demoIndustries, industryAccentStyle } from "@/lib/industries";
+import {
+  demoBadge,
+  demoIndustries,
+  industryAccentStyle,
+} from "@/lib/industries";
 
 /**
  * Generic, industry-labeled interactive demos — never named or linked real
@@ -18,6 +22,11 @@ export function DemoStrip() {
           <h2 className="text-3xl font-semibold sm:text-4xl">
             Working systems you can try, not screenshots
           </h2>
+          <p className="mt-4 text-base leading-relaxed text-soft">
+            Two are backed by platforms of ours running in daily use. Two are
+            our designs, built as working prototypes. Each one says which it
+            is.
+          </p>
         </Reveal>
         <div className="mt-10 grid gap-5 sm:grid-cols-2">
           {demoIndustries.map((industry, index) => (
@@ -32,11 +41,14 @@ export function DemoStrip() {
                     <h3 className="text-base font-semibold leading-snug">
                       {industry.demo!.label}
                     </h3>
-                    {industry.demo!.available ? (
-                      <Badge variant="live">Live now</Badge>
-                    ) : (
-                      <Badge variant="neutral">Coming soon</Badge>
-                    )}
+                    {(() => {
+                      const badge = demoBadge(industry);
+                      return industry.demo!.available ? (
+                        <Badge variant={badge.tone}>{badge.label}</Badge>
+                      ) : (
+                        <Badge variant="neutral">Coming soon</Badge>
+                      );
+                    })()}
                   </div>
                   <p className="mt-3 text-sm leading-relaxed text-soft">
                     {industry.demo!.blurb}

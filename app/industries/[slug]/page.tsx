@@ -9,6 +9,7 @@ import { CapabilityGroups } from "@/components/industry/CapabilityGroups";
 import { VerticalTabs } from "@/components/industry/VerticalTabs";
 import { getCapabilities } from "@/lib/capabilities";
 import {
+  demoBadge,
   getIndustry,
   industries,
   industryAccentStyle,
@@ -46,14 +47,15 @@ export default function IndustryPage({ params }: Props) {
   const isCustom = industry.status === "custom";
   const capabilities = getCapabilities(industry.slug);
 
-  // SoftwareApplication schema for industries with a real demo-backed
-  // system — spec Section 9.
+  // SoftwareApplication schema only where a production system stands behind
+  // the offering — design previews are not published as software products
+  // (spec Sections 7 + 9).
   const softwareJsonLd =
-    industry.demo?.available === true
+    industry.demo?.available === true && industry.maturity === "production"
       ? {
           "@context": "https://schema.org",
           "@type": "SoftwareApplication",
-          name: industry.demo.label.replace(" — Interactive Demo", ""),
+          name: industry.demo.label.replace(/ — (Interactive Demo|Design Preview)$/, ""),
           applicationCategory: "BusinessApplication",
           operatingSystem: "Web",
           description: industry.demo.blurb,
@@ -216,7 +218,12 @@ export default function IndustryPage({ params }: Props) {
             <Reveal>
               <div className="rounded-2xl border border-line bg-surface p-8 sm:p-12">
                 <div className="flex flex-wrap items-center gap-3">
-                  <Badge variant="live">Interactive Demo</Badge>
+                  <Badge variant={demoBadge(industry).tone}>
+                    {demoBadge(industry).label}
+                  </Badge>
+                  <span className="text-xs text-faint">
+                    {demoBadge(industry).note}
+                  </span>
                 </div>
                 <h2 className="mt-4 text-2xl font-semibold sm:text-3xl">
                   {industry.demo.label}
@@ -227,11 +234,12 @@ export default function IndustryPage({ params }: Props) {
                 {industry.demo.available ? (
                   <div className="mt-8 rounded-xl border border-line bg-canvas p-8 text-center">
                     <p className="text-sm font-medium text-ink">
-                      The demo is live — no signup, no credentials.
+                      Open it now — no signup, no credentials.
                     </p>
                     <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-soft">
-                      Choose a role and explore the system on sample data —
-                      the way your team would actually use it.
+                      {industry.maturity === "production"
+                        ? "Choose a role and explore on sample data — the way your team would actually use it."
+                        : "Choose a role and explore our design on sample data. Building it for your organisation is a custom engagement."}
                     </p>
                     <div className="mt-6 flex flex-wrap justify-center gap-4">
                       <Button href={`/industries/${industry.slug}/demo`}>

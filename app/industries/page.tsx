@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import {
   cardIndustries,
+  demoBadge,
   enterpriseIndustry,
   industryAccentStyle,
 } from "@/lib/industries";
@@ -52,7 +53,12 @@ export default function IndustriesPage() {
                   </div>
                   <div className="mt-2">
                     {industry.status === "demo" ? (
-                      <Badge variant="live">Interactive Demo</Badge>
+                      (() => {
+                        const badge = demoBadge(industry);
+                        return (
+                          <Badge variant={badge.tone}>{badge.label}</Badge>
+                        );
+                      })()
                     ) : (
                       <Badge variant="neutral">
                         Concept — Available as Custom Build

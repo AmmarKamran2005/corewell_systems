@@ -44,8 +44,9 @@ export function RetailDemo({ exitHref }: { exitHref: string }) {
   if (!role) {
     return (
       <DemoEntry
-        label="Retail & POS — Interactive Demo"
-        blurb="Try a point-of-sale and inventory system the way your staff would use it on the floor."
+        kind="design"
+        label="Retail & POS — Design Preview"
+        blurb="Try our point-of-sale and inventory design the way staff would use it on the floor."
         roles={retailRoles}
         onSelect={(id) => {
           setRole(id as RetailRole);
@@ -120,6 +121,7 @@ export function RetailDemo({ exitHref }: { exitHref: string }) {
 
   return (
     <DemoFrame
+      kind="design"
       title="Retail & POS System"
       roleLabel={roleLabels[role]}
       onSwitchRole={() => {

@@ -64,8 +64,9 @@ export function EducationDemo({ exitHref }: { exitHref: string }) {
   if (!role) {
     return (
       <DemoEntry
-        label="Education Management System — Interactive Demo"
-        blurb="See how admissions, attendance, and gradebooks work together in one system."
+        kind="design"
+        label="Education Management System — Design Preview"
+        blurb="Explore our design for admissions, attendance, and gradebooks working as one system."
         roles={educationRoles}
         onSelect={(id) => {
           setRole(id as EducationRole);
@@ -114,6 +115,7 @@ export function EducationDemo({ exitHref }: { exitHref: string }) {
 
   return (
     <DemoFrame
+      kind="design"
       title="Education Management System"
       roleLabel={roleLabels[role]}
       onSwitchRole={() => setRole(null)}

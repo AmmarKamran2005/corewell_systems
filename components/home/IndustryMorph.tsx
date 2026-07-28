@@ -9,6 +9,7 @@ import { Container } from "@/components/ui/Container";
 import { NodeChain } from "@/components/motion/NodeChain";
 import {
   cardIndustries,
+  demoBadge,
   enterpriseIndustry,
   industryAccentStyle,
 } from "@/lib/industries";
@@ -85,7 +86,9 @@ export function IndustryMorph() {
                     {active.name}
                   </h3>
                   {active.status === "demo" ? (
-                    <Badge variant="live">Interactive Demo</Badge>
+                    <Badge variant={demoBadge(active).tone}>
+                      {demoBadge(active).label}
+                    </Badge>
                   ) : (
                     <Badge variant="neutral">
                       Concept — Available as Custom Build

@@ -8,6 +8,7 @@ import { HealthcareDemo } from "@/components/demo/HealthcareDemo";
 import { HospitalityDemo } from "@/components/demo/HospitalityDemo";
 import { RetailDemo } from "@/components/demo/RetailDemo";
 import {
+  demoBadge,
   demoIndustries,
   getIndustry,
   industryAccentStyle,
@@ -65,7 +66,9 @@ export default function IndustryDemoPage({ params }: Props) {
     <section className="py-16 sm:py-24" style={industryAccentStyle(industry)}>
       <Container>
         <div className="mx-auto max-w-2xl text-center">
-          <Badge variant="live">Interactive Demo</Badge>
+          <Badge variant={demoBadge(industry).tone}>
+            {demoBadge(industry).label}
+          </Badge>
           <h1 className="mt-5 text-3xl font-semibold leading-tight sm:text-4xl">
             {industry.demo.label}
           </h1>
@@ -76,12 +79,12 @@ export default function IndustryDemoPage({ params }: Props) {
 
         <div className="mx-auto mt-10 max-w-3xl rounded-2xl border border-dashed border-faint/40 bg-surface p-10 text-center sm:p-14">
           <p className="text-lg font-medium text-ink">
-            The public demo environment is being prepared.
+            This demo environment is being prepared.
           </p>
           <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-soft">
-            The system behind this demo is real — we&apos;re packaging a
-            sandboxed version with sample data for the site. Until it&apos;s
-            live here, we&apos;ll gladly walk you through it in person.
+            We&apos;re packaging a sandboxed version with sample data for the
+            site. Until it&apos;s here, we&apos;ll gladly walk you through the
+            system in person.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button href="/book-consultation">Book a live walkthrough</Button>

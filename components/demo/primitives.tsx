@@ -9,11 +9,32 @@ import { cn } from "@/lib/utils";
  * visible; quick-access roles replace credentials entirely.
  */
 
-export function DemoBadge() {
+/**
+ * Always-visible provenance badge. `kind` distinguishes a demo backed by a
+ * production system of ours from one that previews a design we have
+ * prototyped but not deployed (spec Section 7).
+ */
+export function DemoBadge({ kind = "demo" }: { kind?: "demo" | "design" }) {
+  const isDesign = kind === "design";
   return (
-    <span className="inline-flex items-center gap-1.5 rounded-full bg-accent/10 px-3 py-1 text-xs font-medium text-accent">
-      <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent" />
-      Interactive Demo — sample data
+    <span
+      className={cn(
+        "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium",
+        isDesign
+          ? "border border-line bg-canvas-subtle text-soft"
+          : "bg-accent/10 text-accent"
+      )}
+    >
+      <span
+        aria-hidden
+        className={cn(
+          "h-1.5 w-1.5 rounded-full",
+          isDesign ? "bg-faint" : "bg-accent"
+        )}
+      />
+      {isDesign
+        ? "Design Preview — sample data"
+        : "Interactive Demo — sample data"}
     </span>
   );
 }
@@ -24,6 +45,7 @@ type DemoEntryProps = {
   roles: { id: string; label: string; description: string }[];
   onSelect: (roleId: string) => void;
   exitHref: string;
+  kind?: "demo" | "design";
 };
 
 /** Quick-access entry screen: pick a role, land in the dashboard. */
@@ -33,10 +55,11 @@ export function DemoEntry({
   roles,
   onSelect,
   exitHref,
+  kind = "demo",
 }: DemoEntryProps) {
   return (
     <div className="mx-auto max-w-xl py-10 text-center sm:py-16">
-      <DemoBadge />
+      <DemoBadge kind={kind} />
       <h1 className="mt-5 text-2xl font-semibold leading-tight sm:text-3xl">
         {label}
       </h1>
@@ -46,6 +69,8 @@ export function DemoEntry({
       <p className="mt-2 text-xs text-faint">
         No signup, no credentials — choose a role to enter. Everything you see
         is fabricated sample data.
+        {kind === "design" &&
+          " This is our design built as a working prototype, not a deployed installation."}
       </p>
       <div className="mt-8 space-y-3">
         {roles.map((role) => (
@@ -82,6 +107,7 @@ type DemoFrameProps = {
   activeView: string;
   onNavigate: (viewId: string) => void;
   children: React.ReactNode;
+  kind?: "demo" | "design";
 };
 
 /** The demo application chrome: top bar, side nav, content panel. */
@@ -94,13 +120,14 @@ export function DemoFrame({
   activeView,
   onNavigate,
   children,
+  kind = "demo",
 }: DemoFrameProps) {
   return (
     <div className="overflow-hidden rounded-2xl border border-line bg-surface">
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line bg-canvas-subtle px-4 py-3 sm:px-6">
         <div className="flex flex-wrap items-center gap-3">
           <p className="text-sm font-semibold text-ink">{title}</p>
-          <DemoBadge />
+          <DemoBadge kind={kind} />
         </div>
         <div className="flex items-center gap-3 text-xs">
           <span className="rounded-full border border-line bg-surface px-3 py-1 font-medium text-ink">
