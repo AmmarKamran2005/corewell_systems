@@ -3,7 +3,7 @@ import { Inter, Inter_Tight } from "next/font/google";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
 import { ConsultantWidget } from "@/components/consultant/ConsultantWidget";
-import { contactEmail, siteUrl } from "@/lib/site";
+import { contactEmail, siteUrl, socialLinks } from "@/lib/site";
 import "./globals.css";
 
 // Two typefaces max (spec Section 4): Inter Tight for headings, Inter for body.
@@ -43,6 +43,7 @@ const organizationJsonLd = {
   url: siteUrl,
   email: contactEmail,
   logo: `${siteUrl}/icon.png`,
+  sameAs: socialLinks.map((social) => social.href),
   description:
     "Software design and engineering company building operational systems for healthcare, hospitality, education, and retail businesses across Canada, the United States, Australia, and Pakistan.",
 };

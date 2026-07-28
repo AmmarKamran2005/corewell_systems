@@ -33,7 +33,9 @@ Settings → Environment Variables, then redeploy.
       records at the registrar — keep registrar nameservers so the mailbox
       keeps working).
 - [x] **Footer contact email** — info@corewellsystems.com wired ✅.
-- [ ] **Social links** — for the footer and Organization JSON-LD `sameAs`.
+- [x] **Social links** ✅ (2026-07-27) — LinkedIn, Instagram, and Facebook
+      wired into the footer, the Organization JSON-LD `sameAs`, and
+      `llms.txt`.
 
 ## 3. Content still owed
 

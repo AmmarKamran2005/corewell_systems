@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { socialLinks } from "@/lib/site";
 import logoMark from "@/app/c_logo-withoutbg.png";
 
 const siteLinks = [
@@ -43,8 +44,21 @@ export function Footer() {
               >
                 info@corewellsystems.com
               </a>
-              {/* Social links pending — add here + JSON-LD sameAs when owner provides */}
             </p>
+            <ul className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+              {socialLinks.map((social) => (
+                <li key={social.href}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-soft transition-colors hover:text-accent"
+                  >
+                    {social.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <nav aria-label="Site">
