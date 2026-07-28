@@ -37,9 +37,9 @@ export default function AboutPage() {
       <section className="border-y border-line bg-canvas-subtle py-14 sm:py-16">
         <Container>
           <p className="mx-auto max-w-3xl text-center text-lg leading-relaxed text-ink">
-            Production systems designed for healthcare, hospitality, education,
-            and retail operations — for businesses across Canada, the United
-            States, Australia, and Pakistan.
+            Production systems for healthcare and hospitality operations, with
+            design work in education and retail — for businesses across
+            Canada, the United States, Australia, and Pakistan.
           </p>
         </Container>
       </section>
