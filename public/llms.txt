@@ -41,6 +41,7 @@ Facebook: https://www.facebook.com/profile.php?id=61592221457412
 - /industries — industries and interactive demos
 - /solutions — capabilities
 - /how-we-work — engagement process, engineering standards, and what happens after launch
+- /technology — the stack we build with (.NET, Node, React, Next.js, SQL Server, PostgreSQL, mobile, AI, payments) and why
 - /case-studies — anonymized case studies
 - /insights — articles answering buyer questions (costs, features, build vs. buy)
 - /book-consultation — book a free consultation (the site's single call to action)

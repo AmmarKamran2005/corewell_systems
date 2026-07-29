@@ -142,6 +142,12 @@ export default function SolutionPage({ params }: Props) {
               <p className="mt-4 text-sm leading-relaxed text-soft">
                 {solution.underTheHood}
               </p>
+              <a
+                href="/technology"
+                className="mt-4 inline-block text-sm font-medium text-accent hover:text-accent-strong"
+              >
+                Full technology stack, and why we chose it →
+              </a>
             </details>
           </Reveal>
         </Container>

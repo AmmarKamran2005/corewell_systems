@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/industries",
     "/solutions",
     "/how-we-work",
+    "/technology",
     "/case-studies",
     "/insights",
     // "/pricing" withheld from the sitemap while the page is unpublished.

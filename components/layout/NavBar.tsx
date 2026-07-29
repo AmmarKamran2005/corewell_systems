@@ -13,6 +13,7 @@ const navLinks = [
   { href: "/industries", label: "Industries" },
   { href: "/solutions", label: "Solutions" },
   { href: "/how-we-work", label: "How We Work" },
+  { href: "/technology", label: "Technology" },
   { href: "/case-studies", label: "Case Studies" },
   { href: "/insights", label: "Insights" },
   // Pricing hidden pending owner sign-off on the published ranges.
