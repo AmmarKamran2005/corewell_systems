@@ -31,7 +31,7 @@ export default function CaseStudiesPage() {
             </h1>
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-soft">
               Case studies are anonymized by design — described by operation
-              and region, never by name. Scenarios currently shown use sample
+              and scale, never by name. Scenarios currently shown use sample
               data and are labeled accordingly.
             </p>
           </Reveal>

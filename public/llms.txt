@@ -27,7 +27,7 @@ and AI automation. Process: Discover → Design → Build → Support.
 
 ## Where we work
 
-Businesses across Canada, the United States, Australia, and Pakistan.
+Internationally, remote-first. Engagements are not limited by geography.
 
 ## Contact
 
@@ -40,6 +40,7 @@ Facebook: https://www.facebook.com/profile.php?id=61592221457412
 
 - /industries — industries and interactive demos
 - /solutions — capabilities
+- /how-we-work — engagement process, engineering standards, and what happens after launch
 - /case-studies — anonymized case studies
 - /insights — articles answering buyer questions (costs, features, build vs. buy)
 - /pricing — engagement tiers with typical ranges

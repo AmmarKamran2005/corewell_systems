@@ -14,10 +14,10 @@ import { Reveal } from "@/components/motion/Reveal";
  * a checkable list on the right, so the eye reads the claim and then the
  * receipts. Same ledger language as the solution pages, tightened.
  *
- * Regional claim (Canada / United States / Australia / Pakistan) confirmed
- * by the owner 2026-07. The maturity split — production in healthcare and
- * hospitality, design work in education and retail — reflects what actually
- * exists (spec Section 7).
+ * The maturity split — production in healthcare and hospitality, design work
+ * in education and retail — reflects what actually exists (spec Section 7).
+ * Regional claims were removed by owner direction 2026-07: the positioning
+ * is universal, and a geography claim is one more thing to defend.
  */
 const evidence = [
   {
@@ -59,9 +59,9 @@ export function ProofSection() {
               Don&apos;t take our word for it. Open it.
             </h2>
             <p className="mt-5 max-w-xl text-base leading-relaxed text-soft">
-              Production systems for healthcare and hospitality operations,
-              with design work in education and retail — for businesses across
-              Canada, the United States, Australia, and Pakistan.
+              Systems of ours run clinics and properties every working day.
+              Others — education, retail — exist as designs we have built and
+              can put to work.
             </p>
             <p className="mt-4 max-w-xl text-base leading-relaxed text-soft">
               Every claim on this site points at something you can check. No

@@ -5,6 +5,8 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { AppliesTo } from "@/components/solutions/AppliesTo";
 import { ProofLedger } from "@/components/solutions/ProofLedger";
+import { FaqSection } from "@/components/FaqSection";
+import { getSolutionFaqs } from "@/lib/faqs";
 import { getSolution, solutions } from "@/lib/solutions";
 
 type Props = { params: { slug: string } };
@@ -144,6 +146,12 @@ export default function SolutionPage({ params }: Props) {
           </Reveal>
         </Container>
       </section>
+
+      <FaqSection
+        faqs={getSolutionFaqs(solution.slug)}
+        title={`${solution.name}, answered plainly`}
+        intro="What buyers ask before committing. Short answers, no hedging."
+      />
 
       <section className="bg-ink-strong py-16 sm:py-20">
         <Container className="text-center">

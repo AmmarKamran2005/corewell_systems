@@ -25,10 +25,8 @@ export default function AboutPage() {
             <p className="mt-6 text-lg leading-relaxed text-soft">
               Corewell Systems is a software design and engineering company
               building operational systems for healthcare, hospitality,
-              education, and retail businesses. We work with organizations
-              across Canada, the United States, Australia, and Pakistan,
-              designing software around how teams actually work — not the
-              other way around.
+              education, and retail businesses. We design software around how
+              teams actually work — not the other way around.
             </p>
           </div>
         </Container>
@@ -37,9 +35,9 @@ export default function AboutPage() {
       <section className="border-y border-line bg-canvas-subtle py-14 sm:py-16">
         <Container>
           <p className="mx-auto max-w-3xl text-center text-lg leading-relaxed text-ink">
-            Production systems for healthcare and hospitality operations, with
-            design work in education and retail — for businesses across
-            Canada, the United States, Australia, and Pakistan.
+            Systems of ours run clinics and properties every working day.
+            Others — education, retail — exist as designs we have built and can
+            put to work.
           </p>
         </Container>
       </section>

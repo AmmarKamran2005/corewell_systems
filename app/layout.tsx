@@ -45,7 +45,7 @@ const organizationJsonLd = {
   logo: `${siteUrl}/icon.png`,
   sameAs: socialLinks.map((social) => social.href),
   description:
-    "Software design and engineering company building operational systems for healthcare, hospitality, education, and retail businesses across Canada, the United States, Australia, and Pakistan.",
+    "Software design and engineering company building operational systems for healthcare, hospitality, education, and retail businesses.",
 };
 
 const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;

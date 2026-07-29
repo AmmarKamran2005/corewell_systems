@@ -12,6 +12,7 @@ const siteLinks = [
 ];
 
 const companyLinks = [
+  { href: "/how-we-work", label: "How We Work" },
   { href: "/about", label: "About" },
   { href: "/pricing", label: "Pricing" },
   { href: "/book-consultation", label: "Book a Consultation" },

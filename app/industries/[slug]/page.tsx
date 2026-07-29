@@ -7,7 +7,9 @@ import { NodeChain } from "@/components/motion/NodeChain";
 import { Reveal } from "@/components/motion/Reveal";
 import { CapabilityGroups } from "@/components/industry/CapabilityGroups";
 import { VerticalTabs } from "@/components/industry/VerticalTabs";
+import { FaqSection } from "@/components/FaqSection";
 import { getCapabilities } from "@/lib/capabilities";
+import { getIndustryFaqs } from "@/lib/faqs";
 import {
   demoBadge,
   getIndustry,
@@ -339,6 +341,13 @@ export default function IndustryPage({ params }: Props) {
           </Container>
         </section>
       )}
+
+      {/* Objections, answered — also the structured data AI engines cite */}
+      <FaqSection
+        faqs={getIndustryFaqs(industry.slug)}
+        title={`${industry.name} software, answered plainly`}
+        intro="The questions we get asked before anyone books a call. Short answers, no hedging."
+      />
 
       {/* Closing CTA */}
       <section className="bg-ink-strong py-16 sm:py-20">
