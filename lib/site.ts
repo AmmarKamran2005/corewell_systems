@@ -10,6 +10,27 @@ export const siteUrl =
 export const contactEmail = "info@corewellsystems.com";
 
 /**
+ * Cal.com scheduling. `calLink` values are the path after cal.com/ —
+ * used both by the inline embed and by the plain links that stay visible
+ * as a fallback if the embed script ever fails to load.
+ */
+export const booking = {
+  handle: "corewell-systems-scv5vs",
+  primary: {
+    calLink: "corewell-systems-scv5vs/30min",
+    label: "Consultation — 30 minutes",
+    hint: "The full conversation about your operation. Pick this one if unsure.",
+  },
+  short: {
+    calLink: "corewell-systems-scv5vs/15min",
+    label: "Quick call — 15 minutes",
+    hint: "A short introduction, or a single question you want answered.",
+  },
+} as const;
+
+export const bookingUrl = (calLink: string) => `https://cal.com/${calLink}`;
+
+/**
  * Official profiles. Also emitted as Organization `sameAs` in the root
  * layout, which is how search engines tie the site to these accounts.
  */

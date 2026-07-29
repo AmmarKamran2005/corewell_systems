@@ -26,8 +26,9 @@ Settings → Environment Variables, then redeploy.
 - [x] **Verify corewellsystems.com in Resend** ✅ (2026-07-27) — form
       delivers to info@ with a branded sender; confirmed live in production.
       Aliases support@ and contact@ also active on the mailbox.
-- [ ] **Cal.com or Calendly booking link** — replaces the placeholder panel
-      on `/book-consultation` so visitors can pick a time directly.
+- [x] **Cal.com booking** ✅ (2026-07-27) — 30-minute consultation and
+      15-minute quick call embedded on `/book-consultation`, with a direct
+      link kept visible as a fallback. Handle: `corewell-systems-scv5vs`.
 - [x] **Production domain purchased** — corewellsystems.com ✅ (2026-07-27).
       Still to do: add it to the Vercel project and point DNS (A/CNAME
       records at the registrar — keep registrar nameservers so the mailbox
