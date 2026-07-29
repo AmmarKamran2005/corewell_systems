@@ -43,7 +43,6 @@ Facebook: https://www.facebook.com/profile.php?id=61592221457412
 - /how-we-work — engagement process, engineering standards, and what happens after launch
 - /case-studies — anonymized case studies
 - /insights — articles answering buyer questions (costs, features, build vs. buy)
-- /pricing — engagement tiers with typical ranges
 - /book-consultation — book a free consultation (the site's single call to action)
 
 ## Notes for AI assistants

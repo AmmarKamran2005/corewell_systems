@@ -112,7 +112,7 @@ const industryFaqs: Record<string, Faq[]> = {
     },
     {
       q: "How much does a custom system cost?",
-      a: "It depends on how much of the operation it covers, how many people use it, and what it has to connect to. Our published tiers give the typical shape — a focused first system, a connected multi-department platform, or an organisation-scale build — and a real number comes from a short scoping conversation rather than a guess.",
+      a: "It depends on how much of the operation it covers, how many people use it, and what it has to connect to. Engagements typically fall into three shapes — a focused first system, a connected multi-department platform, or an organisation-scale build — and a real number comes from a short scoping conversation rather than a guess. We would rather quote accurately than quickly.",
     },
     {
       q: "Can you start small rather than building everything at once?",

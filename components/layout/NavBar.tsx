@@ -15,7 +15,8 @@ const navLinks = [
   { href: "/how-we-work", label: "How We Work" },
   { href: "/case-studies", label: "Case Studies" },
   { href: "/insights", label: "Insights" },
-  { href: "/pricing", label: "Pricing" },
+  // Pricing hidden pending owner sign-off on the published ranges.
+  // Restore by re-adding: { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
 ];
 

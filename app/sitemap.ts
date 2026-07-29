@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/how-we-work",
     "/case-studies",
     "/insights",
-    "/pricing",
+    // "/pricing" withheld from the sitemap while the page is unpublished.
     "/about",
     "/book-consultation",
   ];

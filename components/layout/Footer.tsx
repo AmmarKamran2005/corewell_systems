@@ -14,7 +14,7 @@ const siteLinks = [
 const companyLinks = [
   { href: "/how-we-work", label: "How We Work" },
   { href: "/about", label: "About" },
-  { href: "/pricing", label: "Pricing" },
+  // Pricing hidden pending owner sign-off — see NavBar.
   { href: "/book-consultation", label: "Book a Consultation" },
 ];
 
