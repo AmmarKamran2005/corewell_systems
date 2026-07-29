@@ -98,9 +98,9 @@ const standards = [
       "Roles are checked where the data lives, not hidden in the interface, so a rule holds whether the request comes from the web app, a phone, or a tablet in a lobby. Nothing is protected by simply not showing a button.",
   },
   {
-    title: "Independently reviewed",
+    title: "Tested by someone other than us",
     detail:
-      "Our production systems have been through third-party security review, with findings tracked through remediation rather than filed. We would rather be told about a weakness by an auditor than by an incident.",
+      "A production system of ours has been penetration-tested by an external security consultant. Every finding was fixed and the remediation recorded against a date — not filed. We would rather hear about a weakness from an auditor than from an incident.",
   },
 ];
 
