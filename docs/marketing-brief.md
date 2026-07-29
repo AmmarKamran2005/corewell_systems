@@ -399,6 +399,44 @@ pitch. If a demo answers it faster than a paragraph, send the demo link.
 
 ---
 
+### SCENARIO 11 — The technical credibility post
+**Use when:** the audience includes CTOs, IT managers, developers, or a
+buyer who will forward the post to their technical person. 1 in 8.
+**Why it works:** most agencies cannot describe an engineering decision, only
+name a framework. Describing the *trade-off* proves competence.
+
+**Rule:** name technologies only in the body, never in the opening line. Lead
+with the problem the choice solved.
+
+**Example:**
+> Why a hospital system and a booking platform shouldn't share a stack.
+>
+> One holds regulated records, reports heavily, and has to be supportable in
+> ten years. That goes to .NET and SQL Server — long support horizons, strong
+> tooling, a deep hiring pool.
+>
+> The other moves money between strangers and had to ship fast. That went to
+> Node, PostgreSQL and Next.js.
+>
+> Picking one stack for everything is a preference, not an argument. The
+> stack should follow the problem.
+>
+> Full breakdown of what we build with, and why: corewellsystems.com/technology
+
+**Second example (shorter):**
+> "Do we get the source code?"
+>
+> Yes. The code, the database schema, and the documented architecture.
+>
+> We build on mainstream technology with a real hiring pool specifically so
+> you're never dependent on us. No proprietary runtime, no closed data
+> format, nothing you can't walk away from.
+>
+> A system you can't maintain without the people who built it isn't an asset.
+> It's a hostage situation with an invoice.
+
+---
+
 ## 7. REUSABLE PROOF LINES
 
 Drop these into posts. All are true and pre-approved.
@@ -456,11 +494,65 @@ urgency or scarcity language. It contradicts the brand entirely.
 
 ---
 
-## 11. HOW TO ASK ME FOR A POST
+## 11. TECHNOLOGY WE WORK WITH
+
+Use this when writing for a technical audience, answering a technical
+question, or writing Scenario 11.
+
+**Two rules:**
+1. **Never open a post with technology.** Lead with the problem or the
+   outcome; the stack belongs in the body, for the reader who wants it.
+2. **Never attach a specific technology to a specific project.** Write "we
+   work with Flutter", never "the Flutter app we built" — you do not have the
+   mapping of which system uses what, and guessing it would be a false claim.
+
+**Backend & APIs**
+ASP.NET Core / C# · Node.js / Express · TypeScript · Python · PHP / Laravel
+
+**Web interfaces**
+React · Next.js · Angular · Blazor · Razor · Tailwind CSS
+
+**Mobile & devices**
+Capacitor / Ionic · React Native · Flutter · Native Android (Java/Kotlin)
+
+**Databases & data access**
+SQL Server · PostgreSQL · MongoDB · Entity Framework Core · Prisma
+
+**Real time, AI & payments**
+SignalR / WebSockets · LLM APIs (Gemini, Claude) for AI features · Stripe
+including Connect and Terminal · EDI / clearinghouse integration for
+insurance claims · encrypted cloud object storage
+
+**Deployment & operations**
+Docker · Vercel · Render · managed cloud · Windows Server / IIS for
+on-premises and private-server deployments · scheduled encrypted backups ·
+health monitoring
+
+**AI / machine learning**
+Python for AI and ML work, and LLM integration built directly into
+operational software — always server-side, with identifiers stripped before
+any model call and a person approving anything that becomes a record.
+
+**The four points worth repeating in technical posts**
+- The stack follows the problem — we do not have one hammer.
+- Boring, well-supported technology on purpose: long support horizons and a
+  real hiring pool beat novelty.
+- One API serves web, mobile, and purpose-built devices, so every rule is
+  written once and enforced on the server.
+- Clients receive the code, the schema, and the documented architecture.
+  Nothing proprietary, nothing you cannot leave.
+
+Full detail lives at **corewellsystems.com/technology** — link to it rather
+than pasting the whole list into a post.
+
+---
+
+## 12. HOW TO ASK ME FOR A POST
 
 Give me: the platform, the scenario number from Section 6, and the industry.
 
 Example: *"LinkedIn, Scenario 2, education."*
+Technical audience: *"LinkedIn, Scenario 11, about data isolation."*
 
 I will return: the post text, a suggested first line to hook, and a note on
 which link to attach.
