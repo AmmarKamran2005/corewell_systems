@@ -2,11 +2,42 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
+import { FaqSection } from "@/components/FaqSection";
+
+/**
+ * Identity FAQs. The first one exists because a large US health system with a
+ * near-identical name owns the "corewell" entity in search results and AI
+ * answers. A direct, factual answer here is what a search or answer engine
+ * can actually quote — and it is a real question visitors arrive with.
+ */
+const identityFaqs = [
+  {
+    q: "Is Corewell Systems related to Corewell Health?",
+    a: "No. Corewell Systems is an independent custom software development company with no affiliation, ownership link, or partnership with Corewell Health, or with any hospital system, health network, or healthcare provider. The similarity in name is coincidental. We build software — including software used by clinics — but we do not deliver medical care and we are not part of any health system.",
+  },
+  {
+    q: "What does Corewell Systems actually do?",
+    a: "We design and build custom operational software: the system a business runs on. That means clinic and practice management platforms, hotel and booking systems, school management systems, and retail point-of-sale and inventory software. We are a software engineering company, not a web design agency and not a healthcare provider.",
+  },
+  {
+    q: "How large is the team?",
+    a: "Deliberately small. We are a boutique engineering firm, which means the people who design your system are the people who build it — there is no account manager sitting between you and the work, and nothing gets handed to a junior team after the contract is signed. If a project genuinely needs a hundred developers, we will tell you to look elsewhere.",
+  },
+  {
+    q: "Where are you based, and do you work internationally?",
+    a: "We work remotely with businesses wherever they are. Engagements are not limited by geography — discovery, design reviews, delivery, and support all happen online, with the same process regardless of location.",
+  },
+  {
+    q: "Who owns the software you build?",
+    a: "You do. The code, the database schema, and the documented architecture are handed over. We build on mainstream technology with a real hiring pool specifically so you are never dependent on us to keep the system running.",
+  },
+];
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "About — An Independent Software Engineering Company",
   description:
-    "Corewell Systems is a software design and engineering company building operational systems for healthcare, hospitality, education, and retail businesses.",
+    "Corewell Systems is an independent custom software development company, not affiliated with any hospital system or healthcare provider. We build operational software for clinics, hotels, schools, and retailers.",
+  alternates: { canonical: "/about" },
 };
 
 /**
@@ -130,6 +161,22 @@ export default function AboutPage() {
           <Reveal className="mt-12">
             <Button href="/book-consultation">Book a Consultation</Button>
           </Reveal>
+        </Container>
+      </section>
+
+      <FaqSection
+        faqs={identityFaqs}
+        title="Who we are, plainly"
+        intro="The questions people arrive with — including the one about the name."
+      />
+
+      <section className="border-t border-line bg-canvas-subtle py-14 sm:py-16">
+        <Container>
+          <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed text-faint">
+            Corewell Systems is an independent software engineering company. It
+            is not affiliated with Corewell Health or with any hospital system,
+            health network, or healthcare provider.
+          </p>
         </Container>
       </section>
     </>

@@ -22,30 +22,111 @@ const interTight = Inter_Tight({
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
+    // Entity class ("custom software development company") sits early on
+    // purpose: brand queries for "corewell" surface a large healthcare
+    // system, so the snippet has to say what kind of company this is fast.
     default:
-      "Corewell Systems — Business Software That Solves Real Operational Problems",
+      "Corewell Systems — Custom Software Development Company",
     template: "%s — Corewell Systems",
   },
   description:
-    "We design and build business software that solves real operational problems — healthcare, hospitality, education, retail, and custom enterprise systems.",
+    "Corewell Systems is a software engineering company building custom operational software — clinic and practice management, hotel and booking platforms, school systems, and retail POS. Try a working demo, no signup.",
+  keywords: [
+    "Corewell Systems",
+    "custom software development company",
+    "clinic management software",
+    "hospital management software",
+    "hotel management software",
+    "school management system",
+    "point of sale software",
+    "custom business software",
+    "SaaS development",
+  ],
+  applicationName: "Corewell Systems",
+  alternates: { canonical: "/" },
   openGraph: {
     siteName: "Corewell Systems",
     type: "website",
   },
 };
 
-// Organization schema on every page — spec Section 9. sameAs waits on the
-// owner's social links.
+/**
+ * Organization + WebSite schema on every page (spec Section 9).
+ *
+ * Deliberately verbose on identity. A similarly-named US hospital system
+ * dominates the "corewell" entity in search and AI answers, so this block
+ * exists to teach the knowledge graph what THIS entity is: a software
+ * company, what it knows about, and what it is not affiliated with.
+ * `disambiguatingDescription` is the schema.org property built for exactly
+ * this situation, and `knowsAbout` gives the topical fingerprint.
+ */
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": `${siteUrl}/#organization`,
   name: "Corewell Systems",
+  legalName: "Corewell Systems",
+  alternateName: ["Corewell Systems Software", "corewellsystems.com"],
+  // Wikidata entity for "software company" — an explicit category signal.
+  additionalType: "https://www.wikidata.org/wiki/Q1058914",
   url: siteUrl,
   email: contactEmail,
   logo: `${siteUrl}/icon.png`,
+  image: `${siteUrl}/icon.png`,
   sameAs: socialLinks.map((social) => social.href),
+  slogan: "We design and build business software that solves real operational problems.",
   description:
-    "Software design and engineering company building operational systems for healthcare, hospitality, education, and retail businesses.",
+    "Corewell Systems is a software design and engineering company that builds custom operational software — clinic and practice management platforms, hotel and booking systems, school management systems, and retail point-of-sale and inventory software.",
+  disambiguatingDescription:
+    "Corewell Systems is an independent custom software development company. It is not affiliated with, and has no connection to, Corewell Health or any hospital system, health network, or healthcare provider. Corewell Systems builds software for businesses; it does not deliver medical care.",
+  areaServed: "Worldwide",
+  knowsAbout: [
+    "Custom software development",
+    "Clinic management software",
+    "Practice management systems",
+    "Electronic health records",
+    "Hospital management software",
+    "Physical therapy practice software",
+    "Medical billing and insurance claims software",
+    "Hotel management software",
+    "Property management systems",
+    "Online booking platforms",
+    "School management systems",
+    "Point of sale systems",
+    "Inventory management software",
+    "SaaS platform development",
+    "Multi-tenant software architecture",
+    "Mobile app development",
+    "AI automation for business operations",
+    "Cloud deployment and hosting",
+  ],
+  serviceType: [
+    "Custom Software Development",
+    "SaaS Platform Development",
+    "Mobile App Development",
+    "Cloud Deployment",
+    "AI Automation",
+  ],
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "sales",
+    email: contactEmail,
+    url: `${siteUrl}/book-consultation`,
+    availableLanguage: ["English"],
+  },
+};
+
+const webSiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  url: siteUrl,
+  name: "Corewell Systems",
+  alternateName: "Corewell Systems — custom software development",
+  description:
+    "Custom operational software for clinics, hotels, schools, and retailers — with interactive demos you can open without signing up.",
+  publisher: { "@id": `${siteUrl}/#organization` },
+  inLanguage: "en",
 };
 
 const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
@@ -61,6 +142,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(organizationJsonLd),
           }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
         />
         {plausibleDomain && (
           <script
