@@ -1,0 +1,91 @@
+---
+title: "How Much Does a Custom ERP System Cost?"
+description: "What drives the price of an ERP or POS build up and down, how to compare it against a subscription over three years, and how to scope one so you pay for workflow instead of shelf-ware."
+date: "2026-08-04"
+keywords:
+  - "custom erp cost"
+  - "erp development cost"
+  - "erp software price"
+  - "how much does erp cost"
+  - "erp implementation cost small business"
+  - "pos software cost"
+  - "inventory management system cost"
+faqs:
+  - q: "How much does a custom ERP cost?"
+    a: "There is no single figure, and any number quoted before a scoping conversation is a guess. As a typical market picture: a focused operational system for one business — orders, inventory, invoicing, basic accounting — generally lands in the low tens of thousands of dollars; a multi-branch platform with purchasing, warehouses, double-entry accounting and reporting runs higher; heavy integrations push it further. What moves the number is module count, integrations and concurrent users."
+  - q: "Is a custom ERP cheaper than Odoo, SAP or a SaaS subscription?"
+    a: "Not in year one. A build is a project cost while a subscription starts small. The comparison changes over three to five years because a subscription is charged per user per month forever and a build converts into an asset. Whether it crosses over depends on headcount growth and how much customisation you were paying for on top of the subscription anyway."
+  - q: "What are the ongoing costs after the build?"
+    a: "Hosting, backups, monitoring and maintenance — commonly estimated at roughly 15–20% of build cost per year. The important property is that it does not scale with headcount: adding twenty staff does not change the bill, which is the opposite of per-seat licensing."
+  - q: "What makes an ERP project expensive?"
+    a: "Integrations with systems you do not control, workflows nobody has written down, module count, and scope that grows during the build. The first two are the expensive ones because they are discovered rather than planned. A discovery phase that produces a written process map is the cheapest insurance available."
+  - q: "How can I reduce the cost without gutting the system?"
+    a: "Build the operational core first — orders, stock, invoicing — and run on it before adding modules. Stub integrations that need a vendor contract instead of blocking on them. And be ruthless about features requested because another system had them rather than because someone will use them."
+---
+
+There is no honest single number, and a vendor who gives you one before asking how you work is guessing. What can be answered precisely is *what moves the number* — because once you know that, a quote stops being a mystery and becomes something you can negotiate against scope. As a typical market picture: a focused operational system for one business generally lands in the low tens of thousands of dollars, a multi-branch platform with purchasing, warehouses and full accounting runs higher, and heavy integration work goes further again.
+
+## The five things that actually drive the price
+
+**Module count.** Orders and invoicing is a small system. Add purchasing, warehouses, double-entry accounting, a point-of-sale till and a customer-facing storefront and you have five products sharing a data model. Each is real work.
+
+**Integrations.** This is the biggest and least predictable line. Anything that talks to a system you do not control — a payment gateway, a bank feed, a tax authority, a courier, a clearinghouse — brings someone else's timetable, someone else's credentials, and someone else's outages. Two integrations can cost more than five internal modules.
+
+**Concurrent users and volume.** Ten users on one site is a different engineering problem from three hundred across branches. Not because of screens, but because of what happens underneath at load.
+
+**Undocumented process.** If nobody has written down how the work is done, someone has to work it out during the build, by interviewing people who disagree with each other. That discovery is billable and it is usually where estimates slip.
+
+**Migration.** Getting years of history out of the old system, cleaned and reconciled, is frequently underestimated. Extraction is easy; deciding what a badly-typed customer name from 2019 should become is not.
+
+## What does *not* move it as much as people expect
+
+- **Screen count.** Once the data model and components exist, the fortieth list page is far cheaper than the first.
+- **Look and feel.** Design costs real money once — a coherent system, not per page.
+- **Reports.** If the data is modelled properly, most reports are queries. If it is not, no report is cheap.
+
+## The comparison worth running
+
+Not licence fee against project fee — **three-year total on both sides.**
+
+| | Off-the-shelf / SaaS | Custom build |
+|---|---|---|
+| Year one | Subscription + implementation + customisation | Build cost |
+| Year two–three | Subscription, rising with headcount | Hosting + maintenance, flat |
+| Upgrades | Re-testing customisations each major version | Your schedule |
+| At the end | Nothing owned | An asset you own |
+
+Two honest notes about that table. First, a subscription buys you maturity you would otherwise pay to rediscover. Second, per-seat pricing only becomes the deciding factor if you are actually growing — for a stable team of eight, it may never cross over.
+
+## Ongoing cost, stated plainly
+
+A build is not free after launch. Hosting, backups, monitoring, security patches and small changes are commonly estimated at roughly **15–20% of build cost per year**. Any proposal that omits this is incomplete; the work exists whether or not it is quoted.
+
+The useful property is that it is broadly fixed. Doubling your headcount does not double it.
+
+## How to scope so you do not overpay
+
+**Build the core, run on it, then extend.** Orders, stock and invoicing first. Live on it for a month. The module list you write after that month is shorter and more accurate than the one you wrote before.
+
+**Stub what you cannot control yet.** If a payment processor or clearinghouse needs a contract that will take eight weeks, design the screen and stub the call. Do not let someone else's paperwork hold the project.
+
+**Write the process down before you ask for a price.** A one-page map of how an order becomes cash — every approval, every exception — is the cheapest thing you can do to make an estimate accurate.
+
+**Say no to features from the old system.** "The last software had it" is not a reason. "Someone uses it weekly" is.
+
+**Ask for the estimate as a range tied to modules**, so you can see what moves it and choose.
+
+## Questions worth asking any vendor
+
+1. What does this number include after launch, and for how long?
+2. Which parts of this estimate are you least confident about?
+3. Who owns the source code and the database when it is done?
+4. What happens if we stop working together in month four?
+5. Show me something you have built that I can open.
+
+The last one is worth more than the other four combined.
+
+## Something to open
+
+We have published a working demonstration of a multi-branch distribution system — trade desk, point-of-sale till and consumer storefront over a single catalogue, one stock pool and one ledger. It is a design preview on fabricated sample data rather than a deployed installation, and it is labelled as such on every screen.
+
+Judging scope from a system you can click through is considerably more reliable than judging it from a proposal.

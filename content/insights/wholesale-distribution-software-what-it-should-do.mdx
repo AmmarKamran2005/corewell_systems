@@ -1,0 +1,93 @@
+---
+title: "What Should Wholesale Distribution Software Actually Do?"
+description: "The features that decide whether a distribution system holds up: credit control at order entry, one stock pool across counters and channels, backorders that stay promises, and accounting that posts itself."
+date: "2026-08-04"
+keywords:
+  - "wholesale distribution software"
+  - "distribution erp"
+  - "pos and inventory system"
+  - "inventory management software for wholesalers"
+  - "multi branch pos software"
+  - "b2b order management software"
+  - "stock management software for distributors"
+faqs:
+  - q: "What is the difference between distribution software and a normal POS?"
+    a: "A POS handles a cash sale at a counter: scan, take payment, print a receipt. Distribution software has to handle what happens before and after — a credit customer ordering on 30-day terms, stock reserved but not yet shipped, a purchase order arriving partially, and a ledger that has to balance at month end. Most distributors need both, over the same stock."
+  - q: "Do I need separate systems for wholesale and retail?"
+    a: "No, and separate systems are usually the problem rather than the solution. The moment your counter, your trade desk and your website each keep their own stock number, you will sell the same unit twice and discover it at dispatch. One catalogue and one stock pool with different price lists per channel is the arrangement that holds."
+  - q: "What is a credit hold and why does it matter?"
+    a: "A rule that stops an order for a customer who is over their credit limit or past their payment terms, at the moment the order is entered rather than at invoicing. Catching it at order entry costs one phone call. Catching it after the goods have shipped costs a collection process."
+  - q: "How should a system handle stock it cannot supply?"
+    a: "By raising a backorder, not by silently cancelling the line. The customer is told part of the order ships now and part follows, the shortfall is recorded against an inbound purchase order where one exists, and someone can see the queue of what the business still owes. A shortfall that disappears from the screen becomes a complaint later."
+  - q: "Does a distribution system need full accounting?"
+    a: "It needs to post to one. Every dispatch, invoice, receipt and return is an accounting event, and if the system does not create those entries the work is done twice — once in the operational system and once in the books. Whether the ledger lives inside the same product or in a connected one matters far less than whether the posting happens automatically."
+---
+
+Distribution software earns its keep in four places: it refuses an order the customer cannot pay for, it never sells the same unit twice, it turns a shortfall into a promise instead of a silent cancellation, and it posts to the ledger without anyone re-typing anything. A system that does those four things well will outperform a system with three times the feature list. This article explains why, and what to look for in each.
+
+## One catalogue, one stock pool, several prices
+
+The most common failure in a growing distribution business is not a missing feature. It is a second system.
+
+The counter gets a POS. The trade desk keeps working in the old software. Someone launches a website with its own product list. Each of the three now believes it knows how many units are on the shelf, and all three are right for about an hour a day. The result is predictable: a unit sold twice, discovered when the picker cannot find the second one.
+
+What holds instead is a single catalogue and a single stock number, with **price lists** layered on top — one for retail, one for wholesale, one for contract distributors. Same product record, different price per channel.
+
+That last part is not a technicality. A distributor who publishes its own trade price on a public website is undercutting the shops it supplies, which is the fastest way to lose a dealer network. Price lists are what let you sell to consumers and to trade without competing with your own customers.
+
+## Credit control has to sit at order entry
+
+Every distributor selling on terms has the same silent leak: goods that went out to a customer who was already over their limit.
+
+The fix is not a report. It is a check at the moment the order is entered — the salesperson sees the customer is over limit, or past terms, before the order is confirmed. A useful system distinguishes between *warn* and *block*, because not every customer should be treated identically, and it puts held orders in one queue that someone is responsible for clearing.
+
+The economics are simple. Stopping the order costs a phone call. Stopping the invoice after dispatch costs a collection process, and sometimes the goods.
+
+## Backorders: the difference between a promise and a disappearance
+
+When the warehouse cannot fill a line, the system has one job: keep it a commitment.
+
+A well-behaved flow looks like this. The picker records what they actually picked. The shortfall becomes a **backorder** rather than a cancelled line. The customer is told that part of the order ships now and the rest follows. The backorder is linked to the inbound purchase order it is waiting on, so somebody can answer "when?" with a date instead of a guess. And there is a queue — a single screen showing what the business currently owes and has not shipped.
+
+If your prospective system cannot show you that queue, ask where short picks go. If the answer is "the line is removed", that is a customer complaint scheduled for next week.
+
+## Purchasing that closes the loop
+
+Distribution is buying as much as selling, and the purchase side is where margin quietly leaks.
+
+Look for goods receipts that record what physically arrived rather than what was ordered — including damaged units, which belong in a separate location, not back in sellable stock. Look for the receipt to be matched against the supplier's invoice, so a price that changed between order and delivery is caught rather than paid. If you import, ask how freight and duty are added to product cost, because a landed cost that is never applied means every margin report you run is optimistic.
+
+## The counter and the website are channels, not systems
+
+Once the core is right, a till and an online store are additional ways to capture an order against the same stock.
+
+For the till, the things that matter are unglamorous: barcode scanning, **split payment** across cash and card and mobile wallets, a receipt, park-and-recall so one slow customer does not block the queue, returns against a receipt rather than blind refunds, and a register open and close with a drawer count. That last one is the one people skip and then wish they had — without an opening float and a closing count, a cash discrepancy is undetectable.
+
+For the online store, the additions are a retail price list, stock that reserves against the same pool, delivery methods, and returns. Notice that none of those are a new inventory system.
+
+## Accounting: automatic, or done twice
+
+Every operational event in distribution is also an accounting event. A dispatch moves stock value. An invoice creates a receivable. A supplier receipt creates a liability. A return reverses something.
+
+If the system does not post those entries itself, someone re-types them into the books at month end, and the two records disagree by the time anyone notices. The questions worth asking a vendor: does it post double-entry automatically, are posted entries immutable with reversals rather than edits, and can you close a period so last month stops changing after you have reported on it.
+
+Whether the ledger is inside the same product or a connected one matters much less than whether that posting is automatic.
+
+## A short checklist
+
+Take this to any demonstration:
+
+1. Show me a customer over their credit limit trying to place an order.
+2. Show me the same stock number in the counter, the trade desk and the website.
+3. Show me a short pick, and then show me the backorder queue.
+4. Show me a goods receipt where two units arrived damaged.
+5. Show me the accounting entry created by a dispatch, and try to edit it.
+6. Show me the end-of-day cash count and the variance.
+
+Six honest answers tell you more than any feature comparison.
+
+## Something to click rather than read
+
+We have published a demonstration of a multi-branch distribution system — trade desk, point-of-sale till, and a consumer storefront over a single catalogue, one stock pool and one ledger — including the credit holds, backorder queue and drawer variance described above.
+
+It is a design preview on fabricated sample data, not a deployed installation, and it says so on every screen. It is also the fastest way to see whether this shape of system matches how you actually work.
