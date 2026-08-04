@@ -13,6 +13,7 @@ import {
   getIndustry,
   industryAccentStyle,
 } from "@/lib/industries";
+import { fullSystemDemos } from "@/lib/site";
 
 type Props = { params: { slug: string } };
 
@@ -52,10 +53,32 @@ export default function IndustryDemoPage({ params }: Props) {
 
   const Demo = demoComponents[industry.slug];
 
+  const fullSystem = fullSystemDemos[industry.slug];
+
   if (industry.demo.available && Demo) {
     return (
       <section className="py-8 sm:py-12" style={industryAccentStyle(industry)}>
         <Container>
+          {fullSystem && (
+            <div className="mb-8 rounded-2xl border border-faint/40 bg-surface p-6 sm:flex sm:items-center sm:gap-6 sm:p-8">
+              <div className="min-w-0 flex-1">
+                <Badge variant={demoBadge(industry).tone}>
+                  {demoBadge(industry).label}
+                </Badge>
+                <h2 className="mt-3 text-xl font-semibold leading-snug">
+                  Open the full system — {fullSystem.name}
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-soft">
+                  {fullSystem.blurb}
+                </p>
+              </div>
+              <div className="mt-5 shrink-0 sm:mt-0">
+                <Button href={fullSystem.url} target="_blank" rel="noopener">
+                  Open {fullSystem.name}
+                </Button>
+              </div>
+            </div>
+          )}
           <Demo exitHref={`/industries/${industry.slug}`} />
         </Container>
       </section>

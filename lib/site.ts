@@ -10,6 +10,33 @@ export const siteUrl =
 export const contactEmail = "info@corewellsystems.com";
 
 /**
+ * Full-system demos hosted outside this site, keyed by industry slug.
+ *
+ * The in-page sandboxes stay the instant taste; these are the complete
+ * applications for a visitor who wants to open every screen. Driven by env so
+ * a demo can be deployed and switched on without a code change — an unset
+ * value simply hides the link rather than shipping a dead one.
+ *
+ * Maturity is unchanged by linking one of these: a prototype on sample data is
+ * still a Design Preview, however complete it is.
+ */
+export const fullSystemDemos: Record<
+  string,
+  { url: string; name: string; blurb: string } | undefined
+> = {
+  retail: {
+    // Defaults to the Vercel deployment; override once a branded subdomain
+    // exists, without touching this file.
+    url:
+      process.env.NEXT_PUBLIC_DEMO_TRADE_URL ??
+      "https://corewelltrade.vercel.app",
+    name: "Corewell Trade",
+    blurb:
+      "The complete system — trade desk, point-of-sale till and consumer storefront over one catalogue, one stock pool and one ledger. Around 120 screens, all on sample data.",
+  },
+};
+
+/**
  * Cal.com scheduling. `calLink` values are the path after cal.com/ —
  * used both by the inline embed and by the plain links that stay visible
  * as a fallback if the embed script ever fails to load.

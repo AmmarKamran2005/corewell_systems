@@ -229,6 +229,15 @@ recorded here.
 **Nice to have:** Plausible analytics; more Insights articles (healthcare
 cluster started).
 
+**Shipped — Corewell Trade demo:** the distribution ERP in `myprojects/` was
+rebranded as **Corewell Trade** and now has a point-of-sale till and a consumer
+storefront on the same catalogue. It lives in its **own public repo**
+(github.com/AmmarKamran2005/corewell-trade) — client identity stripped, seeded
+data fabricated, `noindex` everywhere. Front end only: no API, no database, no
+auth, so it stays a **Design Preview**, never "live". Deployment steps in
+`docs/demo-deployment.md`; the Retail demo page links to it once
+`NEXT_PUBLIC_DEMO_TRADE_URL` is set.
+
 **In flight — healthcare demo replica:** a whitelabelled fork of the clinical
 platform to be deployed at `clinic.corewellsystems.com` as "Corewell Clinic".
 Fully separate infrastructure, all branding stripped from code, Stripe test
@@ -270,6 +279,7 @@ produced in discussion; **no implementation started.**
 | `docs/marketing-brief.md` | Paste into an AI before asking for social posts |
 | `docs/brand-kit.html` | Self-contained brand kit (logo, palette, templates) |
 | `docs/healthcare-demo-plan.md` | Build plan for the whitelabelled clinical demo |
+| `docs/demo-deployment.md` | Deploying the Corewell Trade demo — Vercel + Hostinger DNS |
 | `docs/mockups/corewell-clinic-ui.html` | UI mockup for that demo — open in a browser, toggle Login ↔ Dashboard top-right |
 | `OWNER-CHECKLIST.md` | Everything still owed by the owner |
 | `CONTEXT.md` | This file |
