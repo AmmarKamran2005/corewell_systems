@@ -10,6 +10,17 @@ export const siteUrl =
 export const contactEmail = "info@corewellsystems.com";
 
 /**
+ * Corewell Trade — the distribution ERP, till and storefront, deployed as a
+ * public demonstration. Linked from the nav and from the Retail demo page.
+ *
+ * It is a prototype on fabricated data with no backend, so it stays a Design
+ * Preview wherever it is referenced. The app labels itself as a demonstration
+ * system on every screen.
+ */
+export const tradeDemoUrl =
+  process.env.NEXT_PUBLIC_DEMO_TRADE_URL ?? "https://trade.corewellsystems.com";
+
+/**
  * Full-system demos hosted outside this site, keyed by industry slug.
  *
  * The in-page sandboxes stay the instant taste; these are the complete
@@ -25,11 +36,7 @@ export const fullSystemDemos: Record<
   { url: string; name: string; blurb: string } | undefined
 > = {
   retail: {
-    // Defaults to the Vercel deployment; override once a branded subdomain
-    // exists, without touching this file.
-    url:
-      process.env.NEXT_PUBLIC_DEMO_TRADE_URL ??
-      "https://corewelltrade.vercel.app",
+    url: tradeDemoUrl,
     name: "Corewell Trade",
     blurb:
       "The complete system — trade desk, point-of-sale till and consumer storefront over one catalogue, one stock pool and one ledger. Around 120 screens, all on sample data.",

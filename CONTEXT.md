@@ -77,6 +77,8 @@ Sections 1, 7 and 13 and from explicit owner decisions.
 /insights               5 articles (MDX pipeline)
 /about                  Story, principles, identity FAQs
 /book-consultation      Cal.com embed + qualifying form
+(external) Demo         trade.corewellsystems.com — Corewell Trade, linked
+                        from the nav. Design Preview: no backend
 /pricing                ⚠️ UNPUBLISHED — noindex, removed from nav/sitemap,
                         reachable by direct link. Awaiting owner sign-off
 ```
@@ -236,9 +238,10 @@ rebranded as **Corewell Trade** and now has a point-of-sale till and a consumer
 storefront on the same catalogue. It lives in its **own public repo**
 (github.com/AmmarKamran2005/corewell-trade) — client identity stripped, seeded
 data fabricated, `noindex` everywhere. Front end only: no API, no database, no
-auth, so it stays a **Design Preview**, never "live". **Live at https://corewelltrade.vercel.app** and linked from the Retail demo
-page. A branded subdomain is still to do — `NEXT_PUBLIC_DEMO_TRADE_URL`
-overrides the Vercel URL when one exists. See `docs/demo-deployment.md`.
+auth, so it stays a **Design Preview**, never "live". **Live at https://trade.corewellsystems.com**, linked from the main nav
+("Demo", with an external-link arrow) and from the Retail demo page.
+`NEXT_PUBLIC_DEMO_TRADE_URL` overrides the URL if it ever moves. See
+`docs/demo-deployment.md`.
 
 **In flight — healthcare demo replica:** a whitelabelled fork of the clinical
 platform to be deployed at `clinic.corewellsystems.com` as "Corewell Clinic".

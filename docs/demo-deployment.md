@@ -1,20 +1,19 @@
 # Deploying the Corewell Trade demo
 
-Putting the public demo at `demo.corewellsystems.com` — Vercel for the app,
-Hostinger for DNS.
+The public demo at `trade.corewellsystems.com` — Vercel for the app, Hostinger
+for DNS. **Done**; this is kept as the record of how, and as the recipe for the
+next demo.
 
 | | |
 |---|---|
 | Repo | https://github.com/AmmarKamran2005/corewell-trade (public) |
-| **Live now** | **https://corewelltrade.vercel.app** |
-| Intended subdomain | `demo.corewellsystems.com` — not set up yet |
+| **Live** | **https://trade.corewellsystems.com** |
+| Vercel URL | `corewelltrade.vercel.app` — still works, the subdomain is an alias |
 | Host | Vercel (free Hobby tier is enough — it is a static-ish front end) |
 | DNS | Stays at Hostinger |
 
-**Current state:** the app is deployed and the Retail demo page on
-corewellsystems.com links to the Vercel URL. Sections 1 and 5 are done. Steps
-2–4 are what remains if and when the branded subdomain is wanted — nothing
-breaks in the meantime.
+**Current state:** deployed, on the branded subdomain, and linked from both the
+main nav ("Demo") and the Retail demo page. Nothing outstanding.
 
 > **Why not Hostinger hosting itself:** Corewell Trade is a Next.js app and
 > needs a Node runtime. Hostinger's shared Web Hosting plans run PHP, so the
@@ -42,7 +41,7 @@ Every later push to `main` redeploys automatically.
 ## 2 · Add the subdomain in Vercel
 
 1. In the project: **Settings → Domains**.
-2. Type `demo.corewellsystems.com` → **Add**.
+2. Type `trade.corewellsystems.com` → **Add**.
 3. Vercel now shows "Invalid Configuration" and tells you which DNS record to
    create. For a subdomain it asks for a **CNAME** pointing at
    `cname.vercel-dns.com`.
@@ -63,7 +62,7 @@ Leave this page open; you come back to it in step 4.
    | Field | Value |
    |---|---|
    | Type | `CNAME` |
-   | Name | `demo` |
+   | Name | `trade` |
    | Points to / Target | `cname.vercel-dns.com` (whatever Vercel showed) |
    | TTL | `3600` |
 
@@ -85,10 +84,10 @@ nslookup -type=ns corewellsystems.com
 
 **Three things that go wrong here:**
 
-- **Name is `demo`, not the full domain.** Hostinger appends
+- **Name is `trade`, not the full domain.** Hostinger appends
   `.corewellsystems.com` for you. Entering the full name gives you
-  `demo.corewellsystems.com.corewellsystems.com`.
-- **A conflicting record.** If a record already exists for `demo` (an A record,
+  `trade.corewellsystems.com.corewellsystems.com`.
+- **A conflicting record.** If a record already exists for `trade` (an A record,
   or a wildcard `*`), delete it first. Two records for the same name fight and
   DNS resolution becomes a coin toss.
 - **Do not change the nameservers.** They must stay on Hostinger. The `info@`
@@ -104,7 +103,7 @@ nslookup -type=ns corewellsystems.com
    Check from your machine:
 
    ```bash
-   nslookup demo.corewellsystems.com
+   nslookup trade.corewellsystems.com
    ```
 
    You want to see it resolving towards `vercel-dns.com`.
@@ -113,7 +112,7 @@ nslookup -type=ns corewellsystems.com
    Configuration** and issues an SSL certificate on its own — nothing to buy or
    upload.
 
-3. Open `https://demo.corewellsystems.com`. Confirm the padlock, and that
+3. Open `https://trade.corewellsystems.com`. Confirm the padlock, and that
    `/pos` and `/store` both load.
 
 ---
@@ -129,7 +128,7 @@ URL, so the link cannot go live before the demo does.
 
    | Key | Value |
    |---|---|
-   | `NEXT_PUBLIC_DEMO_TRADE_URL` | `https://demo.corewellsystems.com` |
+   | `NEXT_PUBLIC_DEMO_TRADE_URL` | only needed to point at a *different* URL — the subdomain is already the default in `lib/site.ts` |
 
 3. **Deployments → ⋯ → Redeploy** on the latest production deployment.
    `NEXT_PUBLIC_*` values are baked in at build time, so a redeploy is required
@@ -141,7 +140,7 @@ URL, so the link cannot go live before the demo does.
 
 ## 6 · Check afterwards
 
-- `https://demo.corewellsystems.com/robots.txt` returns `Disallow: /`. The demo
+- `https://trade.corewellsystems.com/robots.txt` returns `Disallow: /`. The demo
   is full of invented customers and balances and must never be indexed, or it
   competes with the real site for the company's own name.
 - Send a test message through the contact form on corewellsystems.com and
@@ -165,8 +164,8 @@ Only worth it if you want everything under one bill.
 3. Keep it alive with PM2: `npm i -g pm2 && pm2 start "npm start" --name trade`
    then `pm2 startup && pm2 save`.
 4. Put Nginx in front, proxying port 80/443 to `localhost:3000`.
-5. Certificate via `certbot --nginx -d demo.corewellsystems.com`.
-6. DNS: an **A record** for `demo` pointing at the VPS IP, instead of the CNAME
+5. Certificate via `certbot --nginx -d trade.corewellsystems.com`.
+6. DNS: an **A record** for `trade` pointing at the VPS IP, instead of the CNAME
    in step 3.
 
 You then own the updates, the restarts and the certificate renewals. Vercel
