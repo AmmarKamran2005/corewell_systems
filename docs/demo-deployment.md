@@ -6,9 +6,15 @@ Hostinger for DNS.
 | | |
 |---|---|
 | Repo | https://github.com/AmmarKamran2005/corewell-trade (public) |
-| Target subdomain | `demo.corewellsystems.com` |
+| **Live now** | **https://corewelltrade.vercel.app** |
+| Intended subdomain | `demo.corewellsystems.com` — not set up yet |
 | Host | Vercel (free Hobby tier is enough — it is a static-ish front end) |
 | DNS | Stays at Hostinger |
+
+**Current state:** the app is deployed and the Retail demo page on
+corewellsystems.com links to the Vercel URL. Sections 1 and 5 are done. Steps
+2–4 are what remains if and when the branded subdomain is wanted — nothing
+breaks in the meantime.
 
 > **Why not Hostinger hosting itself:** Corewell Trade is a Next.js app and
 > needs a Node runtime. Hostinger's shared Web Hosting plans run PHP, so the
@@ -62,6 +68,20 @@ Leave this page open; you come back to it in step 4.
    | TTL | `3600` |
 
 4. **Add Record** and save.
+
+**If Hostinger will not let you add the subdomain**
+
+The subdomain is not created under **Websites**; that section is for hosting a
+separate site and will refuse if there is no hosting plan attached. What you
+want is the **DNS zone editor** under **Domains → corewellsystems.com → DNS /
+Nameservers**, which lets you add a CNAME regardless of where the site is
+hosted. If that page shows a message about the domain using external
+nameservers, the zone is being served elsewhere and the record has to be added
+there instead — check where the nameservers actually point:
+
+```bash
+nslookup -type=ns corewellsystems.com
+```
 
 **Three things that go wrong here:**
 

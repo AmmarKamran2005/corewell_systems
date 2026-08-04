@@ -3,7 +3,9 @@
 Everything a new session (or a new person) needs to work on this project
 without re-deriving it. Read this first.
 
-> **Repository visibility: PRIVATE** (changed 2026-08-03). Even so, keep
+> **Repository visibility: PUBLIC** (changed 2026-08-04, to unblock Vercel
+> builds). Real product names were purged from the working tree *and* from git
+> history before the switch. Keep
 > credentials and API keys out of it entirely, and keep client and internal
 > product names out of anything that could ever be made public or pasted
 > elsewhere. Full product analysis stays outside version control (see §8).
@@ -234,9 +236,9 @@ rebranded as **Corewell Trade** and now has a point-of-sale till and a consumer
 storefront on the same catalogue. It lives in its **own public repo**
 (github.com/AmmarKamran2005/corewell-trade) — client identity stripped, seeded
 data fabricated, `noindex` everywhere. Front end only: no API, no database, no
-auth, so it stays a **Design Preview**, never "live". Deployment steps in
-`docs/demo-deployment.md`; the Retail demo page links to it once
-`NEXT_PUBLIC_DEMO_TRADE_URL` is set.
+auth, so it stays a **Design Preview**, never "live". **Live at https://corewelltrade.vercel.app** and linked from the Retail demo
+page. A branded subdomain is still to do — `NEXT_PUBLIC_DEMO_TRADE_URL`
+overrides the Vercel URL when one exists. See `docs/demo-deployment.md`.
 
 **In flight — healthcare demo replica:** a whitelabelled fork of the clinical
 platform to be deployed at `clinic.corewellsystems.com` as "Corewell Clinic".
