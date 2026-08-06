@@ -19,13 +19,18 @@ const navLinks = [
   // Pricing hidden pending owner sign-off on the published ranges.
   // Restore by re-adding: { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
-  /**
-   * Points at the product page rather than straight into the app: a visitor
-   * arriving from the nav gets the explanation first, and the page's own CTA
-   * is what opens the system.
-   */
-  { href: "/trade", label: "Corewell Trade" },
 ];
+
+/**
+ * The product page, promoted out of the link row to sit beside the CTA — it is
+ * the one destination on this site that shows working software rather than
+ * describing it. Secondary styling, deliberately: spec Section 4 allows one
+ * primary action per screenful, and that stays Book a Consultation.
+ *
+ * It points at /trade rather than straight into the app, so a visitor gets the
+ * explanation first and the page's own CTA is what opens the system.
+ */
+const productLink = { href: "/trade", label: "Corewell Trade" };
 
 /**
  * Sticky nav with scroll-aware shrink (spec Section 4 component inventory).
@@ -54,13 +59,13 @@ export function NavBar() {
       <Container>
         <div
           className={cn(
-            "flex items-center justify-between transition-all duration-200",
+            "flex items-center justify-between gap-6 transition-all duration-200",
             scrolled ? "h-14" : "h-20"
           )}
         >
           <Link
             href="/"
-            className="flex items-center gap-2.5 font-display text-lg font-semibold tracking-display text-ink-strong"
+            className="flex shrink-0 items-center gap-2.5 font-display text-lg font-semibold tracking-display text-ink-strong"
           >
             <Image
               src={logoMark}
@@ -73,7 +78,10 @@ export function NavBar() {
             Corewell Systems
           </Link>
 
-          <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
+          <nav
+            aria-label="Main"
+            className="hidden items-center gap-5 xl:flex 2xl:gap-6"
+          >
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -85,7 +93,10 @@ export function NavBar() {
             ))}
           </nav>
 
-          <div className="hidden lg:block">
+          <div className="hidden items-center gap-3 xl:flex">
+            <Button href={productLink.href} variant="secondary" size="md">
+              {productLink.label}
+            </Button>
             <Button href="/book-consultation" size="md">
               Book a Consultation
             </Button>
@@ -93,7 +104,7 @@ export function NavBar() {
 
           <button
             type="button"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink lg:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink xl:hidden"
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -123,7 +134,7 @@ export function NavBar() {
         <nav
           id="mobile-nav"
           aria-label="Main"
-          className="border-t border-line bg-canvas lg:hidden"
+          className="border-t border-line bg-canvas xl:hidden"
         >
           <Container className="flex flex-col gap-1 py-4">
             {navLinks.map((link) => (
@@ -136,7 +147,15 @@ export function NavBar() {
                 {link.label}
               </Link>
             ))}
-            <div className="px-3 pt-3">
+            <div className="flex flex-col gap-2 px-3 pt-3">
+              <Button
+                href={productLink.href}
+                variant="secondary"
+                className="w-full"
+                onClick={() => setMenuOpen(false)}
+              >
+                {productLink.label}
+              </Button>
               <Button
                 href="/book-consultation"
                 className="w-full"
