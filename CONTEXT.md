@@ -77,8 +77,9 @@ Sections 1, 7 and 13 and from explicit owner decisions.
 /insights               5 articles (MDX pipeline)
 /about                  Story, principles, identity FAQs
 /book-consultation      Cal.com embed + qualifying form
-/trade                  ⏳ PLANNED — Corewell Trade product landing page.
-                        See docs/trade-landing-page-plan.md
+/trade                  Corewell Trade product landing page — 11 sections,
+                        WebPage + FAQPage + BreadcrumbList schema. Linked from
+                        the nav, the five ERP/POS articles and retail
 (external) Demo         trade.corewellsystems.com — the Corewell Trade app
 /pricing                ⚠️ UNPUBLISHED — noindex, removed from nav/sitemap,
                         reachable by direct link. Awaiting owner sign-off
@@ -247,8 +248,11 @@ Front end complete; the backend (NestJS + Prisma + PostgreSQL) was expected
 within one to two weeks of 2026-08-05. **Marketing it as a shipping product is
 the owner's decision** — the `/trade` landing page is written that way, and is
 to be published once the backend is live rather than before. Plan:
-`docs/trade-landing-page-plan.md`. Handoff for a fresh session: `HANDOFF.md`. **Live at https://trade.corewellsystems.com**, linked from the main nav
-("Demo", with an external-link arrow) and from the Retail demo page.
+`docs/trade-landing-page-plan.md`. Handoff for a fresh session: `HANDOFF.md`. **Live at https://trade.corewellsystems.com**, reached from the nav via
+`/trade` and linked from the Retail demo page. Sample data was reseeded
+region-neutral on 2026-08-06 — no cities, local banks, wallets or currency —
+because the screenshots on `/trade` come from it and the site makes no
+geographic claim.
 `NEXT_PUBLIC_DEMO_TRADE_URL` overrides the URL if it ever moves. See
 `docs/demo-deployment.md`.
 

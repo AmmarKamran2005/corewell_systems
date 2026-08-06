@@ -114,14 +114,44 @@ online-store search intent that the site had capability for but no content on:
 
 Sitemap: 33 → 38 URLs.
 
+## 2026-08-06 — Corewell Trade landing page
+
+**`/trade` built and published.** Eleven sections per
+`docs/trade-landing-page-plan.md`: hero over the real dashboard, the problem,
+an inline diagram of three channels feeding one core, a tab switcher for the
+trade desk / till / storefront with screenshots of each, the full module
+inventory, the demo invitation, a collapsed technical section, the comparison
+against a configurable suite, who it fits, ten FAQs, closing band.
+
+- Copy drafted and approved first: `docs/trade-landing-copy.md`
+- Schema: `WebPage` + `FAQPage` + `BreadcrumbList`. **No
+  `SoftwareApplication`** — the backend is not live, and the maturity rules
+  reserve that schema for deployed systems
+- Nav: the `Demo` item became `Corewell Trade` → `/trade`; the page's own
+  CTA is what opens the app
+- Internal linking: five ERP/POS articles link in, the page links back to four,
+  and `/industries/retail` + its demo page link across. Sitemap: 38 → 39 URLs
+- 14 screenshots captured from the running demo at 1440×900, served through
+  `next/image`
+
+**Demo reseeded region-neutral** (separate repo, committed there, not pushed):
+branch cities, party and staff names, banks, wallets and SMS gateways are now
+placeholders with no geography in them; phone numbers are obviously fictional.
+Money is read as integer minor units and divided once at display, so totals stay
+exact while prices read as a wholesale catalogue. Lakh/crore compaction removed.
+
+**Published while the backend is still pending, by owner decision.** The page is
+written as product marketing; the five articles still describe the demo as a
+design preview on fabricated data.
+
 ---
 
 ## Next
 
-1. **Corewell Trade landing page** at `corewellsystems.com/trade` — planned in
-   `docs/trade-landing-page-plan.md`, handoff in `HANDOFF.md`. Not started.
-2. **Backend** for Corewell Trade.
-3. **Healthcare demo** — planned in `docs/healthcare-demo-plan.md`, deferred by
+1. **Backend** for Corewell Trade — the one thing `/trade` is waiting on.
+   Once it ships, add `SoftwareApplication` schema and revisit the
+   design-preview wording in the five articles.
+2. **Healthcare demo** — planned in `docs/healthcare-demo-plan.md`, deferred by
    owner. Ownership of the source codebase should be confirmed before forking.
-4. **Owner items** — pricing sign-off, real case-study facts, the About page
+3. **Owner items** — pricing sign-off, real case-study facts, the About page
    placeholder. Tracked in `OWNER-CHECKLIST.md`.
