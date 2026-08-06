@@ -77,8 +77,9 @@ Sections 1, 7 and 13 and from explicit owner decisions.
 /insights               5 articles (MDX pipeline)
 /about                  Story, principles, identity FAQs
 /book-consultation      Cal.com embed + qualifying form
-(external) Demo         trade.corewellsystems.com — Corewell Trade, linked
-                        from the nav. Design Preview: no backend
+/trade                  ⏳ PLANNED — Corewell Trade product landing page.
+                        See docs/trade-landing-page-plan.md
+(external) Demo         trade.corewellsystems.com — the Corewell Trade app
 /pricing                ⚠️ UNPUBLISHED — noindex, removed from nav/sitemap,
                         reachable by direct link. Awaiting owner sign-off
 ```
@@ -240,8 +241,13 @@ storefront on the same catalogue. It lives in its **own public repo**
 data fabricated. **Indexing: the `/login` landing page only** — it carries a
 demo notice and metadata aimed at "ERP / POS demo" searches; every screen
 behind it re-declares `noindex` and is disallowed in `robots.txt`, because
-invented customer records must not enter search results. Front end only: no API, no database, no
-auth, so it stays a **Design Preview**, never "live". **Live at https://trade.corewellsystems.com**, linked from the main nav
+invented customer records must not enter search results.
+
+Front end complete; the backend (NestJS + Prisma + PostgreSQL) was expected
+within one to two weeks of 2026-08-05. **Marketing it as a shipping product is
+the owner's decision** — the `/trade` landing page is written that way, and is
+to be published once the backend is live rather than before. Plan:
+`docs/trade-landing-page-plan.md`. Handoff for a fresh session: `HANDOFF.md`. **Live at https://trade.corewellsystems.com**, linked from the main nav
 ("Demo", with an external-link arrow) and from the Retail demo page.
 `NEXT_PUBLIC_DEMO_TRADE_URL` overrides the URL if it ever moves. See
 `docs/demo-deployment.md`.
@@ -288,6 +294,9 @@ produced in discussion; **no implementation started.**
 | `docs/brand-kit.html` | Self-contained brand kit (logo, palette, templates) |
 | `docs/healthcare-demo-plan.md` | Build plan for the whitelabelled clinical demo |
 | `docs/demo-deployment.md` | Deploying the Corewell Trade demo — Vercel + Hostinger DNS |
+| `docs/trade-landing-page-plan.md` | Plan for the `/trade` product landing page |
+| `HANDOFF.md` | Start-here file for a session picking up the landing page |
+| `PROGRESS.md` | What has been built, in the order it happened |
 | `docs/mockups/corewell-clinic-ui.html` | UI mockup for that demo — open in a browser, toggle Login ↔ Dashboard top-right |
 | `OWNER-CHECKLIST.md` | Everything still owed by the owner |
 | `CONTEXT.md` | This file |
