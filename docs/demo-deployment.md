@@ -140,9 +140,11 @@ URL, so the link cannot go live before the demo does.
 
 ## 6 · Check afterwards
 
-- `https://trade.corewellsystems.com/robots.txt` returns `Disallow: /`. The demo
-  is full of invented customers and balances and must never be indexed, or it
-  competes with the real site for the company's own name.
+- `https://trade.corewellsystems.com/robots.txt` allows `/login` and disallows
+  every application path. The sign-in page is meant to be found; the screens
+  behind it carry invented customers and balances and must not be indexed.
+  Confirm with `curl` that `/login` has no `noindex` meta tag and that
+  `/dashboard`, `/pos` and `/store` all do.
 - Send a test message through the contact form on corewellsystems.com and
   confirm it still arrives at `info@`. This proves the DNS edit left the mail
   records alone.

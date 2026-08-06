@@ -237,7 +237,10 @@ cluster started).
 rebranded as **Corewell Trade** and now has a point-of-sale till and a consumer
 storefront on the same catalogue. It lives in its **own public repo**
 (github.com/AmmarKamran2005/corewell-trade) — client identity stripped, seeded
-data fabricated, `noindex` everywhere. Front end only: no API, no database, no
+data fabricated. **Indexing: the `/login` landing page only** — it carries a
+demo notice and metadata aimed at "ERP / POS demo" searches; every screen
+behind it re-declares `noindex` and is disallowed in `robots.txt`, because
+invented customer records must not enter search results. Front end only: no API, no database, no
 auth, so it stays a **Design Preview**, never "live". **Live at https://trade.corewellsystems.com**, linked from the main nav
 ("Demo", with an external-link arrow) and from the Retail demo page.
 `NEXT_PUBLIC_DEMO_TRADE_URL` overrides the URL if it ever moves. See
