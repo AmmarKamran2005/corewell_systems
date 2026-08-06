@@ -35,6 +35,11 @@ const productLink = { href: "/trade", label: "Corewell Trade" };
 /**
  * Sticky nav with scroll-aware shrink (spec Section 4 component inventory).
  * Condenses and gains a backdrop once the page scrolls past the hero's top edge.
+ *
+ * The row is at its width limit: brand + seven links + two buttons need roughly
+ * 1130px of the 1176px the container gives, and that budget does not grow on a
+ * wider screen because the container is capped. Anything added here — a link, a
+ * longer label — has to come out of somewhere else or move the xl breakpoint up.
  */
 export function NavBar() {
   const [scrolled, setScrolled] = useState(false);
@@ -59,7 +64,7 @@ export function NavBar() {
       <Container>
         <div
           className={cn(
-            "flex items-center justify-between gap-6 transition-all duration-200",
+            "flex items-center justify-between gap-4 transition-all duration-200",
             scrolled ? "h-14" : "h-20"
           )}
         >
@@ -80,20 +85,23 @@ export function NavBar() {
 
           <nav
             aria-label="Main"
-            className="hidden items-center gap-5 xl:flex 2xl:gap-6"
+            /* Seven links plus two buttons only just clear 1176px of content
+               width, so the gaps stay tight and nothing may wrap or shrink —
+               see the note on the row above. */
+            className="hidden shrink-0 items-center gap-4 whitespace-nowrap xl:flex"
           >
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-sm text-soft transition-colors hover:text-ink"
+                className="whitespace-nowrap text-sm text-soft transition-colors hover:text-ink"
               >
                 {link.label}
               </Link>
             ))}
           </nav>
 
-          <div className="hidden items-center gap-3 xl:flex">
+          <div className="hidden shrink-0 items-center gap-3 xl:flex">
             <Button href={productLink.href} variant="secondary" size="md">
               {productLink.label}
             </Button>
