@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -16,6 +17,7 @@ import {
   industries,
   industryAccentStyle,
 } from "@/lib/industries";
+import { fullSystemDemos } from "@/lib/site";
 
 type Props = { params: { slug: string } };
 
@@ -45,6 +47,7 @@ export default function IndustryPage({ params }: Props) {
   const industry = getIndustry(params.slug);
   if (!industry) notFound();
 
+  const fullSystem = fullSystemDemos[industry.slug];
   const isConcept = industry.status === "concept";
   const isCustom = industry.status === "custom";
   const capabilities = getCapabilities(industry.slug);
@@ -251,6 +254,18 @@ export default function IndustryPage({ params }: Props) {
                         Book a live walkthrough
                       </Button>
                     </div>
+                    {fullSystem?.pageHref && (
+                      <p className="mt-5 text-sm text-soft">
+                        Or read what the full system does:{" "}
+                        <Link
+                          href={fullSystem.pageHref}
+                          className="text-accent underline underline-offset-4 hover:text-accent-strong"
+                        >
+                          {fullSystem.name}
+                        </Link>
+                        .
+                      </p>
+                    )}
                   </div>
                 ) : (
                   <div className="mt-8 rounded-xl border border-dashed border-faint/40 bg-canvas p-8 text-center">

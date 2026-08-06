@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
@@ -71,6 +72,16 @@ export default function IndustryDemoPage({ params }: Props) {
                 <p className="mt-2 text-sm leading-relaxed text-soft">
                   {fullSystem.blurb}
                 </p>
+                {fullSystem.pageHref && (
+                  <p className="mt-3 text-sm">
+                    <Link
+                      href={fullSystem.pageHref}
+                      className="text-accent underline underline-offset-4 hover:text-accent-strong"
+                    >
+                      What {fullSystem.name} does, section by section
+                    </Link>
+                  </p>
+                )}
               </div>
               <div className="mt-5 shrink-0 sm:mt-0">
                 <Button href={fullSystem.url} target="_blank" rel="noopener">

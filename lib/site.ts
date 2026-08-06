@@ -33,13 +33,16 @@ export const tradeDemoUrl =
  */
 export const fullSystemDemos: Record<
   string,
-  { url: string; name: string; blurb: string } | undefined
+  | { url: string; name: string; blurb: string; pageHref?: string }
+  | undefined
 > = {
   retail: {
     url: tradeDemoUrl,
     name: "Corewell Trade",
     blurb:
-      "The complete system — trade desk, point-of-sale till and consumer storefront over one catalogue, one stock pool and one ledger. Around 120 screens, all on sample data.",
+      "The complete system — trade desk, point-of-sale till and consumer storefront over one catalogue, one stock pool and one ledger, all on sample data.",
+    /** The product page on this site, for a reader who wants the tour first. */
+    pageHref: "/trade",
   },
 };
 

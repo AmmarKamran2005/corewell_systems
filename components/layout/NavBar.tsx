@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import logoMark from "@/app/c_logo-withoutbg.png";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
-import { tradeDemoUrl } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 // No Products item — capability lives inside Industries (spec Section 3).
@@ -21,12 +20,11 @@ const navLinks = [
   // Restore by re-adding: { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
   /**
-   * Opens a working system rather than another page, so it leaves the site and
-   * says so. Labelled "Demo", never "Live" — it is a prototype on sample data
-   * and the maturity rules (spec Section 7) apply to the nav as much as to a
-   * page body.
+   * Points at the product page rather than straight into the app: a visitor
+   * arriving from the nav gets the explanation first, and the page's own CTA
+   * is what opens the system.
    */
-  { href: tradeDemoUrl, label: "Demo", external: true },
+  { href: "/trade", label: "Corewell Trade" },
 ];
 
 /**
@@ -76,28 +74,15 @@ export function NavBar() {
           </Link>
 
           <nav aria-label="Main" className="hidden items-center gap-7 lg:flex">
-            {navLinks.map((link) =>
-              link.external ? (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener"
-                  className="inline-flex items-center gap-1 text-sm text-soft transition-colors hover:text-ink"
-                >
-                  {link.label}
-                  <ExternalArrow />
-                </a>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="text-sm text-soft transition-colors hover:text-ink"
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="text-sm text-soft transition-colors hover:text-ink"
+              >
+                {link.label}
+              </Link>
+            ))}
           </nav>
 
           <div className="hidden lg:block">
@@ -141,30 +126,16 @@ export function NavBar() {
           className="border-t border-line bg-canvas lg:hidden"
         >
           <Container className="flex flex-col gap-1 py-4">
-            {navLinks.map((link) =>
-              link.external ? (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener"
-                  className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2.5 text-base text-ink hover:bg-canvas-subtle"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.label}
-                  <ExternalArrow />
-                </a>
-              ) : (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className="rounded-lg px-3 py-2.5 text-base text-ink hover:bg-canvas-subtle"
-                  onClick={() => setMenuOpen(false)}
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="rounded-lg px-3 py-2.5 text-base text-ink hover:bg-canvas-subtle"
+                onClick={() => setMenuOpen(false)}
+              >
+                {link.label}
+              </Link>
+            ))}
             <div className="px-3 pt-3">
               <Button
                 href="/book-consultation"
@@ -178,25 +149,5 @@ export function NavBar() {
         </nav>
       )}
     </header>
-  );
-}
-
-/** Marks a link that leaves the site, so "Demo" is not mistaken for a page. */
-function ExternalArrow() {
-  return (
-    <svg
-      aria-hidden
-      width="11"
-      height="11"
-      viewBox="0 0 12 12"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.6"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="opacity-70"
-    >
-      <path d="M4 8l4-4M4.5 3.5H8.5V7.5" />
-    </svg>
   );
 }
