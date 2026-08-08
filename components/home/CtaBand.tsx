@@ -1,10 +1,28 @@
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
+import { CtaBandVideo } from "@/components/home/CtaBandVideo";
 
+/**
+ * Closing CTA band, over a muted background loop.
+ *
+ * The layering matters more than the video does: ink base, then the loop held
+ * well below full strength, then a scrim, and only then the text. The band has
+ * to read the same whether the file loads, is refused (reduced motion, narrow
+ * screen) or fails outright — so nothing above the base layer carries meaning,
+ * and the copy never sits directly on moving pixels.
+ */
 export function CtaBand() {
   return (
-    <section className="bg-ink-strong py-16 sm:py-20">
+    <section className="relative isolate overflow-hidden bg-ink-strong py-16 sm:py-20">
+      <div className="absolute inset-0 -z-10 opacity-[0.22]">
+        <CtaBandVideo />
+      </div>
+      {/* Scrim: darker through the middle, where the headline sits. */}
+      <div
+        aria-hidden
+        className="absolute inset-0 -z-10 bg-gradient-to-b from-ink-strong/70 via-ink-strong/85 to-ink-strong/70"
+      />
       <Container className="text-center">
         <Reveal>
           <h2 className="mx-auto max-w-2xl text-3xl font-semibold text-white sm:text-4xl">
