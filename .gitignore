@@ -31,3 +31,9 @@ next-env.d.ts
 # Real product codebases — internal analysis only, NEVER committed
 # (contain real product names and production secrets)
 /myprojects
+
+# Agent tooling scaffolding — not part of the site
+.agents/
+.claude/skills/
+skills-lock.json
+.audit/
