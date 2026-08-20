@@ -255,7 +255,7 @@ export function HealthcareDemo({ exitHref }: { exitHref: string }) {
                     {role !== "doctor" && (
                       <td className="px-4 py-3 text-right">
                         {a.status !== "completed" && a.day === "Today" && (
-                          <button
+                          <button type="button"
                             onClick={() => advanceStatus(a.id)}
                             className="text-xs font-medium text-accent hover:text-accent-strong"
                           >
@@ -283,12 +283,12 @@ export function HealthcareDemo({ exitHref }: { exitHref: string }) {
               value={patientQuery}
               onChange={(e) => setPatientQuery(e.target.value)}
               placeholder="Search by name or ID…"
-              className="mt-3 w-full rounded-lg border border-line bg-canvas px-3 py-2 text-sm text-ink placeholder:text-faint focus:border-accent focus:outline-none"
+              className="mt-3 w-full rounded-lg border border-line bg-canvas px-3 py-2 text-sm text-ink placeholder:text-faint focus:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
             />
             <ul className="mt-3 divide-y divide-line rounded-xl border border-line">
               {filteredPatients.map((p) => (
                 <li key={p.id}>
-                  <button
+                  <button type="button"
                     onClick={() => setSelectedPatient(p.id)}
                     className={cn(
                       "flex w-full flex-wrap items-center justify-between gap-2 px-4 py-3 text-left transition-colors hover:bg-canvas-subtle",
@@ -460,7 +460,7 @@ export function HealthcareDemo({ exitHref }: { exitHref: string }) {
                     </td>
                     <td className="px-4 py-3 text-right">
                       {invoice.status === "pending" && (
-                        <button
+                        <button type="button"
                           onClick={() => markPaid(invoice.id)}
                           className="text-xs font-medium text-accent hover:text-accent-strong"
                         >

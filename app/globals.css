@@ -19,20 +19,23 @@
 
   /* Warm grays: secondary text, muted labels */
   --color-soft: 87 83 78; /* #57534E */
-  --color-faint: 121 113 107; /* #79716B */
+  --color-faint: 116 108 102; /* #746C66 — 4.89 canvas / 4.64 canvas-subtle / 5.15 surface */
 
   /* Borders, dividers, card outlines */
   --color-line: 231 229 228; /* #E7E5E4 */
 
-  /* Single accent: teal #0F766E (spec offers teal/emerald/deep blue — teal chosen,
-     passes WCAG AA on the off-white canvas at ~5.9:1). Confirm before launch. */
+  /* Single accent: teal #0F766E (spec offers teal/emerald/deep blue — teal
+     chosen). Measured 5.20:1 on canvas, 4.94 on canvas-subtle, 5.47 on
+     surface — passes WCAG AA on all three. */
   --color-accent: 15 118 110;
   --color-accent-strong: 17 94 89; /* hover/active #115E59 */
 }
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   body {

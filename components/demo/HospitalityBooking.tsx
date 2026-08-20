@@ -140,7 +140,7 @@ export function HospitalityBooking() {
 
             <div className="mt-4 flex flex-wrap gap-2">
               {cities.map((c) => (
-                <button
+                <button type="button"
                   key={c}
                   onClick={() => setCity(c)}
                   className={cn(
@@ -158,7 +158,7 @@ export function HospitalityBooking() {
             <ul className="mt-5 grid gap-4 lg:grid-cols-3">
               {results.map((l) => (
                 <li key={l.id}>
-                  <button
+                  <button type="button"
                     onClick={() => {
                       setListing(l);
                       setCart({});
@@ -201,7 +201,7 @@ export function HospitalityBooking() {
 
         {stage === "property" && listing && (
           <div>
-            <button
+            <button type="button"
               onClick={() => setStage("search")}
               className="text-xs font-medium text-accent hover:text-accent-strong"
             >
@@ -249,7 +249,7 @@ export function HospitalityBooking() {
                           </p>
                         </div>
                         <div className="flex items-center gap-2">
-                          <button
+                          <button type="button"
                             onClick={() => setQty(offer.id, -1, offer.left)}
                             disabled={qty === 0}
                             aria-label={`Remove one ${offer.type}`}
@@ -260,7 +260,7 @@ export function HospitalityBooking() {
                           <span className="w-5 text-center text-sm tabular-nums text-ink">
                             {qty}
                           </span>
-                          <button
+                          <button type="button"
                             onClick={() => setQty(offer.id, 1, offer.left)}
                             disabled={qty >= offer.left}
                             aria-label={`Add one ${offer.type}`}
@@ -289,7 +289,7 @@ export function HospitalityBooking() {
                     onChange={(e) =>
                       setNights(Math.max(1, Number(e.target.value) || 1))
                     }
-                    className="mt-1 w-full rounded-lg border border-line bg-surface px-3 py-1.5 text-sm text-ink focus:border-accent focus:outline-none"
+                    className="mt-1 w-full rounded-lg border border-line bg-surface px-3 py-1.5 text-sm text-ink focus:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                   />
                 </label>
                 <label className="mt-3 block text-xs text-soft">
@@ -302,7 +302,7 @@ export function HospitalityBooking() {
                     onChange={(e) =>
                       setGuests(Math.max(1, Number(e.target.value) || 1))
                     }
-                    className="mt-1 w-full rounded-lg border border-line bg-surface px-3 py-1.5 text-sm text-ink focus:border-accent focus:outline-none"
+                    className="mt-1 w-full rounded-lg border border-line bg-surface px-3 py-1.5 text-sm text-ink focus:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
                   />
                 </label>
 
@@ -319,7 +319,7 @@ export function HospitalityBooking() {
                     ${subtotal}
                   </span>
                 </div>
-                <button
+                <button type="button"
                   onClick={() => setStage("review")}
                   disabled={roomsChosen === 0 || overCapacity}
                   className="mt-4 w-full rounded-full bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-strong disabled:opacity-45"
@@ -333,7 +333,7 @@ export function HospitalityBooking() {
 
         {stage === "review" && listing && (
           <div>
-            <button
+            <button type="button"
               onClick={() => setStage("property")}
               className="text-xs font-medium text-accent hover:text-accent-strong"
             >
@@ -381,7 +381,7 @@ export function HospitalityBooking() {
                   </span>
                 </div>
               </div>
-              <button
+              <button type="button"
                 onClick={() => setStage("payment")}
                 className="mt-5 w-full rounded-full bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-strong"
               >
@@ -431,7 +431,7 @@ export function HospitalityBooking() {
                 <span className="text-soft">Amount</span>
                 <span className="font-semibold text-ink-strong">${total}</span>
               </div>
-              <button
+              <button type="button"
                 onClick={pay}
                 disabled={paying}
                 className="mt-4 w-full rounded-full bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-strong disabled:opacity-60"
@@ -469,7 +469,7 @@ export function HospitalityBooking() {
                 <li>· Those nights are now removed from public availability</li>
                 <li>· After checkout, a review invitation is sent automatically</li>
               </ul>
-              <button
+              <button type="button"
                 onClick={restart}
                 className="mt-5 rounded-full border border-line bg-surface px-4 py-2 text-xs font-medium text-ink transition-colors hover:border-accent/50 hover:text-accent"
               >

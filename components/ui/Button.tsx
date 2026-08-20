@@ -61,7 +61,7 @@ export function Button({
   }
 
   return (
-    <button className={classes} {...(props as ButtonAsButton)}>
+    <button type="button" className={classes} {...(props as ButtonAsButton)}>
       {children}
     </button>
   );

@@ -26,7 +26,7 @@ export function VerticalTabs({ verticals }: { verticals: Vertical[] }) {
         {verticals.map((vertical) => {
           const isActive = vertical.slug === slug;
           return (
-            <button
+            <button type="button"
               key={vertical.slug}
               role="tab"
               aria-selected={isActive}

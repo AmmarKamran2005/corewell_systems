@@ -334,7 +334,7 @@ export function HospitalityDemo({ exitHref }: { exitHref: string }) {
 
           <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
             {rooms.map((room) => (
-              <button
+              <button type="button"
                 key={room.number}
                 onClick={() =>
                   setSelectedRoom(
@@ -382,7 +382,7 @@ export function HospitalityDemo({ exitHref }: { exitHref: string }) {
                 </div>
                 {activeRoom.status === "vacant-dirty" &&
                   role !== "frontdesk" && (
-                    <button
+                    <button type="button"
                       onClick={() => markClean(activeRoom.number)}
                       className="rounded-full bg-accent px-4 py-1.5 text-xs font-medium text-white transition-colors hover:bg-accent-strong"
                     >

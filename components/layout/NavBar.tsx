@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import logoMark from "@/app/c_logo-withoutbg.png";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
@@ -44,6 +44,7 @@ const productLink = { href: "/trade", label: "Corewell Trade" };
 export function NavBar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8);
@@ -51,6 +52,20 @@ export function NavBar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Escape closes the mobile menu and returns focus to the toggle, so a
+  // keyboard user is never stranded inside an open overlay.
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [menuOpen]);
 
   return (
     <header
@@ -112,6 +127,7 @@ export function NavBar() {
 
           <button
             type="button"
+            ref={menuButtonRef}
             className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink xl:hidden"
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"

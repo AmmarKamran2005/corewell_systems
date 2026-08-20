@@ -225,7 +225,7 @@ export function EducationDemo({ exitHref }: { exitHref: string }) {
                   </p>
                   <p className="text-xs text-soft">{student.id}</p>
                 </div>
-                <button
+                <button type="button"
                   onClick={() => cycleAttendance(student.id)}
                   aria-label={`Change attendance for ${student.name}`}
                 >

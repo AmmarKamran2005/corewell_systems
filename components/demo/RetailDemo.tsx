@@ -148,7 +148,7 @@ export function RetailDemo({ exitHref }: { exitHref: string }) {
                   cart.find((l) => l.sku === product.sku)?.qty ?? 0;
                 const soldOut = product.stock <= inCart;
                 return (
-                  <button
+                  <button type="button"
                     key={product.sku}
                     onClick={() => addToCart(product.sku)}
                     disabled={soldOut}
@@ -219,7 +219,7 @@ export function RetailDemo({ exitHref }: { exitHref: string }) {
                     ${cartTotal}
                   </span>
                 </div>
-                <button
+                <button type="button"
                   onClick={completeSale}
                   className="mt-4 w-full rounded-full bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-strong"
                 >

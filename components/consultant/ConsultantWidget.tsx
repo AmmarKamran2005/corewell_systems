@@ -27,10 +27,29 @@ export function ConsultantWidget() {
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const logRef = useRef<HTMLDivElement>(null);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     logRef.current?.scrollTo({ top: logRef.current.scrollHeight });
   }, [messages, open]);
+
+  // The panel overlays the page, so it needs dialog behaviour: Escape closes
+  // it, focus moves in on open, and focus returns to the trigger on close —
+  // otherwise a keyboard user has no way out and lands back at <body>.
+  useEffect(() => {
+    if (!open) return;
+    inputRef.current?.focus();
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+        triggerRef.current?.focus();
+      }
+    };
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open]);
 
   const send = async () => {
     const text = input.trim();
@@ -87,7 +106,14 @@ export function ConsultantWidget() {
   return (
     <div className="fixed bottom-4 right-4 z-50 flex flex-col items-end gap-3 sm:bottom-6 sm:right-6">
       {open && (
-        <div className="flex max-h-[70vh] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_8px_40px_rgb(27_36_48/0.14)] sm:w-96">
+        <div
+          ref={panelRef}
+          id="consultant-panel"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Ask Our Software Architect"
+          className="flex max-h-[70vh] w-[calc(100vw-2rem)] flex-col overflow-hidden rounded-2xl border border-line bg-surface shadow-[0_8px_40px_rgb(27_36_48/0.14)] sm:w-96"
+        >
           <div className="flex items-center justify-between border-b border-line bg-canvas-subtle px-4 py-3">
             <div>
               <p className="text-sm font-semibold text-ink">
@@ -97,8 +123,11 @@ export function ConsultantWidget() {
                 AI assistant · general guidance, never a fixed quote
               </p>
             </div>
-            <button
-              onClick={() => setOpen(false)}
+            <button type="button"
+              onClick={() => {
+                setOpen(false);
+                triggerRef.current?.focus();
+              }}
               aria-label="Close chat"
               className="rounded-full p-1.5 text-soft hover:bg-canvas-subtle hover:text-ink"
             >
@@ -150,11 +179,12 @@ export function ConsultantWidget() {
                     send();
                   }
                 }}
+                ref={inputRef}
                 placeholder="Type your question…"
                 aria-label="Your question"
-                className="flex-1 rounded-full border border-line bg-canvas px-4 py-2 text-sm text-ink placeholder:text-faint focus:border-accent focus:outline-none"
+                className="flex-1 rounded-full border border-line bg-canvas px-4 py-2 text-sm text-ink placeholder:text-faint focus:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
               />
-              <button
+              <button type="button"
                 onClick={send}
                 disabled={busy || input.trim().length === 0}
                 className="rounded-full bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-strong disabled:opacity-50"
@@ -174,8 +204,11 @@ export function ConsultantWidget() {
       )}
 
       <button
+        type="button"
+        ref={triggerRef}
         onClick={() => setOpen((o) => !o)}
         aria-expanded={open}
+        aria-controls="consultant-panel"
         className="flex items-center gap-2 rounded-full bg-ink-strong px-5 py-3 text-sm font-medium text-white shadow-[0_4px_20px_rgb(27_36_48/0.25)] transition-colors hover:bg-ink"
       >
         <svg

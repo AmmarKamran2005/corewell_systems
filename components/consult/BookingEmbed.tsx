@@ -47,7 +47,7 @@ export function BookingEmbed() {
         {(["primary", "short"] as const).map((key) => {
           const isActive = key === option;
           return (
-            <button
+            <button type="button"
               key={key}
               role="tab"
               aria-selected={isActive}

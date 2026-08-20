@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cardIndustries } from "@/lib/industries";
 
 const budgetBands = [
@@ -19,6 +19,14 @@ type FormState = "idle" | "sending" | "sent" | "unconfigured" | "error";
  */
 export function ConsultForm() {
   const [state, setState] = useState<FormState>("idle");
+  // The submit button unmounts when the form is replaced by the confirmation,
+  // which would drop focus to <body>. Move it to the confirmation instead so
+  // keyboard and screen-reader users land on the result (WCAG 2.4.3).
+  const confirmationRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    if (state === "sent") confirmationRef.current?.focus();
+  }, [state]);
 
   const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -46,8 +54,18 @@ export function ConsultForm() {
 
   if (state === "sent") {
     return (
-      <div className="rounded-2xl border border-line bg-surface p-8 text-center">
-        <p className="text-lg font-semibold text-ink">Request received.</p>
+      <div
+        role="status"
+        aria-live="polite"
+        className="rounded-2xl border border-line bg-surface p-8 text-center"
+      >
+        <p
+          ref={confirmationRef}
+          tabIndex={-1}
+          className="text-lg font-semibold text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+        >
+          Request received.
+        </p>
         <p className="mx-auto mt-2 max-w-sm text-sm leading-relaxed text-soft">
           We&apos;ll reply within one business day to set up the call. No
           pitch deck — just a conversation about your operation.
@@ -57,7 +75,7 @@ export function ConsultForm() {
   }
 
   const inputClasses =
-    "w-full rounded-lg border border-line bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-faint focus:border-accent focus:outline-none";
+    "w-full rounded-lg border border-line bg-surface px-3.5 py-2.5 text-sm text-ink placeholder:text-faint focus:border-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2";
 
   return (
     <form onSubmit={onSubmit} className="space-y-4">
@@ -72,22 +90,23 @@ export function ConsultForm() {
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block text-sm">
           <span className="font-medium text-ink">Name</span>
-          <input name="name" required maxLength={200} className={`mt-1.5 ${inputClasses}`} />
+          <input name="name" autoComplete="name" required maxLength={200} className={`mt-1.5 ${inputClasses}`} />
         </label>
         <label className="block text-sm">
           <span className="font-medium text-ink">Email</span>
-          <input name="email" type="email" required maxLength={200} className={`mt-1.5 ${inputClasses}`} />
+          <input name="email" type="email" autoComplete="email" required maxLength={200} className={`mt-1.5 ${inputClasses}`} />
         </label>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block text-sm">
           <span className="font-medium text-ink">Company</span>
-          <input name="company" maxLength={200} className={`mt-1.5 ${inputClasses}`} />
+          <input name="company" autoComplete="organization" maxLength={200} className={`mt-1.5 ${inputClasses}`} />
         </label>
         <label className="block text-sm">
           <span className="font-medium text-ink">Industry</span>
-          <select name="industry" className={`mt-1.5 ${inputClasses}`}>
+          <select name="industry" defaultValue="" className={`mt-1.5 ${inputClasses}`}>
+            <option value="">Select an industry</option>
             {cardIndustries.map((industry) => (
               <option key={industry.slug} value={industry.name}>
                 {industry.name}
@@ -100,7 +119,8 @@ export function ConsultForm() {
 
       <label className="block text-sm">
         <span className="font-medium text-ink">Rough budget band</span>
-        <select name="budget" className={`mt-1.5 ${inputClasses}`}>
+        <select name="budget" defaultValue="" className={`mt-1.5 ${inputClasses}`}>
+          <option value="">Select a range</option>
           {budgetBands.map((band) => (
             <option key={band} value={band}>
               {band}
@@ -131,24 +151,31 @@ export function ConsultForm() {
         {state === "sending" ? "Sending…" : "Request a Consultation"}
       </button>
 
-      {state === "unconfigured" && (
-        <p className="rounded-lg border border-line bg-canvas-subtle p-3 text-xs leading-relaxed text-soft">
-          Form delivery is still being configured — email us directly at{" "}
-          <a
-            href="mailto:info@corewellsystems.com"
-            className="font-medium text-accent"
-          >
-            info@corewellsystems.com
-          </a>{" "}
-          and we&apos;ll reply within one business day.
-        </p>
-      )}
-      {state === "error" && (
-        <p className="rounded-lg border border-rose-600/30 bg-rose-600/5 p-3 text-xs leading-relaxed text-soft">
-          Something went wrong sending your request — please try again in a
-          minute.
-        </p>
-      )}
+      {/*
+        Always in the DOM so assistive tech is already watching it when a
+        message appears — a live region mounted at the same moment as its
+        content is announced unreliably (WCAG 4.1.3).
+      */}
+      <div role="alert" aria-live="assertive">
+        {state === "unconfigured" && (
+          <p className="rounded-lg border border-line bg-canvas-subtle p-3 text-xs leading-relaxed text-soft">
+            Form delivery is still being configured — email us directly at{" "}
+            <a
+              href="mailto:info@corewellsystems.com"
+              className="font-medium text-accent"
+            >
+              info@corewellsystems.com
+            </a>{" "}
+            and we&apos;ll reply within one business day.
+          </p>
+        )}
+        {state === "error" && (
+          <p className="rounded-lg border border-rose-600/30 bg-rose-600/5 p-3 text-xs leading-relaxed text-soft">
+            Something went wrong sending your request — please try again in a
+            minute.
+          </p>
+        )}
+      </div>
     </form>
   );
 }

@@ -119,7 +119,7 @@ export function HealthcareEncounter({
             const active = index === stepIndex;
             return (
               <li key={s.id} className="flex items-center gap-2">
-                <button
+                <button type="button"
                   onClick={() => setStep(s.id)}
                   aria-current={active ? "step" : undefined}
                   className={cn(
@@ -272,7 +272,7 @@ export function HealthcareEncounter({
                     <p className="text-sm text-soft">
                       Start the ambient scribe to see the note build itself.
                     </p>
-                    <button
+                    <button type="button"
                       onClick={startScribe}
                       className="mt-4 rounded-full bg-accent px-5 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-strong"
                     >
@@ -377,7 +377,7 @@ export function HealthcareEncounter({
                   {demoOrderCatalog.map((order) => {
                     const added = orders.some((o) => o.id === order.id);
                     return (
-                      <button
+                      <button type="button"
                         key={order.id}
                         onClick={() => addOrder(order)}
                         disabled={added}
@@ -429,7 +429,7 @@ export function HealthcareEncounter({
                               {code.rationale}
                             </p>
                           </div>
-                          <button
+                          <button type="button"
                             onClick={() => acceptCode(code)}
                             disabled={accepted}
                             className="shrink-0 rounded-full border border-accent/40 px-3 py-1 text-xs font-medium text-accent transition-colors hover:bg-accent/10 disabled:opacity-45"
@@ -461,7 +461,7 @@ export function HealthcareEncounter({
                           <span className="font-mono">{code.code}</span>{" "}
                           <span className="text-soft">({code.kind})</span>
                         </span>
-                        <button
+                        <button type="button"
                           onClick={() => removeCode(code.code)}
                           className="text-xs font-medium text-soft hover:text-rose-700"
                         >
@@ -539,7 +539,7 @@ export function HealthcareEncounter({
                   </p>
                 </div>
               ) : (
-                <button
+                <button type="button"
                   onClick={() => {
                     setClaimCreated(true);
                     onComplete?.();
@@ -562,7 +562,7 @@ export function HealthcareEncounter({
 
       {stepIndex < encounterSteps.length - 1 && (
         <div className="mt-6 flex justify-end border-t border-line pt-5">
-          <button
+          <button type="button"
             onClick={goNext}
             className="rounded-full border border-line bg-surface px-5 py-2 text-sm font-medium text-ink transition-colors hover:border-accent/50 hover:text-accent"
           >

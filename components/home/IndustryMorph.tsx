@@ -51,7 +51,7 @@ export function IndustryMorph() {
             {cardIndustries.map((industry) => {
               const isActive = industry.slug === slug;
               return (
-                <button
+                <button type="button"
                   key={industry.slug}
                   role="tab"
                   aria-selected={isActive}

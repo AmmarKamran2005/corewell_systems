@@ -74,7 +74,7 @@ export function DemoEntry({
       </p>
       <div className="mt-8 space-y-3">
         {roles.map((role) => (
-          <button
+          <button type="button"
             key={role.id}
             onClick={() => onSelect(role.id)}
             className="block w-full rounded-xl border border-line bg-surface p-4 text-left transition-colors hover:border-accent/50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
@@ -133,7 +133,7 @@ export function DemoFrame({
           <span className="rounded-full border border-line bg-surface px-3 py-1 font-medium text-ink">
             {roleLabel}
           </span>
-          <button
+          <button type="button"
             onClick={onSwitchRole}
             className="font-medium text-accent hover:text-accent-strong"
           >
@@ -154,7 +154,7 @@ export function DemoFrame({
           className="flex shrink-0 gap-1 overflow-x-auto border-b border-line bg-canvas-subtle/50 p-2 sm:w-48 sm:flex-col sm:border-b-0 sm:border-r sm:p-3"
         >
           {nav.map((item) => (
-            <button
+            <button type="button"
               key={item.id}
               onClick={() => onNavigate(item.id)}
               aria-current={activeView === item.id ? "page" : undefined}

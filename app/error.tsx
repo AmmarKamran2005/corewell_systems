@@ -1,13 +1,23 @@
 "use client";
 
+import { useEffect } from "react";
+
 import { Container } from "@/components/ui/Container";
 
 export default function ErrorPage({
+  error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  // Without this the error is swallowed entirely — nothing logged, nothing
+  // reportable. console.error surfaces in Vercel's function logs, and the
+  // digest is what makes a production error traceable back to a stack.
+  useEffect(() => {
+    console.error("Unhandled page error", { digest: error.digest, error });
+  }, [error]);
+
   return (
     <section className="py-24 sm:py-32">
       <Container className="text-center">
@@ -19,7 +29,7 @@ export default function ErrorPage({
           not yours.
         </p>
         <div className="mt-8">
-          <button
+          <button type="button"
             onClick={reset}
             className="inline-flex h-11 items-center justify-center rounded-full bg-accent px-6 text-sm font-medium text-white transition-colors hover:bg-accent-strong"
           >
