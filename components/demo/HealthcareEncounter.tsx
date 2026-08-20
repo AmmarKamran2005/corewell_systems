@@ -125,7 +125,7 @@ export function HealthcareEncounter({
                   className={cn(
                     "flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
                     active
-                      ? "border-accent/40 bg-accent/10 text-accent"
+                      ? "border-accent/40 bg-accent/10 text-accent-strong"
                       : done
                         ? "border-emerald-600/30 bg-emerald-600/5 text-emerald-700"
                         : "border-line bg-surface text-soft hover:text-ink"
@@ -432,7 +432,7 @@ export function HealthcareEncounter({
                           <button type="button"
                             onClick={() => acceptCode(code)}
                             disabled={accepted}
-                            className="shrink-0 rounded-full border border-accent/40 px-3 py-1 text-xs font-medium text-accent transition-colors hover:bg-accent/10 disabled:opacity-45"
+                            className="shrink-0 rounded-full border border-accent/40 px-3 py-1 text-xs font-medium text-accent-strong transition-colors hover:bg-accent/10 disabled:opacity-45"
                           >
                             {accepted ? "Added" : "Accept"}
                           </button>

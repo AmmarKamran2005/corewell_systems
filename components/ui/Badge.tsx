@@ -3,7 +3,12 @@ import { cn } from "@/lib/utils";
 type BadgeVariant = "live" | "neutral";
 
 const variantClasses: Record<BadgeVariant, string> = {
-  live: "bg-accent/10 text-accent",
+  // text-accent-strong, not text-accent. The badge tints its own background
+  // with the accent, so the text sits on a ground derived from itself and the
+  // ratio collapses: on canvas-subtle, healthcare measured 4.34:1 and
+  // hospitality 3.98:1 against the 4.5 AA floor. accent-strong clears every
+  // industry on every surface (5.62–7.63) without changing a single accent.
+  live: "bg-accent/10 text-accent-strong",
   neutral: "bg-canvas-subtle text-soft border border-line",
 };
 

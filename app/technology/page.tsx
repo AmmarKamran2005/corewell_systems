@@ -102,7 +102,7 @@ export default function TechnologyPage() {
                             className={cn(
                               "rounded-full px-2 py-0.5 text-[0.65rem] font-medium",
                               item.tier === "shipped"
-                                ? "bg-accent/10 text-accent"
+                                ? "bg-accent/10 text-accent-strong"
                                 : "border border-line bg-canvas-subtle text-faint"
                             )}
                           >

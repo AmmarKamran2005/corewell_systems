@@ -100,7 +100,7 @@ export function HospitalityBooking() {
                   className={cn(
                     "flex items-center gap-2 rounded-full border px-3 py-1.5 text-xs font-medium",
                     active
-                      ? "border-accent/40 bg-accent/10 text-accent"
+                      ? "border-accent/40 bg-accent/10 text-accent-strong"
                       : done
                         ? "border-emerald-600/30 bg-emerald-600/5 text-emerald-700"
                         : "border-line bg-surface text-faint"
@@ -146,7 +146,7 @@ export function HospitalityBooking() {
                   className={cn(
                     "rounded-full border px-4 py-1.5 text-xs font-medium transition-colors",
                     city === c
-                      ? "border-accent/40 bg-accent/10 text-accent"
+                      ? "border-accent/40 bg-accent/10 text-accent-strong"
                       : "border-line bg-surface text-soft hover:text-ink"
                   )}
                 >

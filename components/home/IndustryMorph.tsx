@@ -60,7 +60,7 @@ export function IndustryMorph() {
                     "rounded-full border px-4 py-2 text-sm font-medium transition-colors duration-150",
                     "focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent",
                     isActive
-                      ? "border-accent/40 bg-accent/10 text-accent"
+                      ? "border-accent/40 bg-accent/10 text-accent-strong"
                       : "border-line bg-surface text-soft hover:border-faint/60 hover:text-ink"
                   )}
                 >

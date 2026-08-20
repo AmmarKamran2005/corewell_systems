@@ -33,7 +33,7 @@ const baseRows: Row[] = [
 
 const stateMeta = {
   done: { label: "Seen", cls: "bg-emerald-600/10 text-emerald-700" },
-  active: { label: "In room", cls: "bg-accent/10 text-accent" },
+  active: { label: "In room", cls: "bg-accent/10 text-accent-strong" },
   waiting: { label: "Waiting", cls: "bg-canvas-subtle text-faint" },
 } as const;
 

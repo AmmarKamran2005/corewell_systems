@@ -22,7 +22,7 @@ export function DemoBadge({ kind = "demo" }: { kind?: "demo" | "design" }) {
         "inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium",
         isDesign
           ? "border border-line bg-canvas-subtle text-soft"
-          : "bg-accent/10 text-accent"
+          : "bg-accent/10 text-accent-strong"
       )}
     >
       <span
@@ -161,7 +161,7 @@ export function DemoFrame({
               className={cn(
                 "whitespace-nowrap rounded-lg px-3 py-2 text-left text-sm transition-colors",
                 activeView === item.id
-                  ? "bg-accent/10 font-medium text-accent"
+                  ? "bg-accent/10 font-medium text-accent-strong"
                   : "text-soft hover:bg-canvas-subtle hover:text-ink"
               )}
             >
@@ -182,7 +182,7 @@ const pillTones: Record<PillTone, string> = {
   amber: "bg-amber-600/10 text-amber-700",
   rose: "bg-rose-600/10 text-rose-700",
   gray: "bg-canvas-subtle text-soft border border-line",
-  accent: "bg-accent/10 text-accent",
+  accent: "bg-accent/10 text-accent-strong",
 };
 
 export function Pill({
