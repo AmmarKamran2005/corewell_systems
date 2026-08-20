@@ -46,11 +46,24 @@ Nine commits, `f55d40d..261c03a`, pushed to `main` and deployed via Vercel.
 | "design preview" left in the two sampled articles | **0** |
 | Comparison table rendering live | 10 rows |
 
-**Still owed — see §4 and the reporting list below:** Plausible domain,
-privacy/terms content, HSTS `preload` decision, durable lead storage, error
-tracking, Clutch/G2 listings, and the design taste calls. Post-deploy: resubmit
-the sitemap in Search Console and request re-indexing for the top 15 URLs.
-Expect two to four weeks before judging any effect.
+**Closed since:** analytics (Plausible live, per-site script), **CSP now
+enforcing**, and the design taste calls (numbered labels retired outside the
+`CONTEXT.md`-protected surfaces; the repeated three-card row broken into three
+distinct families).
+
+**CSP enforcement evidence.** Verified in a real browser against production
+under the enforcing header: the Cal.com embed script *and* booking iframe both
+load, Plausible's library actually runs, a demo route stays interactive, the
+consultant widget opens, and the whole site loads exactly three external
+resources — all allowed. Zero console errors, zero violations.
+**Any third-party script, widget or font host added from here must be added to
+the policy in the same commit or production will block it.**
+
+**Still owed:** privacy/terms content (see `docs/privacy-terms-draft.md` — seven
+questions), HSTS `preload` decision, durable lead storage, error tracking,
+Clutch/G2 listings, and the Trade backend. Post-deploy: resubmit the sitemap in
+Search Console and request re-indexing for the top 15 URLs. Expect two to four
+weeks before judging any effect.
 
 ---
 
