@@ -1,6 +1,14 @@
 import { ImageResponse } from "next/og";
-import { siteUrl } from "@/lib/site";
+import { ogLogoDataUri } from "./og-logo";
 
+// Edge runtime. Moving this to Node so the mark could be read from disk was
+// tried and reverted: @vercel/og's Node build calls fileURLToPath on its own
+// bundled assets and throws "Invalid URL" during prerender on Windows.
+//
+// The robustness problem this route had is fixed regardless — the mark is now
+// an inlined data URI (app/og-logo.ts) instead of an HTTP fetch of the site's
+// own /icon.png, which previously ran on every render, through the apex to www
+// redirect, and silently produced a logo-less card whenever it failed.
 export const runtime = "edge";
 export const alt =
   "Corewell Systems — Business software that solves real operational problems";
@@ -9,19 +17,10 @@ export const contentType = "image/png";
 
 // Brand OG card: warm off-white canvas, the node-C logo mark, ink wordmark,
 // single teal accent — the Section 4 tokens, no gradients or clutter.
-// The mark is fetched from the site's own /icon.png at request time; if that
-// ever fails, the card renders without it rather than erroring.
-export default async function OpenGraphImage() {
-  let logoSrc: string | null = null;
-  try {
-    const res = await fetch(`${siteUrl}/icon.png`);
-    if (res.ok) {
-      const buffer = await res.arrayBuffer();
-      logoSrc = buffer as unknown as string; // satori accepts ArrayBuffer src
-    }
-  } catch {
-    logoSrc = null;
-  }
+// The mark is read from the repo at build time. If it ever goes missing the
+// card still renders, just without it.
+export default function OpenGraphImage() {
+  const logoSrc = ogLogoDataUri;
 
   return new ImageResponse(
     (

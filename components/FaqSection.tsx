@@ -1,6 +1,8 @@
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import type { Faq } from "@/lib/faqs";
+import { jsonLdScript } from "@/lib/seo";
+import { siteUrl } from "@/lib/site";
 
 /**
  * Question-and-answer block with FAQPage structured data (spec Section 9).
@@ -29,13 +31,17 @@ export function FaqSection({
       name: faq.q,
       acceptedAnswer: { "@type": "Answer", text: faq.a },
     })),
+    // Join this node to the site's entity graph by @id instead of leaving it
+    // free-floating.
+    isPartOf: { "@id": `${siteUrl}/#website` },
+    publisher: { "@id": `${siteUrl}/#organization` },
   };
 
   return (
     <section className="py-16 sm:py-20">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
       <Container>
         <div className="grid gap-10 lg:grid-cols-[22rem_1fr] lg:gap-16">

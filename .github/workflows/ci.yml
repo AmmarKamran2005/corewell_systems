@@ -1,0 +1,67 @@
+name: CI
+
+# Every check in docs/unified-remediation-plan.md was, until this file existed,
+# a check someone had to remember to run. Full unit tests are overkill for a
+# marketing site; this is the cheapest guard that catches real regressions.
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      - name: Typecheck
+        run: npx tsc --noEmit
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build
+
+      # Guards against the specific defects this project has already shipped
+      # once. Each maps to a task in docs/unified-remediation-plan.md.
+      - name: No placeholder text in build output
+        run: |
+          if grep -rl "PLACEHOLDER" .next/server/app/; then
+            echo "::error::Placeholder text reached the build output"
+            exit 1
+          fi
+
+      - name: Every page self-canonicalizes
+        run: |
+          bad=0
+          for f in $(find .next/server/app -name "*.html" | sort); do
+            p=$(echo "$f" | sed 's|.next/server/app||;s|\.html$||;s|^/index$|/|')
+            c=$(grep -o 'rel="canonical" href="[^"]*"' "$f" | head -1 | sed 's/.*href="//;s/"//')
+            [ -z "$c" ] && continue
+            cp=$(echo "$c" | sed 's|https\?://[^/]*||')
+            [ -z "$cp" ] && cp="/"
+            if [ "$cp" != "$p" ]; then
+              echo "::error::$p canonicalizes to $cp"
+              bad=$((bad+1))
+            fi
+          done
+          [ "$bad" -eq 0 ]
+
+      - name: No suppressed focus indicators
+        run: |
+          bad=$(grep -rl "focus:outline-none" app components --include="*.tsx" || true)
+          if [ -n "$bad" ]; then
+            echo "::error::outline-none without a focus-visible replacement: $bad"
+            exit 1
+          fi
+
+      - name: Production dependency advisories
+        run: npm audit --omit=dev --audit-level=critical

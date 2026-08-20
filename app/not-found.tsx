@@ -1,5 +1,14 @@
+import type { Metadata } from "next";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+
+// Without this the 404 inherits the site's default title, which reads as a
+// real page in browser history and in any crawler that reaches it. No `robots`
+// here — Next already emits `noindex` for not-found, and a second robots tag
+// would just duplicate it.
+export const metadata: Metadata = {
+  title: "Page Not Found",
+};
 
 export default function NotFound() {
   return (
