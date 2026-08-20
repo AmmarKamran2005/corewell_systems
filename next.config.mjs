@@ -3,15 +3,18 @@
 /**
  * Content Security Policy.
  *
- * Shipped in REPORT-ONLY first (see `headers()` below). Load every page —
- * especially /book-consultation with its Cal.com embed and one demo route —
- * check the console for violations, then switch the header name to
- * `Content-Security-Policy` to enforce. A CSP that breaks the booking embed
- * costs more than it protects.
+ * ENFORCING as of 2026-08-20, after a report-only pass found zero violations
+ * across the homepage, /book-consultation (Cal.com embed), a demo route and
+ * /trade, with Plausible live. The site loads exactly three external
+ * resources: Cal.com's embed script, Cal.com's booking iframe, and the
+ * Plausible script plus its event POST — all explicitly allowed below.
+ *
+ * If you add any third-party script, widget or font host, it must be added
+ * here in the same commit or it will be blocked in production.
  *
  * What each origin is for:
  *   - app.cal.com / cal.com  — the booking embed loads a script and an iframe
- *   - plausible.io           — analytics, rendered only when the env var is set
+ *   - plausible.io           — the analytics script and the event POST it sends
  *   - 'unsafe-inline' (style) — Tailwind and next/font inject inline styles
  *   - 'unsafe-inline' (script) — required by Next's inline bootstrap; tightening
  *     this needs a nonce, which is a separate change
@@ -32,10 +35,7 @@ const csp = [
   "base-uri 'self'",
   "form-action 'self'",
   "object-src 'none'",
-  // `upgrade-insecure-requests` is ignored in a report-only policy and logs a
-  // console error saying so — which buries the real violations this mode
-  // exists to surface. Add it back in the same commit that switches the
-  // header name to the enforcing `Content-Security-Policy`.
+  "upgrade-insecure-requests",
 ].join("; ");
 
 const securityHeaders = [
@@ -52,7 +52,7 @@ const securityHeaders = [
   // Frame protection comes from CSP `frame-ancestors`; X-Frame-Options is kept
   // for older agents that do not honour it.
   { key: "X-Frame-Options", value: "DENY" },
-  { key: "Content-Security-Policy-Report-Only", value: csp },
+  { key: "Content-Security-Policy", value: csp },
 ];
 
 const nextConfig = {

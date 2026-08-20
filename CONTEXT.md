@@ -156,7 +156,7 @@ canvas `#FAF9F6`, ink `#1B2430`, single teal accent `#0F766E`, Inter Tight
 | Gemini (AI consultant) | ✅ Live | `GEMINI_API_KEY`, optional `GEMINI_MODEL` |
 | Resend (form delivery) | ✅ Live | `RESEND_API_KEY`, `CONSULT_TO_EMAIL`, `CONSULT_FROM_EMAIL` |
 | Cal.com | ✅ Live | Handles in `lib/site.ts`, not env |
-| Plausible | ⬜ Optional | `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` |
+| Plausible (analytics) | ✅ Live | None — the per-site script is hardcoded in `app/layout.tsx`, production builds only |
 | Canonical URL | Hardcoded fallback in `lib/site.ts`; `NEXT_PUBLIC_SITE_URL` overrides for local dev |
 
 **Gotcha:** the default Gemini model is `gemini-flash-latest`. Pinned versions

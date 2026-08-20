@@ -143,7 +143,25 @@ const webSiteJsonLd = {
   inLanguage: "en",
 };
 
-const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
+/**
+ * Plausible analytics.
+ *
+ * This is the newer per-site script, not the classic `script.js` +
+ * `data-domain` pair — the src carries the site identifier, so no domain
+ * attribute is needed. The URL is public (it ships in the HTML on every page
+ * request), so it lives in the source rather than an env var; there is nothing
+ * here to leak.
+ *
+ * Skipped in development so `npm run dev` never pollutes real stats. Preview
+ * deploys are harmless regardless: Plausible only accepts events for domains
+ * configured on the account, so *.vercel.app hits are dropped at their end.
+ *
+ * Cookieless and aggregate-only, which is why it is the right choice for a
+ * site that sets no cookies and therefore needs no consent banner.
+ */
+const PLAUSIBLE_SRC =
+  "https://plausible.io/js/pa-eoZGiEwK35KCsp-IL-aWa.js";
+const plausibleEnabled = process.env.NODE_ENV === "production";
 
 export default function RootLayout({
   children,
@@ -161,12 +179,17 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdScript(webSiteJsonLd) }}
         />
-        {plausibleDomain && (
-          <script
-            defer
-            data-domain={plausibleDomain}
-            src="https://plausible.io/js/script.js"
-          />
+        {plausibleEnabled && (
+          <>
+            <script async src={PLAUSIBLE_SRC} />
+            {/* Queues events fired before the async script finishes loading. */}
+            <script
+              dangerouslySetInnerHTML={{
+                __html:
+                  "window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()",
+              }}
+            />
+          </>
         )}
         <a
           href="#main"
