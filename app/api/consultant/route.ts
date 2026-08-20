@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { consultantSystemPrompt } from "@/lib/consultant-prompt";
-import { checkRateLimit, clientIp } from "@/lib/rate-limit";
+import {
+  checkDailyCeiling,
+  checkRateLimit,
+  clientIp,
+} from "@/lib/rate-limit";
 
 /**
  * "Ask Our Software Architect" backend — spec Section 8, adapted to the
@@ -17,6 +21,8 @@ export const runtime = "nodejs";
 const MODEL = process.env.GEMINI_MODEL ?? "gemini-flash-latest";
 const MAX_MESSAGES = 24;
 const MAX_MESSAGE_LENGTH = 2000;
+/** Instance-wide ceiling on metered Gemini calls per day. */
+const MAX_CALLS_PER_DAY = 500;
 
 type ChatMessage = { role: "user" | "assistant"; content: string };
 
@@ -38,6 +44,14 @@ export async function POST(req: NextRequest) {
   }
 
   if (!checkRateLimit(`consultant:${clientIp(req.headers)}`, 10, 60_000)) {
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
+  }
+
+  // Second, blunter limit: the per-IP window above is per-instance, so it does
+  // not bound total spend. This does. Tune MAX_CALLS_PER_DAY against real
+  // traffic once analytics exist — it is set high enough not to affect a
+  // genuine visitor and low enough that a runaway cannot bill unbounded.
+  if (!checkDailyCeiling("consultant", MAX_CALLS_PER_DAY)) {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   }
 

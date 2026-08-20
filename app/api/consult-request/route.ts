@@ -76,12 +76,33 @@ export async function POST(req: NextRequest) {
         "Corewell Systems <onboarding@resend.dev>",
       to: [to],
       reply_to: cleanEmail,
-      subject: `Consultation request — ${cleanName}`,
+      // Strip control characters from anything in a subject position. Resend
+      // takes JSON and builds the MIME itself, so this is not an SMTP
+      // header-injection vector — it is defence in depth, and it keeps the
+      // subject on one line.
+      subject: `Consultation request — ${cleanName.replace(/[\r\n]+/g, " ")}`,
       text: lines.join("\n"),
     }),
   }).catch(() => null);
 
   if (!sent || !sent.ok) {
+    // A delivery failure used to lose the lead with no record anywhere. This
+    // is not durable storage — it is the zero-dependency floor: the payload
+    // lands in the platform's function logs, so a lost enquiry is at least
+    // recoverable by hand. Durable capture (KV, a sheet, a second channel) is
+    // an owner decision because it stores personal data.
+    console.error(
+      "[consult-request] delivery failed — lead recoverable from this log entry",
+      {
+        status: sent?.status ?? "network_error",
+        name: cleanName,
+        email: cleanEmail,
+        company: str(company, MAX_FIELD),
+        industry: str(industry, MAX_FIELD),
+        budget: str(budget, MAX_FIELD),
+        message: cleanMessage,
+      }
+    );
     return NextResponse.json({ error: "delivery_failed" }, { status: 502 });
   }
 
