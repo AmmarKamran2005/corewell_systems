@@ -18,7 +18,43 @@ person picking this up cold
 
 ## Execution status — updated 2026-08-20
 
-**Applied and verified in the working tree. Not committed, not deployed.**
+## 🟢 SHIPPED. Deployed to production and verified live.
+
+Nine commits, `f55d40d..261c03a`, pushed to `main` and deployed via Vercel.
+
+**Owner decisions taken 2026-08-20** (previously D1–D3):
+- **D1 · Corewell Trade = published product.** The five insight articles were
+  aligned to `/trade`. Each keeps the sample-data fact and drops both the
+  disputed maturity framing and the unverifiable claim about what the app's own
+  screens say. ⚠️ Recorded at the time: the backend was **not** live when this
+  was decided. If it slips further the label has to follow reality.
+- **D2 · Canonical host = `www`.** `siteUrl` now matches what serves.
+- **Push and deploy: yes.**
+- **Content: only what needs no new claims.**
+
+**Verified against `https://www.corewellsystems.com` after deploy:**
+
+| Check | Result |
+|---|---|
+| Canonicals on 8 sampled routes | **All self-referencing on `www`** |
+| Sitemap | 39 URLs, **39 `lastmod`**, `www` host, all returning **200 not 308** |
+| `[PLACEHOLDER]` on `/industries/healthcare` | **0** |
+| Security headers | CSP-Report-Only · Permissions-Policy · Referrer-Policy · HSTS · nosniff · X-Frame-Options — **all six live** |
+| Article schema | `Article` + `FAQPage` + `BreadcrumbList` + `WebPage`, `Organization` ×1, `WebSite` ×1 |
+| `/insights/feed.xml`, `/manifest.webmanifest`, `/robots.txt` | **200** |
+| Retail title | `Retail & Shop Management Software \| Corewell Systems` |
+| "design preview" left in the two sampled articles | **0** |
+| Comparison table rendering live | 10 rows |
+
+**Still owed — see §4 and the reporting list below:** Plausible domain,
+privacy/terms content, HSTS `preload` decision, durable lead storage, error
+tracking, Clutch/G2 listings, and the design taste calls. Post-deploy: resubmit
+the sitemap in Search Console and request re-indexing for the top 15 URLs.
+Expect two to four weeks before judging any effect.
+
+---
+
+### What landed, task by task
 
 | Task | What landed | Acceptance result |
 |---|---|---|
