@@ -4,9 +4,11 @@ import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { formatDate, getInsights } from "@/lib/content";
+import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Insights — Straight Answers About Business Software",
+  ...canonical("/insights"),
+  title: "Insights: Straight Answers",
   description:
     "One question, one page, one clear answer: costs, features, and build-vs-buy decisions for operational business software.",
 };

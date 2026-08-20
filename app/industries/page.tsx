@@ -11,8 +11,10 @@ import {
   enterpriseIndustry,
   industryAccentStyle,
 } from "@/lib/industries";
+import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
+  ...canonical("/industries"),
   title: "Industries We Build Software For",
   description:
     "Custom operational software for healthcare, hospitality, education, retail, construction & real estate, and legal & professional services.",

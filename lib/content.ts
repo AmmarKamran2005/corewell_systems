@@ -16,7 +16,19 @@ export type InsightMeta = {
   slug: string;
   title: string;
   description: string;
+  /**
+   * Shorter `<title>` for the SERP, used only when the full title would be
+   * truncated. The visible H1 always keeps `title` — it is the GEO/AEO answer
+   * target and must stay a complete question.
+   */
+  metaTitle?: string;
   date: string;
+  /**
+   * Set only when a file's content genuinely changed. Never backfilled to
+   * manufacture freshness — a fake freshness signal is the same class of error
+   * as a fake metric (spec Section 7).
+   */
+  updated?: string;
   keywords: string[];
   faqs: Faq[];
   readingMinutes: number;
@@ -33,6 +45,8 @@ export type CaseStudyMeta = {
   /** Industry slug from lib/industries.ts. */
   industry: string;
   date: string;
+  /** See InsightMeta.updated — set only on a real content change. */
+  updated?: string;
   summary: string;
   /**
    * True while the case study runs on sample data (owner direction, Phase 4).
@@ -74,6 +88,8 @@ export function getInsights(): InsightMeta[] {
       title: data.title as string,
       description: data.description as string,
       date: data.date as string,
+      metaTitle: (data.metaTitle as string | undefined) ?? undefined,
+      updated: (data.updated as string | undefined) ?? undefined,
       keywords: (data.keywords ?? []) as string[],
       faqs: (data.faqs ?? []) as Faq[],
       readingMinutes: readingMinutes(content),
@@ -89,6 +105,8 @@ export function getInsight(slug: string): Insight | undefined {
     title: entry.data.title as string,
     description: entry.data.description as string,
     date: entry.data.date as string,
+    metaTitle: (entry.data.metaTitle as string | undefined) ?? undefined,
+    updated: (entry.data.updated as string | undefined) ?? undefined,
     keywords: (entry.data.keywords ?? []) as string[],
     faqs: (entry.data.faqs ?? []) as Faq[],
     readingMinutes: readingMinutes(entry.content),
@@ -105,6 +123,7 @@ export function getCaseStudies(): CaseStudyMeta[] {
       region: data.region as string,
       industry: data.industry as string,
       date: data.date as string,
+      updated: (data.updated as string | undefined) ?? undefined,
       summary: data.summary as string,
       illustrative: Boolean(data.illustrative),
     }))
@@ -121,6 +140,7 @@ export function getCaseStudy(slug: string): CaseStudy | undefined {
     region: entry.data.region as string,
     industry: entry.data.industry as string,
     date: entry.data.date as string,
+    updated: (entry.data.updated as string | undefined) ?? undefined,
     summary: entry.data.summary as string,
     illustrative: Boolean(entry.data.illustrative),
     body: entry.content,

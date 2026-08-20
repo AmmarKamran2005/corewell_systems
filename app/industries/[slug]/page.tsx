@@ -10,14 +10,19 @@ import { CapabilityGroups } from "@/components/industry/CapabilityGroups";
 import { VerticalTabs } from "@/components/industry/VerticalTabs";
 import { FaqSection } from "@/components/FaqSection";
 import { getCapabilities } from "@/lib/capabilities";
+import { getCaseStudies } from "@/lib/content";
 import { getIndustryFaqs } from "@/lib/faqs";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedReading } from "@/components/RelatedReading";
+import { industryReading } from "@/lib/related";
+import { canonical, jsonLdScript } from "@/lib/seo";
 import {
   demoBadge,
   getIndustry,
   industries,
   industryAccentStyle,
 } from "@/lib/industries";
-import { fullSystemDemos } from "@/lib/site";
+import { fullSystemDemos, siteUrl } from "@/lib/site";
 
 type Props = { params: { slug: string } };
 
@@ -31,10 +36,15 @@ export function generateMetadata({ params }: Props): Metadata {
   const industry = getIndustry(params.slug);
   if (!industry) return {};
   const title =
-    industry.status === "custom"
+    industry.metaTitle ??
+    (industry.status === "custom"
       ? "Custom Enterprise Software"
-      : `${industry.name} Management Software`;
-  return { title, description: industry.oneLiner };
+      : `${industry.name} Management Software`);
+  return {
+    title,
+    description: industry.oneLiner,
+    ...canonical(`/industries/${params.slug}`),
+  };
 }
 
 /**
@@ -48,6 +58,11 @@ export default function IndustryPage({ params }: Props) {
   if (!industry) notFound();
 
   const fullSystem = fullSystemDemos[industry.slug];
+  // Undefined for industries with no study yet (education, construction,
+  // legal) — the proof section then renders nothing at all.
+  const caseStudy = getCaseStudies().find(
+    (study) => study.industry === industry.slug
+  );
   const isConcept = industry.status === "concept";
   const isCustom = industry.status === "custom";
   const capabilities = getCapabilities(industry.slug);
@@ -64,7 +79,10 @@ export default function IndustryPage({ params }: Props) {
           applicationCategory: "BusinessApplication",
           operatingSystem: "Web",
           description: industry.demo.blurb,
-          provider: { "@type": "Organization", name: "Corewell Systems" },
+          // Reference the root Organization by @id instead of inlining a
+          // second copy — a duplicate entity node is what stops a knowledge
+          // graph resolving one entity.
+          provider: { "@id": `${siteUrl}/#organization` },
         }
       : null;
 
@@ -73,12 +91,21 @@ export default function IndustryPage({ params }: Props) {
       {softwareJsonLd && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(softwareJsonLd) }}
         />
       )}
       {/* Intro — name + owner-provided one-liner as the lede */}
       <section className="pb-14 pt-16 sm:pb-20 sm:pt-24">
         <Container>
+          <div className="mb-6">
+            <Breadcrumbs
+              trail={[
+                { name: "Home", href: "/" },
+                { name: "Industries", href: "/industries" },
+                { name: industry.name, href: `/industries/${industry.slug}` },
+              ]}
+            />
+          </div>
           <Reveal mode="mount" className="max-w-3xl">
             {isConcept && (
               <div className="mb-5">
@@ -319,20 +346,26 @@ export default function IndustryPage({ params }: Props) {
         </section>
       )}
 
-      {/* Anonymized case study / proof block — lands with Phase 4 content */}
-      {!isCustom && (
+      {/*
+        Anonymized case study / proof block. Renders only where a study for this
+        industry actually exists — the Testimonials.tsx pattern. An absent
+        section is correct; an invented one violates spec Section 7.
+      */}
+      {!isCustom && caseStudy && (
         <section className="border-t border-line bg-canvas-subtle py-16 sm:py-20">
           <Container>
             <Reveal className="max-w-2xl">
               <h2 className="text-3xl font-semibold">Proof, not promises</h2>
               <p className="mt-4 text-base leading-relaxed text-soft">
-                [PLACEHOLDER: anonymized case study block for{" "}
-                {industry.name.toLowerCase()} — real, non-identifying facts
-                only, described by region and type, never by name. Arrives with
-                the Phase 4 case-study pipeline; if no permissioned outcome
-                data exists, this section ships without outcome metrics — spec
-                Sections 5 + 7.]
+                {caseStudy.summary}
               </p>
+              <Link
+                href={`/case-studies/${caseStudy.slug}`}
+                className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline"
+              >
+                Read the {caseStudy.descriptor.toLowerCase()} case study
+                <span aria-hidden>&rarr;</span>
+              </Link>
             </Reveal>
           </Container>
         </section>
@@ -362,6 +395,13 @@ export default function IndustryPage({ params }: Props) {
         faqs={getIndustryFaqs(industry.slug)}
         title={`${industry.name} software, answered plainly`}
         intro="The questions we get asked before anyone books a call. Short answers, no hedging."
+      />
+
+      {/* Articles that answer this industry's buying questions. These pages
+          previously linked to zero articles. */}
+      <RelatedReading
+        slugs={industryReading[industry.slug] ?? []}
+        title={`More on ${industry.name.toLowerCase()} software`}
       />
 
       {/* Closing CTA */}

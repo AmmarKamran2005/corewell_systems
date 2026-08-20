@@ -15,6 +15,7 @@ import {
   industryAccentStyle,
 } from "@/lib/industries";
 import { fullSystemDemos } from "@/lib/site";
+import { canonical } from "@/lib/seo";
 
 type Props = { params: { slug: string } };
 
@@ -29,7 +30,14 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props): Metadata {
   const industry = getIndustry(params.slug);
   if (!industry?.demo) return {};
-  return { title: industry.demo.label, description: industry.demo.blurb };
+  return {
+    // Shorter than demo.label (which stays the visible h2) so the SERP entry
+    // is not truncated — but the maturity word is still derived from
+    // demoBadge(), so the tier can never drift out of the title.
+    title: `${industry.name} — ${demoBadge(industry).label}`,
+    description: industry.demo.blurb,
+    ...canonical(`/industries/${params.slug}/demo`),
+  };
 }
 
 const demoComponents: Record<

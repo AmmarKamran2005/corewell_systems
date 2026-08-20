@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { Card } from "@/components/ui/Card";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
+import { canonical } from "@/lib/seo";
 
 /**
  * UNPUBLISHED (owner direction 2026-07): the page is complete but the
@@ -12,6 +13,7 @@ import { Reveal } from "@/components/motion/Reveal";
  * the nav entries and this metadata block.
  */
 export const metadata: Metadata = {
+  ...canonical("/pricing"),
   title: "Pricing — Ranges by Project Complexity",
   description:
     "Custom software pricing presented honestly: three engagement tiers with typical ranges, and a tailored quote after a scoping conversation — never a checkout.",

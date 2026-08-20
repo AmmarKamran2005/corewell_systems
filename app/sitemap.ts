@@ -4,7 +4,18 @@ import { demoIndustries, industries } from "@/lib/industries";
 import { siteUrl } from "@/lib/site";
 import { solutions } from "@/lib/solutions";
 
+/**
+ * `lastModified` is the one field Google has said it actually uses;
+ * `changeFrequency` and `priority` are largely ignored, so they are gone.
+ *
+ * Content routes take their date from the MDX frontmatter — `updated` when a
+ * file genuinely changed, otherwise `date`. Static routes take the build date,
+ * which is honest: a static page changes when the site is rebuilt. Nothing here
+ * invents a freshness signal.
+ */
 export default function sitemap(): MetadataRoute.Sitemap {
+  const buildDate = new Date();
+
   const staticRoutes = [
     "",
     "/industries",
@@ -19,18 +30,32 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/book-consultation",
   ];
 
-  const routes: string[] = [
-    ...staticRoutes,
-    ...industries.map((i) => `/industries/${i.slug}`),
-    ...demoIndustries.map((i) => `/industries/${i.slug}/demo`),
-    ...solutions.map((s) => `/solutions/${s.slug}`),
-    ...getInsights().map((a) => `/insights/${a.slug}`),
-    ...getCaseStudies().map((c) => `/case-studies/${c.slug}`),
+  const entries: MetadataRoute.Sitemap = [
+    ...staticRoutes.map((route) => ({
+      url: `${siteUrl}${route}`,
+      lastModified: buildDate,
+    })),
+    ...industries.map((i) => ({
+      url: `${siteUrl}/industries/${i.slug}`,
+      lastModified: buildDate,
+    })),
+    ...demoIndustries.map((i) => ({
+      url: `${siteUrl}/industries/${i.slug}/demo`,
+      lastModified: buildDate,
+    })),
+    ...solutions.map((s) => ({
+      url: `${siteUrl}/solutions/${s.slug}`,
+      lastModified: buildDate,
+    })),
+    ...getInsights().map((a) => ({
+      url: `${siteUrl}/insights/${a.slug}`,
+      lastModified: new Date(a.updated ?? a.date),
+    })),
+    ...getCaseStudies().map((c) => ({
+      url: `${siteUrl}/case-studies/${c.slug}`,
+      lastModified: new Date(c.updated ?? c.date),
+    })),
   ];
 
-  return routes.map((route) => ({
-    url: `${siteUrl}${route}`,
-    changeFrequency: route.startsWith("/insights") ? "weekly" : "monthly",
-    priority: route === "" ? 1 : route === "/book-consultation" ? 0.9 : 0.7,
-  }));
+  return entries;
 }

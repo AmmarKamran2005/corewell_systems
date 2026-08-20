@@ -5,11 +5,13 @@ import { Reveal } from "@/components/motion/Reveal";
 import { FaqSection } from "@/components/FaqSection";
 import { choices, stack } from "@/lib/technology";
 import { cn } from "@/lib/utils";
+import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Technology — What We Build With, and Why",
+  ...canonical("/technology"),
+  title: "Technology: What We Build With",
   description:
-    "The stack behind our systems: .NET, Node, React, Next.js, SQL Server, PostgreSQL, mobile and device clients, real-time channels, AI integration, and payments — with what we have shipped separated from what we also work with.",
+    "The stack behind our systems: .NET, Node, React, SQL Server, PostgreSQL, mobile, real-time, AI and payments — with what we have shipped kept separate.",
 };
 
 const faqs = [
@@ -23,7 +25,7 @@ const faqs = [
   },
   {
     q: "Do we get the source code?",
-    a: "Yes — the code, the database schema, and the documented architecture. We build on mainstream technology with a real hiring pool specifically so you are never dependent on us. There is no proprietary runtime and no closed data format anywhere in what we hand over.",
+    a: "Yes — the code, the database schema, and the documented architecture. There is no proprietary runtime and no closed data format anywhere in what we hand over, so nothing in the system needs our permission to keep running.",
   },
   {
     q: "Can the system run on our own servers instead of the cloud?",

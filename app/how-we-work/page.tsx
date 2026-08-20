@@ -3,11 +3,13 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { FaqSection } from "@/components/FaqSection";
+import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "How We Work — Process, Standards, and Life After Launch",
+  ...canonical("/how-we-work"),
+  title: "How We Work: Process and Standards",
   description:
-    "How a Corewell Systems engagement runs: discovery, design you approve before we build, short build cycles, and what happens after launch — releases, backups, monitoring, and support.",
+    "How an engagement runs: discovery, design you approve before we build, short build cycles, and what happens after launch — releases, backups, support.",
 };
 
 /**
@@ -111,7 +113,7 @@ const afterLaunch = [
   },
   {
     q: "What if we want to move on from you?",
-    a: "You take the system with you. The code, the data, and the documented architecture are yours, built on mainstream technology specifically so you are never dependent on us to keep it running. Lock-in is a business model we decided not to have.",
+    a: "You take the system with you. The code, the data, and the documented architecture are yours. The stack it runs on is mainstream and widely staffed, which is a deliberate choice: lock-in is a business model we decided not to have.",
   },
   {
     q: "What does it cost to keep running?",

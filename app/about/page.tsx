@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { FaqSection } from "@/components/FaqSection";
+import { canonical } from "@/lib/seo";
 
 /**
  * Identity FAQs. The first one exists because a large US health system with a
@@ -29,15 +30,15 @@ const identityFaqs = [
   },
   {
     q: "Who owns the software you build?",
-    a: "You do. The code, the database schema, and the documented architecture are handed over. We build on mainstream technology with a real hiring pool specifically so you are never dependent on us to keep the system running.",
+    a: "You do. The code, the database schema, and the documented architecture are handed over at the end of the engagement. The technology underneath is mainstream and widely staffed, so another firm could pick the system up if you ever wanted one to.",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "About — An Independent Software Engineering Company",
+  ...canonical("/about"),
+  title: "About Corewell Systems",
   description:
-    "Corewell Systems is an independent custom software development company, not affiliated with any hospital system or healthcare provider. We build operational software for clinics, hotels, schools, and retailers.",
-  alternates: { canonical: "/about" },
+    "An independent custom software development company, not affiliated with any hospital system or healthcare provider. We build software for business operations.",
 };
 
 /**
@@ -51,7 +52,7 @@ const principles = [
   {
     title: "The operation comes first",
     detail:
-      "We spend the first days understanding how work actually moves through your business — not gathering a feature list. Most software fails by solving the wrong problem beautifully.",
+      "We spend the first days watching how work moves through your business, before anyone writes a feature list. Software can be well built and still be aimed at the wrong problem.",
   },
   {
     title: "Boring technology, on purpose",

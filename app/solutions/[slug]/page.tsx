@@ -8,6 +8,11 @@ import { ProofLedger } from "@/components/solutions/ProofLedger";
 import { FaqSection } from "@/components/FaqSection";
 import { getSolutionFaqs } from "@/lib/faqs";
 import { getSolution, solutions } from "@/lib/solutions";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedReading } from "@/components/RelatedReading";
+import { solutionReading } from "@/lib/related";
+import { canonical, jsonLdScript } from "@/lib/seo";
+import { siteUrl } from "@/lib/site";
 
 type Props = { params: { slug: string } };
 
@@ -20,7 +25,11 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props): Metadata {
   const solution = getSolution(params.slug);
   if (!solution) return {};
-  return { title: solution.name, description: solution.oneLiner };
+  return {
+    title: solution.name,
+    description: solution.oneLiner,
+    ...canonical(`/solutions/${params.slug}`),
+  };
 }
 
 /**
@@ -37,8 +46,35 @@ export default function SolutionPage({ params }: Props) {
 
   const index = solutions.findIndex((s) => s.slug === solution.slug);
 
+  // No price fields anywhere in this node — spec Section 5 forbids published
+  // fixed prices. `provider` references the Organization by @id rather than
+  // inlining a second copy of it.
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: solution.name,
+    description: solution.oneLiner,
+    serviceType: solution.name,
+    provider: { "@id": `${siteUrl}/#organization` },
+    areaServed: "Worldwide",
+    url: `${siteUrl}/solutions/${solution.slug}`,
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(serviceJsonLd) }}
+      />
+      <Container className="pt-8">
+        <Breadcrumbs
+          trail={[
+            { name: "Home", href: "/" },
+            { name: "Solutions", href: "/solutions" },
+            { name: solution.name, href: `/solutions/${solution.slug}` },
+          ]}
+        />
+      </Container>
       {/* Lede — oversized numeral sets an editorial, indexed tone */}
       <section className="pb-14 pt-16 sm:pb-20 sm:pt-24">
         <Container>
@@ -158,6 +194,8 @@ export default function SolutionPage({ params }: Props) {
         title={`${solution.name}, answered plainly`}
         intro="What buyers ask before committing. Short answers, no hedging."
       />
+
+      <RelatedReading slugs={solutionReading[solution.slug] ?? []} />
 
       <section className="bg-ink-strong py-16 sm:py-20">
         <Container className="text-center">

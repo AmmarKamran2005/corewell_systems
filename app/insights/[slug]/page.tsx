@@ -6,6 +6,11 @@ import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { formatDate, getInsight, getInsights } from "@/lib/content";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedReading } from "@/components/RelatedReading";
+import { insightReading } from "@/lib/related";
+import { canonical, jsonLdScript } from "@/lib/seo";
+import { siteUrl } from "@/lib/site";
 
 type Props = { params: { slug: string } };
 
@@ -19,9 +24,20 @@ export function generateMetadata({ params }: Props): Metadata {
   const insight = getInsight(params.slug);
   if (!insight) return {};
   return {
-    title: insight.title,
+    // metaTitle keeps the SERP entry inside the truncation cap; the H1 below
+    // still renders the full question.
+    title: insight.metaTitle ?? insight.title,
     description: insight.description,
     keywords: insight.keywords,
+    ...canonical(`/insights/${params.slug}`),
+    openGraph: {
+      type: "article",
+      title: insight.title,
+      description: insight.description,
+      publishedTime: insight.date,
+      modifiedTime: insight.updated ?? insight.date,
+      url: `/insights/${params.slug}`,
+    },
   };
 }
 
@@ -50,23 +66,55 @@ export default function InsightArticlePage({ params }: Props) {
       name: faq.q,
       acceptedAnswer: { "@type": "Answer", text: faq.a },
     })),
+    isPartOf: { "@id": `${siteUrl}/#website` },
+    publisher: { "@id": `${siteUrl}/#organization` },
+  };
+
+  /**
+   * Article schema. Author and publisher are the Organization by @id, never a
+   * person — company voice only (CONTEXT.md §2 rule 1). Referencing the
+   * existing @id rather than inlining a second Organization keeps the entity
+   * graph joined instead of fragmenting it.
+   *
+   * `headline` is capped at 110 characters for schema only; the visible H1 is
+   * the GEO/AEO answer target and is never shortened.
+   */
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: insight.title.slice(0, 110),
+    description: insight.description,
+    datePublished: insight.date,
+    dateModified: insight.updated ?? insight.date,
+    author: { "@id": `${siteUrl}/#organization` },
+    publisher: { "@id": `${siteUrl}/#organization` },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/insights/${insight.slug}`,
+    },
+    inLanguage: "en",
   };
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(faqJsonLd) }}
       />
 
       <article className="pb-20 pt-16 sm:pt-24">
         <Container className="max-w-3xl">
-          <Link
-            href="/insights"
-            className="text-sm font-medium text-accent hover:text-accent-strong"
-          >
-            ← All insights
-          </Link>
+          <Breadcrumbs
+            trail={[
+              { name: "Home", href: "/" },
+              { name: "Insights", href: "/insights" },
+              { name: insight.title, href: `/insights/${insight.slug}` },
+            ]}
+          />
           <h1 className="mt-6 text-3xl font-semibold leading-tight sm:text-4xl lg:text-[2.75rem]">
             {insight.title}
           </h1>
@@ -105,6 +153,8 @@ export default function InsightArticlePage({ params }: Props) {
           )}
         </Container>
       </article>
+
+      <RelatedReading slugs={insightReading[insight.slug] ?? []} />
 
       <section className="bg-ink-strong py-16 sm:py-20">
         <Container className="text-center">

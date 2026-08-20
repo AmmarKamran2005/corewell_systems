@@ -56,6 +56,13 @@ export type Industry = {
   };
   /** Capability modules surfaced as pills on the industry page. */
   modules?: string[];
+  /**
+   * Explicit `<title>` for the industry page. The default is
+   * `${name} Management Software`, which reads wrong when the name already
+   * ends in a noun — "Retail & Shop Management" became "Retail & Shop
+   * Management Management Software". Set this to override.
+   */
+  metaTitle?: string;
 };
 
 export const industries: Industry[] = [
@@ -147,6 +154,8 @@ export const industries: Industry[] = [
   {
     slug: "retail",
     name: "Retail & Shop Management",
+    // Name already ends in "Management"; without this the title doubled it.
+    metaTitle: "Retail & Shop Management Software",
     oneLiner:
       "Point-of-sale, inventory, and multi-location reporting that keeps a retail business running without the spreadsheet chaos.",
     status: "demo",
@@ -167,6 +176,7 @@ export const industries: Industry[] = [
   {
     slug: "construction-real-estate",
     name: "Construction & Real Estate",
+    metaTitle: "Construction & Real Estate Software",
     oneLiner:
       "Project timelines, budgets, subcontractor coordination, and property records — built for how construction and real estate teams actually work.",
     status: "concept",
@@ -186,6 +196,7 @@ export const industries: Industry[] = [
   {
     slug: "legal-professional-services",
     name: "Legal & Professional Services",
+    metaTitle: "Legal & Professional Services Software",
     oneLiner:
       "Case management, document workflows, billing, and client communication for law firms and professional practices.",
     status: "concept",

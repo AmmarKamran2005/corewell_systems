@@ -9,12 +9,13 @@ import { ChannelShowcase } from "@/components/trade/ChannelShowcase";
 import { CoreDiagram } from "@/components/trade/CoreDiagram";
 import { audiences, featureGroups, tradeFaqs } from "@/lib/trade";
 import { siteUrl, tradeDemoUrl } from "@/lib/site";
+import { canonical, jsonLdScript } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Distribution ERP with a Built-in POS and Online Store",
+  ...canonical("/trade"),
+  title: "Distribution ERP with POS and Storefront",
   description:
-    "Corewell Trade runs your trade desk, your counter and your website over one catalogue, one stock pool and one ledger. Open every screen of the system — no signup.",
-  alternates: { canonical: "/trade" },
+    "Corewell Trade runs your trade desk, your counter and your website over one catalogue, one stock pool and one ledger. Open every screen — no signup.",
 };
 
 /** Articles that support this page — the linking runs both ways (plan §4). */
@@ -53,7 +54,10 @@ export default function TradePage() {
       url: `${siteUrl}/trade`,
       description:
         "A distribution ERP with a point-of-sale till and a consumer storefront over one catalogue, one stock pool and one ledger.",
-      isPartOf: { "@type": "WebSite", name: "Corewell Systems", url: siteUrl },
+      // Reference the root WebSite node by @id rather than declaring a
+      // second one — the build showed two WebSite entities on this page.
+      isPartOf: { "@id": `${siteUrl}/#website` },
+      publisher: { "@id": `${siteUrl}/#organization` },
       about: [
         "Distribution ERP",
         "Point of sale",
@@ -87,7 +91,7 @@ export default function TradePage() {
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
 
       {/* ───────── 1. Hero ───────── */}
@@ -95,7 +99,7 @@ export default function TradePage() {
         <Container>
           <Reveal mode="mount" className="max-w-3xl">
             <p className="text-xs font-medium uppercase tracking-wider text-accent">
-              Trade desk · Counter · Online
+              Trade desk, counter, online
             </p>
             <h1 className="mt-3 text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl">
               Distribution ERP with a built-in POS and online store
@@ -148,10 +152,7 @@ export default function TradePage() {
         <Container>
           <div className="grid gap-10 lg:grid-cols-[22rem_1fr] lg:gap-16">
             <Reveal>
-              <p className="text-xs font-medium uppercase tracking-wider text-accent">
-                The problem
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold leading-tight sm:text-4xl">
+              <h2 className="text-3xl font-semibold leading-tight sm:text-4xl">
                 Three systems, three stock numbers
               </h2>
             </Reveal>
@@ -190,10 +191,7 @@ export default function TradePage() {
       <section className="py-16 sm:py-24">
         <Container>
           <Reveal className="max-w-2xl">
-            <p className="text-xs font-medium uppercase tracking-wider text-accent">
-              The idea
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold leading-tight sm:text-4xl">
+            <h2 className="text-3xl font-semibold leading-tight sm:text-4xl">
               One catalogue. One stock pool. One ledger.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-soft">
@@ -219,10 +217,7 @@ export default function TradePage() {
       <section className="border-y border-line bg-canvas-subtle py-16 sm:py-24">
         <Container>
           <Reveal className="max-w-2xl">
-            <p className="text-xs font-medium uppercase tracking-wider text-accent">
-              The channels
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold leading-tight sm:text-4xl">
+            <h2 className="text-3xl font-semibold leading-tight sm:text-4xl">
               Three channels, one system
             </h2>
             <p className="mt-5 text-base leading-relaxed text-soft">
@@ -308,10 +303,7 @@ export default function TradePage() {
         <Container>
           <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-16">
             <Reveal>
-              <p className="text-xs font-medium uppercase tracking-wider text-accent">
-                Try it
-              </p>
-              <h2 className="mt-3 text-3xl font-semibold leading-tight sm:text-4xl">
+              <h2 className="text-3xl font-semibold leading-tight sm:text-4xl">
                 Open it and look around
               </h2>
               <p className="mt-5 text-base leading-relaxed text-soft">
@@ -466,10 +458,7 @@ export default function TradePage() {
       <section className="py-16 sm:py-24">
         <Container>
           <Reveal className="max-w-2xl">
-            <p className="text-xs font-medium uppercase tracking-wider text-accent">
-              The fit
-            </p>
-            <h2 className="mt-3 text-3xl font-semibold leading-tight sm:text-4xl">
+            <h2 className="text-3xl font-semibold leading-tight sm:text-4xl">
               Who it is for
             </h2>
           </Reveal>

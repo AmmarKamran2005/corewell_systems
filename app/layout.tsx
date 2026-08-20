@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Inter_Tight } from "next/font/google";
 import { NavBar } from "@/components/layout/NavBar";
 import { Footer } from "@/components/layout/Footer";
 import { ConsultantWidget } from "@/components/consultant/ConsultantWidget";
 import { contactEmail, siteUrl, socialLinks } from "@/lib/site";
 import "./globals.css";
+import { jsonLdScript } from "@/lib/seo";
 
 // Two typefaces max (spec Section 4): Inter Tight for headings, Inter for body.
 const inter = Inter({
@@ -26,11 +27,14 @@ export const metadata: Metadata = {
     // purpose: brand queries for "corewell" surface a large healthcare
     // system, so the snippet has to say what kind of company this is fast.
     default:
-      "Corewell Systems — Custom Software Development Company",
-    template: "%s — Corewell Systems",
+      "Corewell Systems | Custom Software Development Company",
+    // Pipe, not an em dash: this one line sets the separator in all 31 page
+    // titles, every browser tab and every search result. It also reclaims
+    // characters against the ~60-char SERP cap.
+    template: "%s | Corewell Systems",
   },
   description:
-    "Corewell Systems is a software engineering company building custom operational software — clinic and practice management, hotel and booking platforms, school systems, and retail POS. Try a working demo, no signup.",
+    "Corewell Systems builds custom operational software: clinic and practice management, hotel booking, school systems and retail POS. Try a demo, no signup.",
   keywords: [
     "Corewell Systems",
     "custom software development company",
@@ -43,11 +47,21 @@ export const metadata: Metadata = {
     "SaaS development",
   ],
   applicationName: "Corewell Systems",
-  alternates: { canonical: "/" },
+  // No `alternates` here on purpose. App Router metadata is inherited by every
+  // child route, so a canonical declared in the layout makes every page claim
+  // to be a duplicate of the homepage. Each page declares its own via
+  // `canonical()` in lib/seo.ts.
   openGraph: {
     siteName: "Corewell Systems",
     type: "website",
   },
+  twitter: { card: "summary_large_image" },
+};
+
+// Next 14 moved viewport and themeColor out of `metadata` into their own
+// export. `themeColor` tints mobile browser chrome to the canvas colour.
+export const viewport: Viewport = {
+  themeColor: "#FAF9F6",
 };
 
 /**
@@ -140,12 +154,12 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(organizationJsonLd),
+            __html: jsonLdScript(organizationJsonLd),
           }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
+          dangerouslySetInnerHTML={{ __html: jsonLdScript(webSiteJsonLd) }}
         />
         {plausibleDomain && (
           <script

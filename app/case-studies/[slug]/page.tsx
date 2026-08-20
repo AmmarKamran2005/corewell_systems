@@ -8,6 +8,11 @@ import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
 import { getCaseStudies, getCaseStudy } from "@/lib/content";
 import { getIndustry, industryAccentStyle } from "@/lib/industries";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedReading } from "@/components/RelatedReading";
+import { caseStudyReading } from "@/lib/related";
+import { canonical, jsonLdScript } from "@/lib/seo";
+import { siteUrl } from "@/lib/site";
 
 type Props = { params: { slug: string } };
 
@@ -20,7 +25,19 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props): Metadata {
   const study = getCaseStudy(params.slug);
   if (!study) return {};
-  return { title: study.title, description: study.summary };
+  return {
+    title: study.title,
+    description: study.summary,
+    ...canonical(`/case-studies/${params.slug}`),
+    openGraph: {
+      type: "article",
+      title: study.title,
+      description: study.summary,
+      publishedTime: study.date,
+      modifiedTime: study.updated ?? study.date,
+      url: `/case-studies/${params.slug}`,
+    },
+  };
 }
 
 const prose = [
@@ -43,16 +60,42 @@ export default function CaseStudyPage({ params }: Props) {
 
   const industry = getIndustry(study.industry);
 
+  /**
+   * Article is the honest type for an illustrative study: these are written
+   * explanations, not verified reports. Deliberately NOT Review, and not any
+   * CreativeWork flavour implying a measured client result (spec Section 7).
+   */
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: study.title.slice(0, 110),
+    description: study.summary,
+    datePublished: study.date,
+    dateModified: study.updated ?? study.date,
+    author: { "@id": `${siteUrl}/#organization` },
+    publisher: { "@id": `${siteUrl}/#organization` },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${siteUrl}/case-studies/${study.slug}`,
+    },
+    inLanguage: "en",
+  };
+
   return (
     <div style={industry ? industryAccentStyle(industry) : undefined}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(articleJsonLd) }}
+      />
       <article className="pb-20 pt-16 sm:pt-24">
         <Container className="max-w-3xl">
-          <Link
-            href="/case-studies"
-            className="text-sm font-medium text-accent hover:text-accent-strong"
-          >
-            ← All case studies
-          </Link>
+          <Breadcrumbs
+            trail={[
+              { name: "Home", href: "/" },
+              { name: "Case Studies", href: "/case-studies" },
+              { name: study.descriptor, href: `/case-studies/${study.slug}` },
+            ]}
+          />
 
           {study.illustrative && (
             <div className="mt-6 rounded-xl border border-line bg-canvas-subtle p-4">
@@ -60,9 +103,9 @@ export default function CaseStudyPage({ params }: Props) {
                 Illustrative scenario — sample data
               </Badge>
               <p className="mt-2 text-xs leading-relaxed text-faint">
-                This case study is a composite scenario using sample figures to
-                show how such a system works. It does not describe a named
-                client engagement.
+                This case study is a composite scenario, written to show how
+                such a system works. It does not describe a named client
+                engagement, and no outcome here is measured from one.
               </p>
             </div>
           )}
@@ -92,6 +135,8 @@ export default function CaseStudyPage({ params }: Props) {
           </div>
         </Container>
       </article>
+
+      <RelatedReading slugs={caseStudyReading[study.industry] ?? []} />
 
       <section className="bg-ink-strong py-16 sm:py-20">
         <Container className="text-center">

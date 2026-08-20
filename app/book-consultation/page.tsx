@@ -3,8 +3,10 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { BookingEmbed } from "@/components/consult/BookingEmbed";
 import { ConsultForm } from "@/components/consult/ConsultForm";
+import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
+  ...canonical("/book-consultation"),
   title: "Book a Consultation",
   description:
     "A free call about your operation — what's slowing it down and what a system to fix it would look like. Pick a time directly, no pitch deck, no obligation.",

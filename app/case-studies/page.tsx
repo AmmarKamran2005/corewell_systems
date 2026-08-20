@@ -6,9 +6,11 @@ import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { getCaseStudies } from "@/lib/content";
 import { getIndustry, industryAccentStyle } from "@/lib/industries";
+import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
-  title: "Case Studies — Operational Systems in Practice",
+  ...canonical("/case-studies"),
+  title: "Case Studies",
   description:
     "Anonymized case studies of operational software for clinics, hotels, and retail chains — the problem, the system, and what changed.",
 };

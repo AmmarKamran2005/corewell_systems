@@ -3,8 +3,10 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Reveal } from "@/components/motion/Reveal";
 import { solutions } from "@/lib/solutions";
+import { canonical } from "@/lib/seo";
 
 export const metadata: Metadata = {
+  ...canonical("/solutions"),
   title: "Solutions",
   description:
     "Capabilities for building operational business software: custom software development, SaaS platforms, mobile apps, cloud & deployment, and AI automation.",
