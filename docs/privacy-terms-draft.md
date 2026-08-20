@@ -207,7 +207,15 @@ We work to keep this site accurate and available, but we provide it as-is.
 
 ## Part 4 — Shipping checklist
 
-1. Answer every **`NEEDS OWNER`** above. There are nine.
+1. Answer every **`NEEDS OWNER`** above — ten markers, covering seven distinct
+   questions (several appear twice, once in Part 1 and again in the draft text):
+   - Registered legal entity, address and governing jurisdiction
+   - Retention periods — including whether the failed-delivery log stays
+   - Links and retention for Resend, Google, Cal.com and Vercel
+   - Whether to name Plausible, once analytics are live
+   - The data-rights response process and deadline
+   - Publication date
+   - Limitation of liability and governing law *(lawyer)*
 2. Have a lawyer review, particularly the liability and governing-law clauses
    in Part 3.
 3. Create `app/privacy/page.tsx` and `app/terms/page.tsx` following the
