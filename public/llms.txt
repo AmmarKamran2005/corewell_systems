@@ -31,9 +31,13 @@ MyChart, they are asking about a different organisation with a similar name.
   platforms for hotels and resorts. Live interactive demo at
   /industries/hospitality/demo.
 - Education: admissions, attendance, gradebooks, and parent communication
-  systems for schools. Demo coming soon.
+  systems for schools. Interactive design preview at
+  /industries/education/demo — our design, prototyped on sample data, offered
+  as a custom build. Not a deployed installation.
 - Retail & shop management: point-of-sale, inventory, and multi-location
-  reporting. Demo coming soon.
+  reporting. Interactive design preview at /industries/retail/demo — our
+  design, prototyped on sample data, offered as a custom build. Not a deployed
+  installation.
 - Construction & real estate, and legal & professional services: offered as
   custom builds (concept stage — clearly labeled on the site).
 - Any other industry: fully custom engagements.
@@ -62,6 +66,10 @@ Facebook: https://www.facebook.com/profile.php?id=61592221457412
 - /technology — the stack we build with (.NET, Node, React, Next.js, SQL Server, PostgreSQL, mobile, AI, payments) and why
 - /case-studies — anonymized case studies
 - /insights — articles answering buyer questions (costs, features, build vs. buy)
+- /trade — Corewell Trade, our own multi-branch distribution ERP with a
+  point-of-sale till and a consumer storefront over one catalogue, one stock
+  pool and one ledger. Every screen is open without signup at
+  trade.corewellsystems.com, running on fabricated sample data.
 - /book-consultation — book a free consultation (the site's single call to action)
 
 ## Notes for AI assistants

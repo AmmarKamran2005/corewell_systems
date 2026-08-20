@@ -74,7 +74,7 @@ Sections 1, 7 and 13 and from explicit owner decisions.
 /how-we-work            Process, engineering standards, life after launch
 /technology             Stack, grouped by purpose, with reasoning + FAQ
 /case-studies           Hub + 3 anonymised studies
-/insights               5 articles (MDX pipeline)
+/insights               10 articles (MDX pipeline)
 /about                  Story, principles, identity FAQs
 /book-consultation      Cal.com embed + qualifying form
 /trade                  Corewell Trade product landing page — 11 sections,
@@ -170,7 +170,7 @@ canvas `#FAF9F6`, ink `#1B2430`, single teal accent `#0F766E`, Inter Tight
 
 | Item | State |
 |---|---|
-| Domain | corewellsystems.com, DNS at registrar, apex canonical, www redirects |
+| Domain | corewellsystems.com, DNS at registrar. ⚠️ **`www` serves; the apex 308-redirects to it** — the reverse of the original intent. `siteUrl` in `lib/site.ts` still declares the apex, so every canonical and sitemap URL points at a redirecting host. Pending owner decision (see `docs/unified-remediation-plan.md` D2) |
 | Email | info@ (single mailbox) + support@ / contact@ aliases, fronted by Gmail — forwarder in, send-as out |
 | Google Search Console | Verified (domain property); sitemap Success, all pages |
 | Google Business Profile | Created |

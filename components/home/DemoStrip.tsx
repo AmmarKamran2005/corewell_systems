@@ -15,8 +15,10 @@ import {
  * scope, so the badge and link pick up the per-industry theme.
  */
 export function DemoStrip() {
+  // surface: this now sits between IndustryMorph (canvas) and ProofSection
+  // (canvas-subtle), so it needs its own ground to read as a section.
   return (
-    <section className="py-16 sm:py-24">
+    <section className="bg-surface py-16 sm:py-24">
       <Container>
         <Reveal className="max-w-2xl">
           <h2 className="text-3xl font-semibold sm:text-4xl">

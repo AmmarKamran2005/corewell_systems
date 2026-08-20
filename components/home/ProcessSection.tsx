@@ -25,8 +25,11 @@ const steps = [
 ];
 
 export function ProcessSection() {
+  // surface, not canvas-subtle: this now sits between ProofSection
+  // (canvas-subtle) and InsightsPreview (canvas), and two adjacent sections
+  // must never share a background.
   return (
-    <section className="bg-canvas-subtle py-16 sm:py-24">
+    <section className="bg-surface py-16 sm:py-24">
       <Container>
         <Reveal className="max-w-2xl">
           <h2 className="text-3xl font-semibold sm:text-4xl">How we work</h2>
