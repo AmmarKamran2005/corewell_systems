@@ -170,7 +170,7 @@ canvas `#FAF9F6`, ink `#1B2430`, single teal accent `#0F766E`, Inter Tight
 
 | Item | State |
 |---|---|
-| Domain | corewellsystems.com, DNS at registrar. ⚠️ **`www` serves; the apex 308-redirects to it** — the reverse of the original intent. `siteUrl` in `lib/site.ts` still declares the apex, so every canonical and sitemap URL points at a redirecting host. Pending owner decision (see `docs/unified-remediation-plan.md` D2) |
+| Domain | corewellsystems.com, DNS at registrar. **`www` is canonical**; the apex 308-redirects to it. `siteUrl` in `lib/site.ts` declares `https://www.corewellsystems.com` to match — canonicals, sitemap, robots and JSON-LD `@id` all derive from that one constant. (Owner decision, 2026-08-20: earlier docs said apex-canonical, but www is what actually serves.) |
 | Email | info@ (single mailbox) + support@ / contact@ aliases, fronted by Gmail — forwarder in, send-as out |
 | Google Search Console | Verified (domain property); sitemap Success, all pages |
 | Google Business Profile | Created |

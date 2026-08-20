@@ -1,11 +1,16 @@
 /**
- * Canonical site URL for metadata, JSON-LD, sitemap, and robots.
- * Production domain is the default; local dev overrides via
- * NEXT_PUBLIC_SITE_URL=http://localhost:3000 in .env.local (needed so the
- * OG image's self-fetch of /icon.png works in dev).
+ * Canonical site URL for metadata, JSON-LD, sitemap and robots.
+ *
+ * `www`, not the apex. Production serves from www and 308-redirects the apex
+ * to it, so the previous apex value meant every canonical, all 39 sitemap
+ * URLs and the JSON-LD @id pointed at a redirecting host. Declared identity
+ * now matches served identity.
+ *
+ * Everything downstream derives from this constant, so changing hosts stays a
+ * one-line edit. Local dev overrides via NEXT_PUBLIC_SITE_URL in .env.local.
  */
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://corewellsystems.com";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.corewellsystems.com";
 
 export const contactEmail = "info@corewellsystems.com";
 
