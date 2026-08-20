@@ -156,12 +156,32 @@ const webSiteJsonLd = {
  * deploys are harmless regardless: Plausible only accepts events for domains
  * configured on the account, so *.vercel.app hits are dropped at their end.
  *
- * Cookieless and aggregate-only, which is why it is the right choice for a
- * site that sets no cookies and therefore needs no consent banner.
+ * Cookieless and aggregate-only.
  */
 const PLAUSIBLE_SRC =
   "https://plausible.io/js/pa-eoZGiEwK35KCsp-IL-aWa.js";
-const plausibleEnabled = process.env.NODE_ENV === "production";
+
+/**
+ * Google Analytics 4, running alongside Plausible.
+ *
+ * ⚠️ Unlike Plausible, GA4 **sets cookies** (`_ga`, `_ga_<id>`). Adding it
+ * changed this site from cookieless to cookie-setting, which means:
+ *   - `docs/privacy-terms-draft.md` must name GA and its cookies before it is
+ *     published, and
+ *   - a consent banner may be legally required depending on jurisdiction.
+ * That is an owner decision, recorded here so it is not rediscovered later.
+ *
+ * The measurement ID is public — it ships in the HTML — so it lives in the
+ * source, same as the Plausible src.
+ *
+ * CSP note: googletagmanager.com and the analytics collection endpoints are
+ * allowlisted in next.config.mjs. The policy is enforcing, so removing them
+ * silently breaks GA rather than warning about it.
+ */
+const GA_MEASUREMENT_ID = "G-XM7ZQE3BB1";
+
+/** Both are skipped in development so `npm run dev` never reaches real stats. */
+const analyticsEnabled = process.env.NODE_ENV === "production";
 
 export default function RootLayout({
   children,
@@ -179,7 +199,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLdScript(webSiteJsonLd) }}
         />
-        {plausibleEnabled && (
+        {analyticsEnabled && (
           <>
             <script async src={PLAUSIBLE_SRC} />
             {/* Queues events fired before the async script finishes loading. */}
@@ -187,6 +207,15 @@ export default function RootLayout({
               dangerouslySetInnerHTML={{
                 __html:
                   "window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};plausible.init()",
+              }}
+            />
+            <script
+              async
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+            />
+            <script
+              dangerouslySetInnerHTML={{
+                __html: `window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','${GA_MEASUREMENT_ID}');`,
               }}
             />
           </>

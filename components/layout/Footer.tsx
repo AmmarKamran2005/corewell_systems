@@ -17,6 +17,8 @@ const companyLinks = [
   { href: "/about", label: "About" },
   // Pricing hidden pending owner sign-off — see NavBar.
   { href: "/book-consultation", label: "Book a Consultation" },
+  { href: "/privacy", label: "Privacy" },
+  { href: "/terms", label: "Terms" },
 ];
 
 export function Footer() {

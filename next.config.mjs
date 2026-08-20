@@ -6,8 +6,8 @@
  * ENFORCING as of 2026-08-20, after a report-only pass found zero violations
  * across the homepage, /book-consultation (Cal.com embed), a demo route and
  * /trade, with Plausible live. The site loads exactly three external
- * resources: Cal.com's embed script, Cal.com's booking iframe, and the
- * Plausible script plus its event POST — all explicitly allowed below.
+ * resources: Cal.com's embed script and booking iframe, Plausible, and GA4 —
+ * all explicitly allowed below.
  *
  * If you add any third-party script, widget or font host, it must be added
  * here in the same commit or it will be blocked in production.
@@ -15,6 +15,10 @@
  * What each origin is for:
  *   - app.cal.com / cal.com  — the booking embed loads a script and an iframe
  *   - plausible.io           — the analytics script and the event POST it sends
+ *   - googletagmanager.com   — the GA4 gtag.js loader
+ *   - *.google-analytics.com — where GA4 sends its collection beacons
+ *     (analytics uses several hostnames and region-sharded subdomains, which
+ *     is why these are wildcards rather than a single origin)
  *   - 'unsafe-inline' (style) — Tailwind and next/font inject inline styles
  *   - 'unsafe-inline' (script) — required by Next's inline bootstrap; tightening
  *     this needs a nonce, which is a separate change
@@ -24,12 +28,12 @@
  */
 const csp = [
   "default-src 'self'",
-  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.cal.com https://cal.com https://plausible.io",
+  "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://app.cal.com https://cal.com https://plausible.io https://www.googletagmanager.com",
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob: https:",
   "media-src 'self'",
   "font-src 'self' data:",
-  "connect-src 'self' https://app.cal.com https://cal.com https://plausible.io",
+  "connect-src 'self' https://app.cal.com https://cal.com https://plausible.io https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com",
   "frame-src 'self' https://app.cal.com https://cal.com",
   "frame-ancestors 'none'",
   "base-uri 'self'",

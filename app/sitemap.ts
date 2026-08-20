@@ -28,6 +28,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // "/pricing" withheld from the sitemap while the page is unpublished.
     "/about",
     "/book-consultation",
+    "/privacy",
+    "/terms",
   ];
 
   const entries: MetadataRoute.Sitemap = [

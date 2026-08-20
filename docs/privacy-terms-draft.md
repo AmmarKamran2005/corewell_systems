@@ -1,6 +1,22 @@
-# Privacy Policy & Terms — DRAFT for owner review
+# Privacy Policy & Terms — superseded, kept as working notes
 
-> **STATUS: DRAFT. NOT PUBLISHED. NO ROUTES BUILT.**
+> **STATUS: SUPERSEDED. The pages are written and live at `/privacy` and
+> `/terms`** (`app/privacy/page.tsx`, `app/terms/page.tsx`).
+>
+> Owner direction 2026-08-20: a normal, readable policy rather than a strict
+> one, using sensible general wording instead of waiting on precise answers.
+> The published pages do that — plain language, everything in them true against
+> the code, and no invented specifics (no registration number, no fabricated
+> retention period, no governing-law clause).
+>
+> **Part 1 below is still worth keeping**: it is the verified record of what the
+> code actually does with data, and it is what the published pages were written
+> from. If the data flows change, check them against Part 1 and update both.
+>
+> **The one open decision is Google Analytics cookies** — see the Cookies
+> section in Part 1. Everything else is settled.
+>
+> Parts 2 and 3 are the earlier draft text, now replaced by the live pages.
 >
 > This is not legal advice and has not been reviewed by a lawyer. It exists so
 > the owner has something concrete to correct rather than a blank page.
@@ -47,16 +63,34 @@ Established by reading the source, not by assumption. Cite these if anyone asks.
 
 ### Cookies
 
-**The site sets none.** Verified two ways: no `cookies()`, `document.cookie` or
-`Set-Cookie` anywhere in the source, and no `Set-Cookie` header on a live
-production response.
+⚠️ **This changed on 2026-08-20 and the change is material.**
 
-This means **no cookie banner is required** for the site's own operation. Do
-not add one; it would be a consent prompt for consent that is not needed.
+The site's own code still sets no cookies — no `cookies()`, `document.cookie`
+or `Set-Cookie` anywhere in the source. **But Google Analytics 4 was added, and
+GA4 sets cookies** (`_ga`, and `_ga_<measurement-id>`), typically with a
+two-year lifetime.
 
-> **`NEEDS OWNER`** — this changes if Plausible is enabled. Plausible is
-> cookieless and does not collect personal data, which is why it is the right
-> choice here, but the policy should name it once it is live.
+Consequences:
+
+- The site is **no longer cookieless**. Any earlier statement to that effect is
+  now wrong and must not be published.
+- **A consent banner may be legally required.** Under GDPR/ePrivacy, analytics
+  cookies generally need consent before they are set. GA4 currently loads
+  unconditionally on every page.
+- Plausible remains cookieless and needs no consent. It is GA that creates the
+  obligation.
+
+> **`NEEDS OWNER` — decide one of three:**
+> 1. **Keep GA and add a consent banner** that blocks it until the visitor
+>    agrees. Most correct, most work.
+> 2. **Keep GA, rely on your jurisdiction not requiring consent.** Your call
+>    with legal advice — not something to assume.
+> 3. **Drop GA and keep Plausible only.** Restores a cookieless site with no
+>    banner, no consent obligation, and a simpler policy. Plausible already
+>    gives you traffic, sources, pages and countries.
+>
+> Until this is answered, **do not publish this policy**, because the cookie
+> section cannot be written truthfully without the decision.
 
 ### Third parties that receive data
 
@@ -66,7 +100,8 @@ not add one; it would be a consent prompt for consent that is not needed.
 | **Google (Gemini)** | Chat messages | Generating the assistant's replies |
 | **Cal.com** | Whatever the visitor enters into the embedded booking widget — handled entirely by Cal.com, never by this site | Booking |
 | **Vercel** | Standard request logs; failed-delivery payloads | Hosting |
-| **Plausible** *(when enabled)* | Cookieless, aggregate page analytics | Measurement |
+| **Plausible** | Cookieless, aggregate page analytics | Measurement |
+| **Google Analytics 4** | Page views, device and approximate location, plus its own cookies | Measurement |
 
 > **`NEEDS OWNER`** — each of these has its own retention policy and its own
 > sub-processor list. A policy should link them. I have deliberately not
@@ -101,24 +136,37 @@ It reaches us as an email; we do not store it in a database on this website.
 Google's Gemini service to generate a reply and are not recorded by this site.
 The conversation exists only in your browser tab and is gone when you close it.
 
+**When you browse.** We use two analytics tools: Plausible, which is cookieless
+and records only aggregate page statistics, and Google Analytics, which sets
+cookies on your device.
+
+> **`NEEDS OWNER`** — this paragraph depends on the cookie decision above. If
+> GA is dropped, delete the second half of the sentence.
+
 We do not use your information for advertising, we do not sell it, and we do
 not share it with anyone except the service providers listed below who are
 required to deliver it.
 
 ### Cookies
 
-**This website does not set cookies.** There is nothing to consent to and no
-banner to dismiss.
+Our own site sets no cookies. **Google Analytics, which we use to understand
+how the site is used, does set cookies** on your device.
 
-> **`NEEDS OWNER`** — add one sentence naming Plausible once analytics are live:
-> cookieless, aggregate only, no personal data, no cross-site tracking.
+We also use Plausible, which is cookieless and records only aggregate
+statistics — no cookies, no personal data, no tracking across other websites.
+
+> **`NEEDS OWNER` — this section cannot be finalised until the GA decision in
+> Part 1 is made.** If GA stays, this needs to say which cookies, how long they
+> last, and how a visitor refuses them. If GA goes, this section reverts to a
+> single sentence saying the site sets no cookies at all.
 
 ### Service providers
 
 We rely on: **Resend** (delivering your enquiry as email), **Google** (the
-Gemini model powering the assistant), **Cal.com** (the booking calendar
-embedded on our consultation page, which handles what you enter there
-directly), and **Vercel** (hosting).
+Gemini model powering the assistant, and Google Analytics), **Cal.com** (the
+booking calendar embedded on our consultation page, which handles what you
+enter there directly), **Plausible** (cookieless analytics), and **Vercel**
+(hosting).
 
 > **`NEEDS OWNER`** — link each provider's privacy policy, and state their
 > retention periods.
