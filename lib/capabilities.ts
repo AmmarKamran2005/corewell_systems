@@ -240,7 +240,7 @@ const hospitality: IndustryCapabilities = {
   framing: {
     assurancesTitle: "How the money and the inventory are protected",
     assurancesIntro:
-      "A booking platform handles other people's money and other people's rooms. These are engineering decisions in what we have built, not promises.",
+      "A booking platform handles other people's money and other people's rooms. Everything below is a decision already made in a system we have shipped.",
   },
 
   verticals: [

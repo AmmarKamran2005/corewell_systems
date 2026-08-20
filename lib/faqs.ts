@@ -59,7 +59,7 @@ const industryFaqs: Record<string, Faq[]> = {
     },
     {
       q: "Can one system run several properties?",
-      a: "Yes. Each property carries its own rooms, rates, availability and settings under a single account, with performance visible per property and across the group — rather than a phone call to each manager.",
+      a: "Yes. Each property carries its own rooms, rates, availability and settings under a single account, with performance visible per property and across the group, so comparing sites does not mean phoning each manager.",
     },
   ],
 
@@ -112,7 +112,7 @@ const industryFaqs: Record<string, Faq[]> = {
     },
     {
       q: "How much does a custom system cost?",
-      a: "It depends on how much of the operation it covers, how many people use it, and what it has to connect to. Engagements typically fall into three shapes — a focused first system, a connected multi-department platform, or an organisation-scale build — and a real number comes from a short scoping conversation rather than a guess. We would rather quote accurately than quickly.",
+      a: "It depends on how much of the operation it covers, how many people use it, and what it has to connect to. Engagements typically fall into three shapes — a focused first system, a connected multi-department platform, or an organisation-scale build — and a real number comes out of a short scoping conversation. We would sooner quote accurately than quickly.",
     },
     {
       q: "Can you start small rather than building everything at once?",
@@ -144,7 +144,7 @@ const solutionFaqs: Record<string, Faq[]> = {
   "custom-software-development": [
     {
       q: "How is custom software different from configuring an off-the-shelf tool?",
-      a: "The software adapts to your workflow instead of the other way around. Off-the-shelf tools are designed for the average business in an industry, which is a business that does not exist — so teams bridge the gaps with spreadsheets, group chats and habits only one person understands. A custom system removes that friction rather than adding capability on top of it.",
+      a: "The software adapts to your workflow instead of the other way around. Off-the-shelf tools are designed for the average business in an industry, which is a business that does not exist — so teams bridge the gaps with spreadsheets, group chats and habits only one person understands. A custom system takes that friction out of the operation instead of layering more capability over it.",
     },
     {
       q: "What happens to the data in our current tools?",
@@ -152,11 +152,11 @@ const solutionFaqs: Record<string, Faq[]> = {
     },
     {
       q: "Do we own the software when it is finished?",
-      a: "Yes. The system, its data and its documented architecture are yours. We build on mainstream, well-supported technology precisely so you are never dependent on us to keep it running.",
+      a: "Yes. The system, its data and its documented architecture are yours. The stack it runs on is mainstream and well supported, chosen so that maintaining it never depends on our availability.",
     },
     {
       q: "What happens after launch?",
-      a: "Training, fixes and improvements as the business changes. Our production systems carry documented recovery procedures, staged releases with named rollback points, and change logs recording what was touched and how it was verified. Building it is the first half of the job.",
+      a: "Training, fixes and improvements as the business changes. Our production systems carry documented recovery procedures, staged releases with named rollback points, and change logs recording what was touched and how it was verified. Most of a system's life happens after launch, and it is budgeted for.",
     },
   ],
 
@@ -194,7 +194,7 @@ const solutionFaqs: Record<string, Faq[]> = {
     },
     {
       q: "What stops an out-of-date app from corrupting our data?",
-      a: "Released apps check in against a minimum supported version. A device left un-updated is told to update rather than allowed to write against an interface it no longer understands.",
+      a: "Released apps check in against a minimum supported version. A device left un-updated is told to update before it can write against an interface it no longer understands.",
     },
   ],
 
@@ -205,7 +205,7 @@ const solutionFaqs: Record<string, Faq[]> = {
     },
     {
       q: "How are backups handled, and have they been tested?",
-      a: "Databases back up on a schedule to storage separate from the server they came from, and the restore path is exercised rather than assumed. A backup nobody has restored is a hope, not a backup.",
+      a: "Databases back up on a schedule to storage separate from the server they came from, and the restore path is exercised on a schedule of its own. A backup nobody has ever restored is only a hope.",
     },
     {
       q: "What happens if the server restarts at 3am?",
@@ -224,7 +224,7 @@ const solutionFaqs: Record<string, Faq[]> = {
     },
     {
       q: "What if the AI gets something wrong?",
-      a: "A person approves it before it counts. Nothing generated becomes a record on its own — the output is drafted for review, and the suggestions our systems make arrive with the evidence behind them so the reviewer can check the logic in seconds rather than trusting a label.",
+      a: "A person approves it before it counts. Nothing generated becomes a record on its own — the output is drafted for review, and the suggestions our systems make arrive with the evidence behind them so the reviewer can check the logic in seconds instead of taking a label on trust.",
     },
     {
       q: "Where does AI actually save time?",
