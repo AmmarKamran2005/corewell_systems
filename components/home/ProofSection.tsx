@@ -87,7 +87,7 @@ export function ProofSection() {
                         aria-hidden
                         className="font-display text-xs font-semibold tabular-nums tracking-display text-faint/70 transition-colors duration-300 group-hover:text-accent sm:pt-0.5"
                       >
-                        {String(index + 1).padStart(2, "0")}
+                        <span className="mt-2 block h-1.5 w-1.5 rounded-full bg-current" />
                       </span>
                       <div>
                         <p className="text-sm leading-relaxed text-ink sm:text-base">

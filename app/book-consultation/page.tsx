@@ -37,21 +37,16 @@ export default function BookConsultationPage() {
           </Reveal>
 
           <Reveal delay={0.08} className="mt-10">
-            <ul className="grid gap-4 sm:grid-cols-3">
-              {expectations.map((item, index) => (
-                <li
-                  key={item}
-                  className="rounded-2xl border border-line bg-surface p-5"
-                >
+            {/* Stacked list with an accent tick — a third layout family, so
+                /about, /how-we-work and this page no longer share one. */}
+            <ul className="divide-y divide-line border-y border-line">
+              {expectations.map((item) => (
+                <li key={item} className="flex gap-4 py-5">
                   <span
                     aria-hidden
-                    className="font-display text-xs font-semibold tabular-nums tracking-display text-accent"
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <p className="mt-2 text-sm leading-relaxed text-soft">
-                    {item}
-                  </p>
+                    className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
+                  />
+                  <p className="text-sm leading-relaxed text-soft">{item}</p>
                 </li>
               ))}
             </ul>

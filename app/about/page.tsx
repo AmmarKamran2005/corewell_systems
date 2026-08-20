@@ -36,7 +36,9 @@ const identityFaqs = [
 
 export const metadata: Metadata = {
   ...canonical("/about"),
-  title: "About Corewell Systems",
+  // Just "About" — the template already appends "| Corewell Systems", so
+  // "About Corewell Systems" rendered the brand twice in one title.
+  title: "About",
   description:
     "An independent custom software development company, not affiliated with any hospital system or healthcare provider. We build software for business operations.",
 };
@@ -144,20 +146,23 @@ export default function AboutPage() {
             </div>
           </Reveal>
 
-          <div className="mt-12 grid gap-5 lg:grid-cols-3">
+          {/* Two-column divided list, not a three-card row. Each page in this
+              set uses a different layout family so no two read as the same
+              template. */}
+          <dl className="mt-12 grid gap-x-12 sm:grid-cols-2">
             {principles.map((principle, index) => (
-              <Reveal key={principle.title} delay={index * 0.06}>
-                <div className="h-full rounded-2xl border border-line bg-surface p-6">
-                  <h3 className="text-base font-semibold text-ink-strong">
+              <Reveal key={principle.title} delay={index * 0.05}>
+                <div className="border-t border-line py-6">
+                  <dt className="text-base font-semibold text-ink-strong">
                     {principle.title}
-                  </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-soft">
+                  </dt>
+                  <dd className="mt-2.5 text-sm leading-relaxed text-soft">
                     {principle.detail}
-                  </p>
+                  </dd>
                 </div>
               </Reveal>
             ))}
-          </div>
+          </dl>
 
           <Reveal className="mt-12">
             <Button href="/book-consultation">Book a Consultation</Button>

@@ -41,9 +41,13 @@ export function ProcessSection() {
                 delay={index * 0.08}
                 className="h-full rounded-2xl border border-line bg-surface p-6"
               >
-                <span className="text-sm font-medium text-accent">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
+                {/* The step content is the label — the rendered 01/02 added
+                    nothing a reader needed. The rule keeps the rhythm the
+                    numeral gave the card; <ol> still carries the order. */}
+                <span
+                  aria-hidden
+                  className="block h-0.5 w-8 rounded-full bg-accent"
+                />
                 <h3 className="mt-3 text-lg font-semibold">{step.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-soft">
                   {step.description}

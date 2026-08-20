@@ -168,10 +168,8 @@ export default function HowWeWorkPage() {
                   <div className="grid gap-x-8 gap-y-4 py-8 lg:grid-cols-[4rem_20rem_1fr]">
                     <span
                       aria-hidden
-                      className="font-display text-sm font-semibold tabular-nums tracking-display text-faint/70 transition-colors duration-300 group-hover:text-accent"
-                    >
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
+                      className="mt-2 block h-0.5 w-8 rounded-full bg-faint/50 transition-colors duration-300 group-hover:bg-accent"
+                    />
                     <div>
                       <h3 className="font-display text-xl font-semibold tracking-display text-ink-strong">
                         {stage.name}
@@ -220,20 +218,23 @@ export default function HowWeWorkPage() {
             </p>
           </Reveal>
 
-          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+          {/* Rule-led rows on a wide measure — deliberately a different family
+              from the divided list on /about and the stacked list on
+              /book-consultation. */}
+          <dl className="mt-10 divide-y divide-line border-y border-line">
             {standards.map((standard, index) => (
               <Reveal key={standard.title} delay={index * 0.04}>
-                <div className="h-full rounded-2xl border border-line bg-surface p-6">
-                  <h3 className="text-base font-semibold text-ink-strong">
+                <div className="grid gap-2 py-6 lg:grid-cols-[18rem_1fr] lg:gap-x-10">
+                  <dt className="text-base font-semibold text-ink-strong">
                     {standard.title}
-                  </h3>
-                  <p className="mt-2.5 text-sm leading-relaxed text-soft">
+                  </dt>
+                  <dd className="text-sm leading-relaxed text-soft">
                     {standard.detail}
-                  </p>
+                  </dd>
                 </div>
               </Reveal>
             ))}
-          </div>
+          </dl>
         </Container>
       </section>
 
