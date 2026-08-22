@@ -175,10 +175,18 @@ breadcrumbs and related-reading blocks, which is why the *rendered* contextual
 link count went from 0–1 to 5–6 per article. That is the number that affects
 crawling; the 5.0/1k figure needs owner-approved new copy.
 
-**Still open:** `P1-T3` (needs D1) · `P1-T4` (needs D2) · `P3-T7` (per-article
-OG images) · `P4-T1`/`T2`/`T3`/`T6` · `P5-T2`/`T3`/`T5`/`T6`/`T7` (all require
-authoring claims, or owner/legal content) · `P6-T2`/`T3`/`T4`/`T5` (taste and
-real image assets) · `P7-T1`/`T4`.
+**Settled since:** `P1-T3` (D1 — Trade is a published product; all eight
+surfaces aligned) · `P1-T4` (D2 — canonicalised on `www`) · `P4-T1` (Plausible
+and GA4 live) · `P5-T6` (`/privacy` and `/terms` published).
+
+**Still open, grouped by what they actually need:**
+
+| Needs | Tasks |
+|---|---|
+| **Nothing — an agent can do these now** | `P3-T7` per-article OG images · `P4-T2`/`T3` lead capture in the consultant and demos · `P6-T4` real screenshots from the demo routes · `P7-T4` the Next.js major upgrade |
+| **Owner-approved new copy** (guardrail 1 blocks an agent) | `P5-T2` comparison tables · `P5-T3` 40–60 word lead answers · `P5-T5` thin pages · `P5-T7` new articles · `P4-T6` the H1 rewrite |
+| **An owner decision** | `P6-T2`/`T3` remaining taste calls · `P7-T1` dark mode · HSTS `preload` · the GA cookie/consent question |
+| **Nobody in this repo** | Clutch/G2/GoodFirms listings · the Trade backend · resubmitting the sitemap in Search Console |
 
 > **Note for whoever picks this up:** starting `next dev` after a build wipes
 > `.next`, so the build artifacts these acceptance tests read are destroyed by a
